@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package com.ubaya.disprog;
+
+import java.util.ArrayList;
 import model.Account;
 import model.Restaurant;
 
@@ -43,9 +45,21 @@ public class LoginWebServ {
     public boolean add_data_restaurant(@WebParam(name = "username") String username, @WebParam(name = "ownerName") String ownerName, @WebParam(name = "nama_resto") String nama_resto, @WebParam(name = "alamat") String alamat, @WebParam(name = "max_table") int max_table) {
         //TODO write your implementation code here:
         boolean status = false;
-        Restaurant acc = new Restaurant(ownerName, nama_resto, username, alamat, max_table);
-        status = acc.insertData();
-        
+        Restaurant res = new Restaurant(ownerName, nama_resto, username, alamat, max_table);
+        status = res.insertData();
+
         return status;
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "check_login")
+    public ArrayList<Account> check_login(@WebParam(name = "username") String username, @WebParam(name = "password") String password) {
+        //TODO write your implementation code here:
+        ArrayList<Account> collections = new ArrayList<Account>();
+        Account acc = new Account(username, password);
+        collections = acc.checkLogin();
+        return collections;
     }
 }

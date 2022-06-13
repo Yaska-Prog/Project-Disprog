@@ -70,10 +70,10 @@ public class Account extends MyModel {
         this.email = null;
         this.role = null;
     }
-
-    public Account(String _email, String _password) {
+    
+    public Account(String user_name, String _password) {
         this.password = _password;
-        this.email = _email;
+        this.username = user_name;
     }
 
     public Account(String _username, String _password, String _email, String _role) {
@@ -91,7 +91,8 @@ public class Account extends MyModel {
         this.role = _role;
     }
 
-    public void insertData() {
+    public boolean register_account() {
+        boolean status = false;
         try {
             if (!MyModel.conn.isClosed()) {
                 PreparedStatement sql = (PreparedStatement) MyModel.conn.prepareStatement("insert into account(username, email,password,role) "
@@ -103,30 +104,36 @@ public class Account extends MyModel {
                 sql.setString(4, this.role);
                 sql.executeUpdate();
                 sql.close();
+                status = true;
             }
         } catch (SQLException e) {
             System.out.println("Error :  " + e.getMessage());
         }
+        return status;
     }
 
-    public ArrayList<Object> CheckEmail() {
+    public boolean CheckUsername() {
+        boolean status = false;
         ArrayList<Object> collections = new ArrayList<>();
         try {
             if (!MyModel.conn.isClosed()) {
                 this.statment = (Statement) this.conn.createStatement();
-                this.resultset = this.statment.executeQuery("select * from account where email ='" + email + "'");
+                this.resultset = this.statment.executeQuery("select * from account where username ='" + username + "'");
                 while (this.resultset.next()) {
                     Account acc = new Account(
-                            this.resultset.getString("email"),
+                            this.resultset.getString("username"),
                             this.resultset.getString("password")
                     );
                     collections.add(acc);
+                }
+                if(collections.isEmpty()){
+                    status = true;
                 }
             }
         } catch (Exception e) {
             System.out.println("error :" + e.getMessage());
         }
-        return collections;
+        return status;
     }
 
     public ArrayList<Account> checkLogin() {
