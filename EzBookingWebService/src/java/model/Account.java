@@ -71,6 +71,10 @@ public class Account extends MyModel {
         this.role = null;
     }
     
+    public Account(String user_name) {
+        this.username = user_name;
+    }
+    
     public Account(String user_name, String _password) {
         this.password = _password;
         this.username = user_name;

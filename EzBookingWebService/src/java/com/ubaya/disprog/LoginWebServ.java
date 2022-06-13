@@ -21,24 +21,6 @@ import javax.jws.WebParam;
 public class LoginWebServ {
 
     /**
-     * This is a sample web service operation
-     */
-    @WebMethod(operationName = "hello")
-    public String hello(@WebParam(name = "name") String txt) {
-        return "Hello " + txt + " !";
-    }
-
-    /**
-     * Web service operation
-     */
-    @WebMethod(operationName = "testMultiply")
-    public double testMultiply(@WebParam(name = "number1") int number1, @WebParam(name = "number2") int number2) {
-        //TODO write your implementation code here:
-        Restaurant acc = new Restaurant();
-        return number1 * number2;
-    }
-
-    /**
      * Web service operation
      */
     @WebMethod(operationName = "add_data_restaurant")
@@ -62,4 +44,42 @@ public class LoginWebServ {
         collections = acc.checkLogin();
         return collections;
     }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "check_username")
+    public boolean check_username(@WebParam(name = "username") String username) {
+        //TODO write your implementation code here:
+        Account acc = new Account(username);
+        boolean status = acc.CheckUsername();
+        return status;
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "registrasi_account")
+    public boolean registrasi_account(@WebParam(name = "username") String username, @WebParam(name = "email") String email, @WebParam(name = "password") String password, @WebParam(name = "role") String role) {
+        //TODO write your implementation code here:
+        boolean result = check_username(username);
+        boolean status;
+        if (result == true) {
+            Account acc = new Account(username, password, email, role);
+            status = acc.register_account();
+        }else{
+            status = false;
+        }
+        return status;
+    }
+
+    /**
+     * Web service operation
+     */
+//    @WebMethod(operationName = "insert_data_reservasi")
+//    public boolean insert_data_reservasi(@WebParam(name = "tanggalPesanan")  tanggalPesanan, @WebParam(name = "jumlahMeja") int jumlahMeja, @WebParam(name = "jumlahOrang") int jumlahOrang, @WebParam(name = "restaurantId") int restaurantId, @WebParam(name = "accountId") int accountId) {
+//        //TODO write your implementation code here:
+//        
+//        return false;
+//    }
 }
