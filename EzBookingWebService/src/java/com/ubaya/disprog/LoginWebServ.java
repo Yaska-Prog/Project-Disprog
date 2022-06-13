@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package com.ubaya.disprog;
+import model.Account;
+import model.Restaurant;
 
 import javax.jws.WebService;
 import javax.jws.WebMethod;
@@ -30,6 +32,20 @@ public class LoginWebServ {
     @WebMethod(operationName = "testMultiply")
     public double testMultiply(@WebParam(name = "number1") int number1, @WebParam(name = "number2") int number2) {
         //TODO write your implementation code here:
+        Restaurant acc = new Restaurant();
         return number1 * number2;
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "add_data_restaurant")
+    public boolean add_data_restaurant(@WebParam(name = "username") String username, @WebParam(name = "ownerName") String ownerName, @WebParam(name = "nama_resto") String nama_resto, @WebParam(name = "alamat") String alamat, @WebParam(name = "max_table") int max_table) {
+        //TODO write your implementation code here:
+        boolean status = false;
+        Restaurant acc = new Restaurant(ownerName, nama_resto, username, alamat, max_table);
+        status = acc.insertData();
+        
+        return status;
     }
 }
