@@ -72,7 +72,7 @@ public class ezBookingWebService {
      * Web service operation
      */
     @WebMethod(operationName = "jumlahKetersediaanMeja")
-    public int jumlahKetersediaanMeja(@WebParam(name = "idRestaurant") int idRestaurant, @WebParam(name = "status") String status) throws SQLException {
+    public int jumlahKetersediaanMeja(@WebParam(name = "idRestaurant") int idRestaurant, @WebParam(name = "status") String status){
         Restaurant restaurant = new Restaurant();
         int hasil = restaurant.jumlahMejaSaatIni(idRestaurant, status);
         return hasil;

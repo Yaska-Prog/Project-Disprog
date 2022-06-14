@@ -164,7 +164,7 @@ public class Restaurant extends MyModel {
         return hasil;
     }
 
-    public int jumlahMejaSaatIni(int restaurantId, String status) throws SQLException {
+    public int jumlahMejaSaatIni(int restaurantId, String status){
         int jumlah = 0;
         try {
             if (!MyModel.conn.isClosed()) {
@@ -172,11 +172,12 @@ public class Restaurant extends MyModel {
                 this.resultset = this.statment.executeQuery("select ra.max_table - (sum(ri.jumlahMeja)) as jumlah\n"
                         + "from reservasi ri inner join restaurant ra on ra.id = ri.restaurant_id\n"
                         + "where date(tanggalPesanan) = date(now()) and ra.id = + " + restaurantId + " and status = " + status + ")");
+                jumlah = this.resultset.getInt("jumlah");
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             System.out.println("error :: " + e.getMessage());
         }
-        return this.resultset.getInt("jumlah");
+        return jumlah;
     }
 
 }
