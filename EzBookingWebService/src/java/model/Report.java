@@ -11,13 +11,16 @@ import java.util.ArrayList;
  *
  * @author IVAN
  */
-public class Report {
+public class Report extends MyModel {
 
     String account_username;
     int idRestaurant;
     double qualityOfService;
     double foodQuality;
     String review;
+
+    public Report() {
+    }
 
     public Report(String account_username, int idRestaurant, double qualityOfService, double foodQuality, String review) {
         this.account_username = account_username;
@@ -67,22 +70,26 @@ public class Report {
         this.review = review;
     }
 
-    public ArrayList<Reservasi> listDataReservasi(int idRestaurant) {
-        ArrayList<Reservasi> collections = new ArrayList<Reservasi>();
+    public ArrayList<Report> listReport(int idRestaurant, String usernameAccount) {
+        ArrayList<Report> collections = new ArrayList<Report>();
         try {
             this.statment = (Statement) MyModel.conn.createStatement();
-            this.resultset = this.statment.executeQuery("select * from reservasi where restaurant_id = " + idRestaurant + " and status != 'sukses'");
+            if (idRestaurant != 0 && usernameAccount == "") {
+                this.resultset = this.statment.executeQuery("select * from report where restaurant_id = " + idRestaurant);
+            } else if (idRestaurant == 0 && usernameAccount != "") {
+                this.resultset = this.statment.executeQuery("select * from report where account_username= " + usernameAccount);
+            } else {
+                this.resultset = this.statment.executeQuery("select * from report where restaurant_id = " + idRestaurant + " and account_username = " + usernameAccount);
+            }
+
             while (this.resultset.next()) {
-                Reservasi reservasi = new Reservasi(
-                        this.resultset.getInt("id"),
-                        this.resultset.getDate("tanggalPesanan"),
-                        this.resultset.getInt("jumlahMeja"),
-                        this.resultset.getInt("jumlahOrang"),
-                        this.resultset.getString("status"),
-                        this.resultset.getInt("penilaian_bintang"),
+                Report report = new Report(
+                        this.resultset.getString("account_username"),
                         this.resultset.getInt("restaurant_id"),
-                        this.resultset.getString("account_username"));
-                collections.add(reservasi);
+                        this.resultset.getDouble("Quality of service"),
+                        this.resultset.getDouble("Food quality"),
+                        this.resultset.getString("Review"));
+                collections.add(report);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());

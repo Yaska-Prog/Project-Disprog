@@ -13,6 +13,7 @@ import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import model.Restaurant;
 import model.Account;
+import model.Report;
 import model.Reservasi;
 
 /**
@@ -131,11 +132,17 @@ public class ezBookingWebService {
     /**
      * Web service operation
      */
-    @WebMethod(operationName = "showReport")
-    public Array showReport(@WebParam(name = "idRestaurant") int idRestaurant) {
-        //TODO write your implementation code here:
-        return null;
+    @WebMethod(operationName = "showListReservasi")
+    public ArrayList showListReservasi(@WebParam(name = "idRestaurant") int idRestaurant, @WebParam(name = "usernameAccount") String usernameAccount) {
+        ArrayList<Report> collections = new ArrayList<Report>();
+        Report report = new Report();
+        collections = report.listReport(idRestaurant, usernameAccount);
+        return collections;
     }
+
+    /**
+     * Web service operation
+     */
     
     
 

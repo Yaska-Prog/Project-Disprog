@@ -60,7 +60,7 @@ delimiter $
 create trigger trTotalPelanggan after update on reservasi
 for each row begin
 update restaurant set total_pelanggaan = (total_pelanggaan + new.jumlahOrang)
-where id = old.restaurant_id and new.statuss = 'Success';
+where id = old.restaurant_id and new.statuss = 'Arrived';
 end $
 delimiter ;
 
