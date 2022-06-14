@@ -151,11 +151,11 @@ public class Reservasi extends MyModel {
         return status1;
     }
 
-    public ArrayList<Object> listDataReservasi(int idRestaurant) {
-        ArrayList<Object> collections = new ArrayList<>();
+    public ArrayList<Reservasi> listDataReservasi(int idRestaurant) {
+        ArrayList<Reservasi> collections = new ArrayList<>();
         try {
             this.statment = (Statement) MyModel.conn.createStatement();
-            this.resultset = this.statment.executeQuery("SELECT * FROM reservasi WHERE restaurant_id = " + idRestaurant + " AND status = 'Success'");
+            this.resultset = this.statment.executeQuery("SELECT * FROM reservasi WHERE restaurant_id = " + idRestaurant + " AND status != 'Finished'");
             while (this.resultset.next()) {
                 Reservasi reservasi = new Reservasi(
                         this.resultset.getInt("id"),

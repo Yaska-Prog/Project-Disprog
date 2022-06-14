@@ -123,8 +123,8 @@ public class ezBookingWebService {
      * Web service operation
      */
     @WebMethod(operationName = "showReservasi")
-    public ArrayList showReservasi(@WebParam(name = "idRestaurant") int idRestaurant) {
-        ArrayList<Object> collections = new ArrayList<>();
+    public ArrayList<Reservasi> showReservasi(@WebParam(name = "idRestaurant") int idRestaurant) {
+        ArrayList<Reservasi> collections = new ArrayList<>();
         Reservasi reservasi = new Reservasi();
         collections = reservasi.listDataReservasi(idRestaurant);
         return collections;
@@ -134,8 +134,8 @@ public class ezBookingWebService {
      * Web service operation
      */
     @WebMethod(operationName = "showListReservasi")
-    public ArrayList showListReservasi(@WebParam(name = "idRestaurant") int idRestaurant, @WebParam(name = "usernameAccount") String usernameAccount) {
-        ArrayList<Report> collections = new ArrayList<Report>();
+    public ArrayList<Report> showListReservasi(@WebParam(name = "idRestaurant") int idRestaurant, @WebParam(name = "usernameAccount") String usernameAccount) {
+        ArrayList<Report> collections = new ArrayList<>();
         Report report = new Report();
         collections = report.listReport(idRestaurant, usernameAccount);
         return collections;
