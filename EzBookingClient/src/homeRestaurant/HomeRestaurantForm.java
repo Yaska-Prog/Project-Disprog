@@ -60,6 +60,7 @@ public class HomeRestaurantForm extends javax.swing.JFrame {
 
         jButton4.setBackground(new java.awt.Color(255, 195, 0));
         jButton4.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/homeRestaurant/feedback (1).png"))); // NOI18N
         jButton4.setText("Show Review");
         jButton4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 24, 24), 2));
 

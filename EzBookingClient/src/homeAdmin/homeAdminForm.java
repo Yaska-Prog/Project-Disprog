@@ -69,13 +69,13 @@ public class homeAdminForm extends javax.swing.JFrame {
 
         jButton8.setBackground(new java.awt.Color(255, 195, 0));
         jButton8.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        jButton8.setIcon(new javax.swing.ImageIcon("D:\\DOWNLOAD\\report (1).png")); // NOI18N
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/homeAdmin/report (1).png"))); // NOI18N
         jButton8.setText("Create Report");
         jButton8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 24, 24), 2));
 
         jButton9.setBackground(new java.awt.Color(255, 195, 0));
         jButton9.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        jButton9.setIcon(new javax.swing.ImageIcon("D:\\DOWNLOAD\\history (1).png")); // NOI18N
+        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/homeAdmin/history (1).png"))); // NOI18N
         jButton9.setText("Report History");
         jButton9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 24, 24), 2));
 
