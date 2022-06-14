@@ -116,31 +116,18 @@ public class Reservasi extends MyModel {
     public boolean insertDataReservasi() {
         boolean status1 = false;
         try {
-            
+
             if (!MyModel.conn.isClosed()) {
                 PreparedStatement sql = (PreparedStatement) MyModel.conn.prepareStatement("insert into reservasi(tanggalPesanan, jumlahMeja, jumlahOrang, status, penilaian, restaurant_id,account_username)"
                         + " values(?,?,?,?,?,?,?)");
-
                 sql.setDate(1, this.tanggalPesanan);
-                            System.out.println(this.tanggalPesanan);
-
                 sql.setInt(2, this.jumlahMeja);
-                            System.out.println("Berhasil masuk kedalam try");
-
                 sql.setInt(3, this.jumlahOrang);
-                            System.out.println("Berhasil masuk kedalam try");
-
                 sql.setString(4, ("'" + this.status + "'"));
-                            System.out.println("Berhasil masuk kedalam try");
-
                 sql.setInt(5, this.penilaianBintang);
-                            System.out.println("Berhasil masuk kedalam try");
-
                 sql.setInt(6, this.restaurant);
-                            System.out.println("Berhasil masuk kedalam try");
 
                 sql.setString(7, this.accountUsername);
-                System.out.println();
                 sql.executeUpdate();
                 sql.close();
                 status1 = true;

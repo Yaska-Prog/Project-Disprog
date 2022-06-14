@@ -144,6 +144,18 @@ public class ezBookingWebService {
     /**
      * Web service operation
      */
+    @WebMethod(operationName = "SaveReport")
+    public boolean SaveReport(@WebParam(name = "account_username") String account_username, @WebParam(name = "id_resto") int id_resto, @WebParam(name = "qualityOfService") double qualityOfService, @WebParam(name = "food_quality") double food_quality, @WebParam(name = "review") String review) {
+        //TODO write your implementation code here:
+        boolean status1 = false;
+        Report laporan = new Report(account_username, id_resto, qualityOfService, food_quality, review);
+        status1 = laporan.saveReport();
+        return status1;
+    }
+
+    /**
+     * Web service operation
+     */
     
     
 

@@ -4,6 +4,7 @@
  */
 package model;
 
+import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -86,8 +87,8 @@ public class Report extends MyModel {
                 Report report = new Report(
                         this.resultset.getString("account_username"),
                         this.resultset.getInt("restaurant_id"),
-                        this.resultset.getDouble("Quality of service"),
-                        this.resultset.getDouble("Food quality"),
+                        this.resultset.getDouble("Quality_of_service"),
+                        this.resultset.getDouble("Food_quality"),
                         this.resultset.getString("Review"));
                 collections.add(report);
             }
@@ -95,5 +96,27 @@ public class Report extends MyModel {
             System.out.println(e.getMessage());
         }
         return collections;
+    }
+
+    public boolean saveReport() {
+        boolean status1 = false;
+        try {
+            if (!MyModel.conn.isClosed()) {
+                PreparedStatement sql = (PreparedStatement) MyModel.conn.prepareStatement("INSERT INTO report(account_username, restaurant_id, Quality_of_service, Food_quality, Review)"
+                        + " values(?, ?, ?, ?, ?)");
+                sql.setString(1, this.account_username);
+                sql.setInt(2, this.idRestaurant);
+                sql.setDouble(3, this.qualityOfService);
+                sql.setDouble(4, this.foodQuality);
+                sql.setString(5, this.review);
+
+                sql.executeUpdate();
+                sql.close();
+                status1 = true;
+            }
+        } catch (Exception e) {
+            System.out.println("Error pada insert report, pesan error: " + e.getMessage());
+        }
+        return status1;
     }
 }
