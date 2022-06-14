@@ -7,6 +7,7 @@ package com.ubaya.disprog;
 import java.sql.Array;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
@@ -41,9 +42,9 @@ public class ezBookingWebService {
      * Web service operation
      */
     @WebMethod(operationName = "insertDataReservasi")
-    public boolean insertDataReservasi(@WebParam(name = "tanggalPemesanan") Date tanggalPemesanan, @WebParam(name = "jumlahMeja") int jumlahMeja, @WebParam(name = "jumlahOrang") int jumlahOrang, @WebParam(name = "status") String status, @WebParam(name = "penilaianBintang") int penilaianBintang, @WebParam(name = "restaurantId") int restaurantId, @WebParam(name = "accountUsername") String accountUsername) {
-        boolean hasil = false;
-        Reservasi reservasi = new Reservasi(tanggalPemesanan, jumlahMeja, jumlahOrang, status, penilaianBintang, restaurantId, accountUsername);
+    public boolean insertDataReservasi(@WebParam(name = "tanggalPemesanan") String tanggalPemesanan, @WebParam(name = "jumlahMeja") int jumlahMeja, @WebParam(name = "jumlahOrang") int jumlahOrang, @WebParam(name = "status") String status, @WebParam(name = "penilaianBintang") int penilaianBintang, @WebParam(name = "restaurantId") int restaurantId, @WebParam(name = "accountUsername") String accountUsername) {
+        boolean hasil = true;
+        Reservasi reservasi = new Reservasi(Date.valueOf(tanggalPemesanan), jumlahMeja, jumlahOrang, status, penilaianBintang, restaurantId, accountUsername);
         hasil = reservasi.insertDataReservasi();
         return hasil;
     }
@@ -123,7 +124,7 @@ public class ezBookingWebService {
      */
     @WebMethod(operationName = "showReservasi")
     public ArrayList showReservasi(@WebParam(name = "idRestaurant") int idRestaurant) {
-        ArrayList<Reservasi> collections = new ArrayList<Reservasi>();
+        ArrayList<Object> collections = new ArrayList<>();
         Reservasi reservasi = new Reservasi();
         collections = reservasi.listDataReservasi(idRestaurant);
         return collections;
