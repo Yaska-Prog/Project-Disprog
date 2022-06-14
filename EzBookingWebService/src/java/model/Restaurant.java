@@ -26,6 +26,14 @@ public class Restaurant extends MyModel {
     public Restaurant() {
     }
 
+    public Restaurant(int idRestaurant, String namaPemilik, String namaRestaurant, String alamatRestaurant, int max_table) {
+        this.id = idRestaurant;
+        this.namaPemilik = namaPemilik;
+        this.namaRestaurant = namaRestaurant;
+        this.alamatRestaurant = alamatRestaurant;
+        this.max_table = max_table;
+    }
+
     public Restaurant(String namaPemilik, String namaRestaurant, String alamatRestaurant, int max_table, String usernameRestaurant) {
         this.namaPemilik = namaPemilik;
         this.namaRestaurant = namaRestaurant;
@@ -148,15 +156,15 @@ public class Restaurant extends MyModel {
             this.statment = (Statement) MyModel.conn.createStatement();
             if (!MyModel.conn.isClosed()) {
                 PreparedStatement sql = (PreparedStatement) MyModel.conn.prepareStatement(
-                        "update restaurant set ownerName = ?, nama = ?, alamat = ?, max_table = ?, account_username = ?");
+                        "update restaurant set ownerName = ?, nama = ?, alamat = ?, max_table = ? where id = ?");
                 sql.setString(1, this.namaPemilik);
                 sql.setString(2, this.namaRestaurant);
-                sql.setString(3, this.usernameRestaurant);
-                sql.setString(4, this.alamatRestaurant);
-                sql.setInt(5, this.max_table);
+                sql.setString(3, this.alamatRestaurant);
+                sql.setInt(4, this.max_table);
+                sql.setInt(5, this.id);
                 sql.executeUpdate();
                 sql.close();
-                hasil = false;
+                hasil = true;
             }
         } catch (Exception e) {
             System.out.println("error : " + e.getMessage());
@@ -164,15 +172,17 @@ public class Restaurant extends MyModel {
         return hasil;
     }
 
-    public int jumlahMejaSaatIni(int restaurantId, String status){
+    public int jumlahMejaSaatIni(int restaurantId) {
         int jumlah = 0;
         try {
             if (!MyModel.conn.isClosed()) {
                 this.statment = (Statement) MyModel.conn.createStatement();
                 this.resultset = this.statment.executeQuery("select ra.max_table - (sum(ri.jumlahMeja)) as jumlah\n"
                         + "from reservasi ri inner join restaurant ra on ra.id = ri.restaurant_id\n"
-                        + "where date(tanggalPesanan) = date(now()) and ra.id = + " + restaurantId + " and status = " + status + ")");
-                jumlah = this.resultset.getInt("jumlah");
+                        + "where date(tanggalPesanan) = date(now()) and ra.id = + " + restaurantId + " and (status = 'On Process' or status = 'Confirm')");
+                if (resultset.next()) {
+                    jumlah += this.resultset.getInt("jumlah");
+                }
             }
         } catch (Exception e) {
             System.out.println("error :: " + e.getMessage());

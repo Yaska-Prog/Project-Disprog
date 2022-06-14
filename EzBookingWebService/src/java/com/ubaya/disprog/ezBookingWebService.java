@@ -62,9 +62,9 @@ public class ezBookingWebService {
      * Web service operation
      */
     @WebMethod(operationName = "updateDataRestaurant")
-    public boolean updateDataRestaurant(@WebParam(name = "username") String username, @WebParam(name = "ownerName") String ownerName, @WebParam(name = "nama_resto") String nama_resto, @WebParam(name = "alamat") String alamat, @WebParam(name = "max_table") int max_table) {
+    public boolean updateDataRestaurant(@WebParam(name = "ownerName") String ownerName, @WebParam(name = "nama_resto") String nama_resto, @WebParam(name = "alamat") String alamat, @WebParam(name = "max_table") int max_table, @WebParam(name = "id_restaurant") int id_restaurant) {
         boolean hasil = false;
-        Restaurant restaurant = new Restaurant(ownerName, nama_resto, alamat, max_table, username);
+        Restaurant restaurant = new Restaurant(id_restaurant,ownerName, nama_resto, alamat, max_table);
         hasil = restaurant.updateRestaurant();
         return hasil;
     }
@@ -73,9 +73,9 @@ public class ezBookingWebService {
      * Web service operation
      */
     @WebMethod(operationName = "jumlahKetersediaanMeja")
-    public int jumlahKetersediaanMeja(@WebParam(name = "idRestaurant") int idRestaurant, @WebParam(name = "status") String status){
+    public int jumlahKetersediaanMeja(@WebParam(name = "idRestaurant") int idRestaurant){
         Restaurant restaurant = new Restaurant();
-        int hasil = restaurant.jumlahMejaSaatIni(idRestaurant, status);
+        int hasil = restaurant.jumlahMejaSaatIni(idRestaurant);
         return hasil;
     }
 
