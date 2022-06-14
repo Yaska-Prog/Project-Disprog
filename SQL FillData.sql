@@ -51,7 +51,7 @@ INSERT INTO `ezbookingrestaurant`.`reservasi` (`tanggalPesanan`, `jumlahMeja`, `
 delimiter $
 create trigger trUpdateRating after update on reservasi
 for each row begin
-update restaurant set rating = ((rating + new.penilaian)/2)
+update restaurant set overall_rating = ((overall_rating+ new.penilaian)/2)
 where id = old.restaurant_id;
 end $
 delimiter ;

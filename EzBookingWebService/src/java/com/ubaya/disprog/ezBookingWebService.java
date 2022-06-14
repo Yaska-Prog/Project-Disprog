@@ -4,6 +4,7 @@
  */
 package com.ubaya.disprog;
 
+import java.sql.Array;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -126,5 +127,16 @@ public class ezBookingWebService {
         collections = reservasi.listDataReservasi(idRestaurant);
         return collections;
     }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "showReport")
+    public Array showReport(@WebParam(name = "idRestaurant") int idRestaurant) {
+        //TODO write your implementation code here:
+        return null;
+    }
+    
+    
 
 }
