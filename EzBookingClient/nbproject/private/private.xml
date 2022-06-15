@@ -2,30 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/project-disprog/Project-Disprog/EzBookingClient/build/generated-sources/jax-ws/com/ubaya/disprog/RegistrasiAccountResponse.java</file>
-            <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/project-disprog/Project-Disprog/EzBookingClient/build/generated-sources/jax-ws/com/ubaya/disprog/ShowListReservasi.java</file>
-            <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/project-disprog/Project-Disprog/EzBookingClient/build/generated-sources/jax-ws/com/ubaya/disprog/Reservasi.java</file>
-            <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/project-disprog/Project-Disprog/EzBookingClient/src/statisticRestaurant/statisticRestaurantForm.java</file>
-            <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/project-disprog/Project-Disprog/EzBookingClient/build/generated-sources/jax-ws/com/ubaya/disprog/Report.java</file>
-            <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/project-disprog/Project-Disprog/EzBookingClient/build/generated-sources/jax-ws/com/ubaya/disprog/UpdateStatusReservasi.java</file>
-            <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/project-disprog/Project-Disprog/EzBookingClient/build/generated-sources/jax-ws/com/ubaya/disprog/RegistrasiAccount.java</file>
-            <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/project-disprog/Project-Disprog/EzBookingClient/build/generated-sources/jax-ws/com/ubaya/disprog/ShowListReservasiResponse.java</file>
-            <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/project-disprog/Project-Disprog/EzBookingClient/build/generated-sources/jax-ws/com/ubaya/disprog/package-info.java</file>
-            <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/project-disprog/Project-Disprog/EzBookingClient/build/generated-sources/jax-ws/com/ubaya/disprog/InsertDataRestaurant.java</file>
-            <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/project-disprog/Project-Disprog/EzBookingClient/build/generated-sources/jax-ws/com/ubaya/disprog/JumlahKetersediaanMejaResponse.java</file>
-            <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/project-disprog/Project-Disprog/EzBookingClient/src/homeAdmin/homeAdminForm.java</file>
-            <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/project-disprog/Project-Disprog/EzBookingClient/build/generated-sources/jax-ws/com/ubaya/disprog/EzBookingWebService.java</file>
-            <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/project-disprog/Project-Disprog/EzBookingClient/src/homeRestaurant/HomeRestaurantForm.java</file>
-            <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/project-disprog/Project-Disprog/EzBookingClient/build/generated-sources/jax-ws/com/ubaya/disprog/JumlahKetersediaanMeja.java</file>
-            <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/project-disprog/Project-Disprog/EzBookingClient/src/formclient/MainForm.java</file>
-            <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/project-disprog/Project-Disprog/EzBookingClient/src/homeUser/HomeUserForm.java</file>
-            <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/project-disprog/Project-Disprog/EzBookingClient/build/generated-sources/jax-ws/com/ubaya/disprog/EzBookingWebService_Service.java</file>
-            <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/project-disprog/Project-Disprog/EzBookingClient/src/reportHistory/reportHistoryForm.java</file>
-            <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/project-disprog/Project-Disprog/EzBookingClient/build/generated-sources/jax-ws/com/ubaya/disprog/SaveReport.java</file>
-            <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/project-disprog/Project-Disprog/EzBookingClient/src/formclient/LogIn.java</file>
-            <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/project-disprog/Project-Disprog/EzBookingClient/build/generated-sources/jax-ws/com/ubaya/disprog/InsertDataReservasi.java</file>
-            <file>file:/C:/Users/LENOVO/Documents/NetBeansProjects/project-disprog/Project-Disprog/EzBookingClient/build/generated-sources/jax-ws/com/ubaya/disprog/ShowReservasiResponse.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
