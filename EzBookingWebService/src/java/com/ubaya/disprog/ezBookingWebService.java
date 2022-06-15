@@ -153,10 +153,6 @@ public class ezBookingWebService {
         return status1;
     }
 
-    /**
-     * Web service operation
-     */
-    
     
 
 }

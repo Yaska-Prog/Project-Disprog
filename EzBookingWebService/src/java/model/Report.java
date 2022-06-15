@@ -87,8 +87,8 @@ public class Report extends MyModel {
                 Report report = new Report(
                         this.resultset.getString("account_username"),
                         this.resultset.getInt("restaurant_id"),
-                        this.resultset.getDouble("Quality_of_service"),
-                        this.resultset.getDouble("Food_quality"),
+                        this.resultset.getDouble("qualityOfService"),
+                        this.resultset.getDouble("foodQuality"),
                         this.resultset.getString("Review"));
                 collections.add(report);
             }
@@ -102,7 +102,7 @@ public class Report extends MyModel {
         boolean status1 = false;
         try {
             if (!MyModel.conn.isClosed()) {
-                PreparedStatement sql = (PreparedStatement) MyModel.conn.prepareStatement("INSERT INTO report(account_username, restaurant_id, Quality_of_service, Food_quality, Review)"
+                PreparedStatement sql = (PreparedStatement) MyModel.conn.prepareStatement("INSERT INTO report(account_username, restaurant_id, qualityOfService, foodQuality, Review)"
                         + " values(?, ?, ?, ?, ?)");
                 sql.setString(1, this.account_username);
                 sql.setInt(2, this.idRestaurant);

@@ -63,8 +63,8 @@ INSERT INTO `account` (`username`, `email`, `password`, `role`) VALUES
 CREATE TABLE `report` (
   `account_username` varchar(45) NOT NULL,
   `restaurant_id` int(11) NOT NULL,
-  `Quality of service` decimal(3,2) NOT NULL,
-  `Food quality` decimal(3,2) NOT NULL,
+  `qualityOfService` decimal(3,2) NOT NULL,
+  `foodQuality` decimal(3,2) NOT NULL,
   `Review` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
