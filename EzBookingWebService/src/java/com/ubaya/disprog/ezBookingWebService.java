@@ -52,7 +52,7 @@ public class ezBookingWebService {
     @WebMethod(operationName = "insertDataRestaurant")
     public boolean insertDataRestaurant(@WebParam(name = "username") String username, @WebParam(name = "ownerName") String ownerName, @WebParam(name = "nama_resto") String nama_resto, @WebParam(name = "alamat") String alamat, @WebParam(name = "max_table") int max_table) {
         //TODO write your implementation code here:
-        boolean status = false;
+        boolean status = true;
         Restaurant restaurant = new Restaurant(ownerName, nama_resto, alamat, max_table, username);
         status = restaurant.insertData();
         return status;

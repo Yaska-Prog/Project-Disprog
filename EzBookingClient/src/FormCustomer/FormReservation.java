@@ -113,6 +113,11 @@ public class FormReservation extends javax.swing.JFrame {
         btnBook.setBackground(new java.awt.Color(255, 195, 0));
         btnBook.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
         btnBook.setText("BOOK NOW");
+        btnBook.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBookActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -177,6 +182,10 @@ public class FormReservation extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBookActionPerformed
 
     /**
      * @param args the command line arguments

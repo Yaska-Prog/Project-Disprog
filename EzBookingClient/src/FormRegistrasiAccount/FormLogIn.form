@@ -40,11 +40,6 @@
   </Layout>
   <SubComponents>
     <Component class="javax.swing.JLabel" name="lblImage">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="2" name="F:\Ubaya\Materi\1604C044 Distributed Programming KP B\github\Project-Disprog\EzBookingClient\src\FormRegistrasiAccount\backgroundMainPageResized.jpg"/>
-        </Property>
-      </Properties>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel1">
 
@@ -170,6 +165,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="JohnDoe"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JPasswordField" name="txtPassword">
           <Properties>

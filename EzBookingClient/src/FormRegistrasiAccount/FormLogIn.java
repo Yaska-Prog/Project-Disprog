@@ -17,7 +17,7 @@ public class FormLogIn extends javax.swing.JFrame {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
     }
-
+    public static String username;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,8 +40,6 @@ public class FormLogIn extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
-
-        lblImage.setIcon(new javax.swing.ImageIcon("F:\\Ubaya\\Materi\\1604C044 Distributed Programming KP B\\github\\Project-Disprog\\EzBookingClient\\src\\FormRegistrasiAccount\\backgroundMainPageResized.jpg")); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel3.setText("Username:");
@@ -154,7 +152,7 @@ public class FormLogIn extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSignUpActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        String username = txtUsername.getText();
+        username = txtUsername.getText();
         String password = String.valueOf(txtPassword.getPassword());
     }//GEN-LAST:event_btnLoginActionPerformed
 
@@ -206,6 +204,6 @@ public class FormLogIn extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblImage;
     private javax.swing.JPasswordField txtPassword;
-    private javax.swing.JTextField txtUsername;
+    public static javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }
