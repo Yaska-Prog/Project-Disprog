@@ -7,6 +7,7 @@ package model;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -190,4 +191,18 @@ public class Restaurant extends MyModel {
         return jumlah;
     }
 
+    public ArrayList<String> listIdRestauramt() {
+        ArrayList<String> collections = new ArrayList<>();
+        try {
+            this.statment = (Statement) MyModel.conn.createStatement();
+            this.resultset = this.statment.executeQuery("select distinct(ra.id) as id\n"
+                    + "from restaurant ra inner join reservasi ri on ra.id = ri.restaurant_id");
+            while (this.resultset.next()) {
+                collections.add(this.resultset.getString("id"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return collections;
+    }
 }

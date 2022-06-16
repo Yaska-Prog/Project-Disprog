@@ -10,6 +10,24 @@
 <message name="showListReservasiResponse">
 <part name="parameters" element="tns:showListReservasiResponse"/>
 </message>
+<message name="showListIdRestaurant">
+<part name="parameters" element="tns:showListIdRestaurant"/>
+</message>
+<message name="showListIdRestaurantResponse">
+<part name="parameters" element="tns:showListIdRestaurantResponse"/>
+</message>
+<message name="insertDataReservasi">
+<part name="parameters" element="tns:insertDataReservasi"/>
+</message>
+<message name="insertDataReservasiResponse">
+<part name="parameters" element="tns:insertDataReservasiResponse"/>
+</message>
+<message name="jumlahKetersediaanMeja">
+<part name="parameters" element="tns:jumlahKetersediaanMeja"/>
+</message>
+<message name="jumlahKetersediaanMejaResponse">
+<part name="parameters" element="tns:jumlahKetersediaanMejaResponse"/>
+</message>
 <message name="updateDataRestaurant">
 <part name="parameters" element="tns:updateDataRestaurant"/>
 </message>
@@ -28,29 +46,11 @@
 <message name="insertDataRestaurantResponse">
 <part name="parameters" element="tns:insertDataRestaurantResponse"/>
 </message>
-<message name="insertDataReservasi">
-<part name="parameters" element="tns:insertDataReservasi"/>
-</message>
-<message name="insertDataReservasiResponse">
-<part name="parameters" element="tns:insertDataReservasiResponse"/>
-</message>
 <message name="registrasi_account">
 <part name="parameters" element="tns:registrasi_account"/>
 </message>
 <message name="registrasi_accountResponse">
 <part name="parameters" element="tns:registrasi_accountResponse"/>
-</message>
-<message name="jumlahKetersediaanMeja">
-<part name="parameters" element="tns:jumlahKetersediaanMeja"/>
-</message>
-<message name="jumlahKetersediaanMejaResponse">
-<part name="parameters" element="tns:jumlahKetersediaanMejaResponse"/>
-</message>
-<message name="check_login">
-<part name="parameters" element="tns:check_login"/>
-</message>
-<message name="check_loginResponse">
-<part name="parameters" element="tns:check_loginResponse"/>
 </message>
 <message name="check_username">
 <part name="parameters" element="tns:check_username"/>
@@ -70,10 +70,28 @@
 <message name="SaveReportResponse">
 <part name="parameters" element="tns:SaveReportResponse"/>
 </message>
+<message name="check_login">
+<part name="parameters" element="tns:check_login"/>
+</message>
+<message name="check_loginResponse">
+<part name="parameters" element="tns:check_loginResponse"/>
+</message>
 <portType name="ezBookingWebService">
 <operation name="showListReservasi">
 <input wsam:Action="http://disprog.ubaya.com/ezBookingWebService/showListReservasiRequest" message="tns:showListReservasi"/>
 <output wsam:Action="http://disprog.ubaya.com/ezBookingWebService/showListReservasiResponse" message="tns:showListReservasiResponse"/>
+</operation>
+<operation name="showListIdRestaurant">
+<input wsam:Action="http://disprog.ubaya.com/ezBookingWebService/showListIdRestaurantRequest" message="tns:showListIdRestaurant"/>
+<output wsam:Action="http://disprog.ubaya.com/ezBookingWebService/showListIdRestaurantResponse" message="tns:showListIdRestaurantResponse"/>
+</operation>
+<operation name="insertDataReservasi">
+<input wsam:Action="http://disprog.ubaya.com/ezBookingWebService/insertDataReservasiRequest" message="tns:insertDataReservasi"/>
+<output wsam:Action="http://disprog.ubaya.com/ezBookingWebService/insertDataReservasiResponse" message="tns:insertDataReservasiResponse"/>
+</operation>
+<operation name="jumlahKetersediaanMeja">
+<input wsam:Action="http://disprog.ubaya.com/ezBookingWebService/jumlahKetersediaanMejaRequest" message="tns:jumlahKetersediaanMeja"/>
+<output wsam:Action="http://disprog.ubaya.com/ezBookingWebService/jumlahKetersediaanMejaResponse" message="tns:jumlahKetersediaanMejaResponse"/>
 </operation>
 <operation name="updateDataRestaurant">
 <input wsam:Action="http://disprog.ubaya.com/ezBookingWebService/updateDataRestaurantRequest" message="tns:updateDataRestaurant"/>
@@ -87,21 +105,9 @@
 <input wsam:Action="http://disprog.ubaya.com/ezBookingWebService/insertDataRestaurantRequest" message="tns:insertDataRestaurant"/>
 <output wsam:Action="http://disprog.ubaya.com/ezBookingWebService/insertDataRestaurantResponse" message="tns:insertDataRestaurantResponse"/>
 </operation>
-<operation name="insertDataReservasi">
-<input wsam:Action="http://disprog.ubaya.com/ezBookingWebService/insertDataReservasiRequest" message="tns:insertDataReservasi"/>
-<output wsam:Action="http://disprog.ubaya.com/ezBookingWebService/insertDataReservasiResponse" message="tns:insertDataReservasiResponse"/>
-</operation>
 <operation name="registrasi_account">
 <input wsam:Action="http://disprog.ubaya.com/ezBookingWebService/registrasi_accountRequest" message="tns:registrasi_account"/>
 <output wsam:Action="http://disprog.ubaya.com/ezBookingWebService/registrasi_accountResponse" message="tns:registrasi_accountResponse"/>
-</operation>
-<operation name="jumlahKetersediaanMeja">
-<input wsam:Action="http://disprog.ubaya.com/ezBookingWebService/jumlahKetersediaanMejaRequest" message="tns:jumlahKetersediaanMeja"/>
-<output wsam:Action="http://disprog.ubaya.com/ezBookingWebService/jumlahKetersediaanMejaResponse" message="tns:jumlahKetersediaanMejaResponse"/>
-</operation>
-<operation name="check_login">
-<input wsam:Action="http://disprog.ubaya.com/ezBookingWebService/check_loginRequest" message="tns:check_login"/>
-<output wsam:Action="http://disprog.ubaya.com/ezBookingWebService/check_loginResponse" message="tns:check_loginResponse"/>
 </operation>
 <operation name="check_username">
 <input wsam:Action="http://disprog.ubaya.com/ezBookingWebService/check_usernameRequest" message="tns:check_username"/>
@@ -115,10 +121,41 @@
 <input wsam:Action="http://disprog.ubaya.com/ezBookingWebService/SaveReportRequest" message="tns:SaveReport"/>
 <output wsam:Action="http://disprog.ubaya.com/ezBookingWebService/SaveReportResponse" message="tns:SaveReportResponse"/>
 </operation>
+<operation name="check_login">
+<input wsam:Action="http://disprog.ubaya.com/ezBookingWebService/check_loginRequest" message="tns:check_login"/>
+<output wsam:Action="http://disprog.ubaya.com/ezBookingWebService/check_loginResponse" message="tns:check_loginResponse"/>
+</operation>
 </portType>
 <binding name="ezBookingWebServicePortBinding" type="tns:ezBookingWebService">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
 <operation name="showListReservasi">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="showListIdRestaurant">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="insertDataReservasi">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="jumlahKetersediaanMeja">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -154,34 +191,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="insertDataReservasi">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
 <operation name="registrasi_account">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="jumlahKetersediaanMeja">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="check_login">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -209,6 +219,15 @@
 </output>
 </operation>
 <operation name="SaveReport">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="check_login">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

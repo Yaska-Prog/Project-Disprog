@@ -5,6 +5,9 @@
 package FormAdmin;
 
 import com.ubaya.disprog.Report;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,11 +18,22 @@ public class FormCreateReport extends javax.swing.JFrame {
     /**
      * Creates new form Report
      */
+    public String usernameAccount;
     com.ubaya.disprog.EzBookingWebService_Service service;
     com.ubaya.disprog.EzBookingWebService port;
 
     public FormCreateReport() {
         initComponents();
+
+        service = new com.ubaya.disprog.EzBookingWebService_Service();
+        port = service.getEzBookingWebServicePort();
+
+        String idRest[];
+        List<String> idResto = new ArrayList<String>();
+        idResto = port.showListIdRestaurant();
+        for (String id : idResto) {
+            cboRestId.addItem(id);
+        }
     }
 
     /**
@@ -44,6 +58,7 @@ public class FormCreateReport extends javax.swing.JFrame {
         lblReview = new javax.swing.JLabel();
         txtReview = new javax.swing.JTextField();
         btnConfirm = new javax.swing.JButton();
+        cboRestId = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(236, 236, 236));
@@ -87,25 +102,32 @@ public class FormCreateReport extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(65, 65, 65)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnConfirm, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)
-                    .addComponent(txtQuality)
-                    .addComponent(txtReview)
-                    .addComponent(txtFood)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(cboRestId, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblQuality)
-                            .addComponent(lblFood)
-                            .addComponent(lblReview))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(65, 65, 65))
-            .addComponent(lblReport, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnConfirm, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)
+                            .addComponent(txtQuality)
+                            .addComponent(txtReview)
+                            .addComponent(txtFood)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblQuality)
+                                    .addComponent(lblFood)
+                                    .addComponent(lblReview))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(lblReport, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(65, 65, 65))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addGap(29, 29, 29)
                 .addComponent(lblReport, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cboRestId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblQuality)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtQuality, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -129,8 +151,15 @@ public class FormCreateReport extends javax.swing.JFrame {
         Double qualityService = Double.parseDouble(txtQuality.getText());
         Double foodQuality = Double.parseDouble(txtFood.getText());
         String review = txtReview.getText();
+        int idRestaurant = cboRestId.getSelectedIndex();
 
-        Report report = new Report();
+        //Report report = new Report(usernameAccount, idRestaurant, qualityService, foodQuality, review);
+        //boolean resultSave = SaveReport(report);
+//        if (resultSave == true) {
+//            JOptionPane.showMessageDialog(this, "Successful!");
+//        } else {
+//            JOptionPane.showMessageDialog(this, "Failed!");
+//        }
     }//GEN-LAST:event_btnConfirmActionPerformed
 
     /**
@@ -173,6 +202,7 @@ public class FormCreateReport extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirm;
+    private javax.swing.JComboBox<String> cboRestId;
     private javax.swing.JLabel lblFood;
     private javax.swing.JLabel lblQuality;
     private javax.swing.JLabel lblReport;
