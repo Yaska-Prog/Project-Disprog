@@ -4,6 +4,10 @@
  */
 package FormRegistrasiAccount;
 
+import FormRestaurant.FormInputDataRestaurant;
+import com.ubaya.disprog.Account;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ardel
@@ -72,7 +76,7 @@ public class FormSignUp extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel8.setText("Role:");
 
-        cboRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pelanggan", "Partner Restaurant", "Administrator" }));
+        cboRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pelanggan", "Partner", "Administrator" }));
 
         btnSignUp.setBackground(new java.awt.Color(255, 195, 0));
         btnSignUp.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
@@ -154,8 +158,29 @@ public class FormSignUp extends javax.swing.JFrame {
         String newRetypepassword = String.valueOf(txtRePassword.getPassword());
         String role = (String) cboRole.getSelectedItem();
 
-        FormLogIn formLogin = new FormLogIn();
-        formLogin.setVisible(true);
+        try {
+            if (!newPassword.equals(newPassword)) {
+                JOptionPane.showMessageDialog(this, "Registration failed, password and your re type password doesn't match.");
+            } else {
+                if (newUsername.isEmpty() || newMail.isEmpty() || newPassword.isEmpty() || newRetypepassword.isEmpty() || role.isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Registration failed, please input the require data in the text box");
+                } else {
+                    registrasiAccount(newUsername, newMail, newPassword, role);
+                    if (role.equals("Partner")) {
+                        JOptionPane.showMessageDialog(this, "Registration account success, now please fill in the details of the restaurant.");
+                        this.setVisible(false);
+                        new FormInputDataRestaurant().setVisible(true);
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Registration success, now please log in with the new account you just created.");
+                        this.setVisible(false);
+                        FormLogIn formLogin = new FormLogIn();
+                        formLogin.setVisible(true);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Error pada register, pesan error: " + e.getMessage());
+        }
     }//GEN-LAST:event_btnSignUpActionPerformed
 
     /**
@@ -209,4 +234,10 @@ public class FormSignUp extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtRePassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
+
+    private static boolean registrasiAccount(java.lang.String username, java.lang.String email, java.lang.String password, java.lang.String role) {
+        com.ubaya.disprog.EzBookingWebService_Service service = new com.ubaya.disprog.EzBookingWebService_Service();
+        com.ubaya.disprog.EzBookingWebService port = service.getEzBookingWebServicePort();
+        return port.registrasiAccount(username, email, password, role);
+    }
 }

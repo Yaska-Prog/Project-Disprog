@@ -144,7 +144,7 @@ public class Account extends MyModel {
         ArrayList<Account> collections = new ArrayList<Account>();
         try {
             this.statment = (Statement) MyModel.conn.createStatement();
-            this.resultset = this.statment.executeQuery("select * from account where email = '" + this.email + "' and password ='" + this.password + "'");
+            this.resultset = this.statment.executeQuery("select * from account where username = '" + this.username + "' and password ='" + this.password + "'");
             while (this.resultset.next()) {
                 Account acc = new Account(
                         this.resultset.getString("username"),

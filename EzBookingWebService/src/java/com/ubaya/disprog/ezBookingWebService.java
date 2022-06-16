@@ -160,5 +160,25 @@ public class ezBookingWebService {
         list = restaurant.listIdRestauramt();
         return list;
     }
+/**
+     * Web service operation
+     */
+    @WebMethod(operationName = "showListRestaurant")
+    public ArrayList<Restaurant> showListRestaurant(@WebParam(name = "filter") String filter, @WebParam(name = "value") String value) {
+        //TODO write your implementation code here:
+        Restaurant resto = new Restaurant();
+        ArrayList<Restaurant> listResto = resto.showAllResto(filter, value);
+        return listResto;
+    }
 
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "showReservasiUser")
+    public ArrayList<Reservasi> showReservasiUser(@WebParam(name = "accountName") String accountName) {
+        //TODO write your implementation code here:
+        Reservasi res = new Reservasi();
+        ArrayList<Reservasi> coll = res.userReservasi(accountName);
+        return coll;
+    }
 }

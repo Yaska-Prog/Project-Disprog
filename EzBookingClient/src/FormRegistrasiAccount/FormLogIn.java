@@ -3,6 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package FormRegistrasiAccount;
+import FormAdmin.FormHomeAdmin;
+import FormCustomer.FormHomeCustomer;
+import FormRestaurant.FormHomeRestaurant;
+import com.ubaya.disprog.Account;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -160,11 +167,27 @@ public class FormLogIn extends javax.swing.JFrame {
         String username = txtUsername.getText();
         String password = String.valueOf(txtPassword.getPassword());
         
-        service = new com.ubaya.disprog.EzBookingWebService_Service();
-        port = service.getEzBookingWebServicePort();
-        Object[] acc = new Object[1];
-        acc[0] = port.checkLogin(username, username);
-        System.out.println(acc[0]);
+        ArrayList<Account> acc = (ArrayList<Account>) checkLogin(username, password);
+        if (acc.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Login failed, username or password does not match our database.");
+        } else {
+            JOptionPane.showMessageDialog(this, "Login succesful, welcome " + username);
+            Account user = acc.get(0);
+            this.setVisible(false);
+            switch (user.getRole()) {
+                case "Partner":
+                    new FormHomeRestaurant().setVisible(true);
+                    break;
+                case "Administrator":
+                    new FormHomeAdmin().setVisible(true);
+                    break;
+                case "Pelanggan":
+                    new FormHomeCustomer().setVisible(true);
+                    break;
+                default:
+                    break;
+            }
+        }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
@@ -217,4 +240,10 @@ public class FormLogIn extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtPassword;
     public static javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
+
+    private static java.util.List<com.ubaya.disprog.Account> checkLogin(java.lang.String username, java.lang.String password) {
+        com.ubaya.disprog.EzBookingWebService_Service service = new com.ubaya.disprog.EzBookingWebService_Service();
+        com.ubaya.disprog.EzBookingWebService port = service.getEzBookingWebServicePort();
+        return port.checkLogin(username, password);
+    }
 }

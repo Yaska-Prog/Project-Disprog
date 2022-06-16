@@ -49,6 +49,13 @@ public class Reservasi extends MyModel {
         this.accountUsername = accountUsername;
     }
 
+    public Reservasi(String accountUsername, Date tanggalPemesanan, int jumlahMeja, int jumlahOrang) {
+        this.tanggalPesanan = tanggalPemesanan;
+        this.jumlahOrang = jumlahOrang;
+        this.jumlahMeja = jumlahMeja;
+        this.accountUsername = accountUsername;
+    }
+
     public int getId() {
         return id;
     }
@@ -179,6 +186,28 @@ public class Reservasi extends MyModel {
             System.out.println("error : " + e.getMessage());
         }
         return hasil;
+    }
+
+    public ArrayList<Reservasi> userReservasi(String username) {
+        ArrayList<Reservasi> collections = new ArrayList<>();
+
+        try {
+            this.statment = (Statement) MyModel.conn.createStatement();
+            this.resultset = this.statment.executeQuery("select account_username, tanggalPesanan, jumlahMeja, jumlahOrang from reservasi where account_username = '" + username + "';");
+            while (this.resultset.next()) {
+                Reservasi reservasi = new Reservasi(
+                        this.resultset.getString("account_username"),
+                        this.resultset.getDate("tanggalPesanan"),
+                        this.resultset.getInt("jumlahMeja"),
+                        this.resultset.getInt("jumlahOrang"));
+                collections.add(reservasi);
+                System.out.println("Berhasil");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error pada user reservasi, pesan: " + e.getMessage());
+        }
+
+        return collections;
     }
 
 }

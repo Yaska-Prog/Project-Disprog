@@ -146,7 +146,10 @@ public class FormInputDataRestaurant extends javax.swing.JFrame {
         int jumlahTable = Integer.parseInt(txtMaxTable.getText());
         boolean hasil = this.insertDataRestaurant(usernameRestaurant, namaPemilik, namaRestaurant, alamatRestaurant, jumlahTable);
         if (hasil == true) {
-            JOptionPane.showMessageDialog(this, "Successful!");
+            //Tambahan dari yaska
+            JOptionPane.showMessageDialog(this, "Successful! Please return to login page to login with your fresh new partner account!");
+            this.setVisible(false);
+            new FormLogIn().setVisible(true);
         }
     }//GEN-LAST:event_btnConfirmActionPerformed
 
