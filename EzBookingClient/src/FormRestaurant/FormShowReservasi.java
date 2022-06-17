@@ -9,6 +9,7 @@ import com.ubaya.disprog.Report;
 import com.ubaya.disprog.Reservasi;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -35,7 +36,7 @@ public class FormShowReservasi extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) tableReservation.getModel();
         for (int i = 0; i < res.size(); i++) {
             Reservasi reservasi = res.get(i);
-            model.addRow(new Object[]{reservasi.getAccountUsername(), reservasi.getTanggalPesanan(), reservasi.getJumlahMeja(), reservasi.getJumlahOrang(), "Accept", "Decline"});
+            model.addRow(new Object[]{reservasi.getAccountUsername(), reservasi.getTanggalPesanan(), reservasi.getJumlahMeja(), reservasi.getJumlahOrang(), new JButton("Accept"), "Decline"});
         }
     }
     
@@ -74,16 +75,7 @@ public class FormShowReservasi extends javax.swing.JFrame {
         tableReservation.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         tableReservation.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "Reservant Name", "Reservation Date", "Total Table", "Number of People", "Accept", "Decline"

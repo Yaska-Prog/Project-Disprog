@@ -4,7 +4,6 @@
  */
 package FormAdmin;
 
-import com.ubaya.disprog.Report;
 import com.ubaya.disprog.Restaurant;
 import java.util.ArrayList;
 import java.util.List;
@@ -137,10 +136,7 @@ public class FormHomeAdmin extends javax.swing.JFrame {
         tableRestaurant.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         tableRestaurant.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Restaurant", "Alamat", "Number of Table", "Total Customers", "Rating"

@@ -48,7 +48,7 @@ public class FormReservation extends javax.swing.JFrame {
         lblReservant = new javax.swing.JLabel();
         txtReservant = new javax.swing.JTextField();
         lblDate = new javax.swing.JLabel();
-        Date = new com.toedter.calendar.JDateChooser();
+        jdateTanggel = new com.toedter.calendar.JDateChooser();
         lblTable = new javax.swing.JLabel();
         jTotalTable = new javax.swing.JSpinner();
         lblPeople = new javax.swing.JLabel();
@@ -75,10 +75,10 @@ public class FormReservation extends javax.swing.JFrame {
         lblDate.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         lblDate.setText("Reservation Date:");
 
-        Date.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 195, 0)));
-        Date.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        Date.setName("Date"); // NOI18N
-        Date.setPreferredSize(new java.awt.Dimension(3, 26));
+        jdateTanggel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 195, 0)));
+        jdateTanggel.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        jdateTanggel.setName("jdateTanggel"); // NOI18N
+        jdateTanggel.setPreferredSize(new java.awt.Dimension(3, 26));
 
         lblTable.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         lblTable.setText("Total Table:");
@@ -98,16 +98,7 @@ public class FormReservation extends javax.swing.JFrame {
         tableRestaurantList.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         tableRestaurantList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Restaurant Name", "Number of Table", "Available Table", "Rating"
@@ -152,7 +143,7 @@ public class FormReservation extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblDate)
-                            .addComponent(Date, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jdateTanggel, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTotalTable, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -186,7 +177,7 @@ public class FormReservation extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jTotalTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(tNumberPeople, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(Date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jdateTanggel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -203,18 +194,30 @@ public class FormReservation extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             String reservant = txtReservant.getText();
-            java.sql.Date waktu = new java.sql.Date(Date.getDate().getTime());
+
+            java.sql.Date waktu = new java.sql.Date(jdateTanggel.getDate().getTime());
             String time = String.valueOf(waktu);
             int totalTable = (int) jTotalTable.getValue();
             int people = (int) tNumberPeople.getValue();
             int row = tableRestaurantList.getSelectedRow();
-            int column = tableRestaurantList.getSelectedColumn();
-            Restaurant resto = (Restaurant) tableRestaurantList.getValueAt(row, column);
-            int resto_id = ambilId(resto.getNamaRestaurant());
-            boolean helper = insertDataReservasi(time, totalTable, people, "On Process", 5, resto_id, resto.getNamaRestaurant());
-            JOptionPane.showMessageDialog(this, "Reservation succesful, now please wait for the restaurant to accept your reservation order.");
+            String namaResto = (String) tableRestaurantList.getValueAt(row, 0);
+            System.out.println("");
+            int resto_id = ambilId(namaResto);
+            System.out.println(totalTable);
+            System.out.println(people);
+            System.out.println(resto_id);
+
+            boolean helper = insertDataReservasi(time, totalTable, people, "On Process", 5, resto_id, reservant);
+            System.out.println(helper);
+            if (helper) {
+                JOptionPane.showMessageDialog(this, "Reservation succesful, now please wait for the restaurant to accept your reservation order.");
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Reservation failed, please re check your order");
+
+            }
         } catch (Exception e) {
-            System.out.println("Error, pesan error: " + e.getMessage());
+            System.out.println("Error pada button, pesan error: " + e.getMessage());
         }
     }//GEN-LAST:event_btnBookActionPerformed
 
@@ -255,11 +258,11 @@ public class FormReservation extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.toedter.calendar.JDateChooser Date;
     private javax.swing.JButton btnBook;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jTotalTable;
+    private com.toedter.calendar.JDateChooser jdateTanggel;
     private javax.swing.JLabel lblDate;
     private javax.swing.JLabel lblPeople;
     private javax.swing.JLabel lblReservant;

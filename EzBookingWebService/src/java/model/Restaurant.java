@@ -354,7 +354,7 @@ public class Restaurant extends MyModel {
         try {
 
             this.statment = (Statement) MyModel.conn.createStatement();
-            if (filter == "All") {
+            if (filter.equals("All")) {
                 this.resultset = this.statment.executeQuery("select * from restaurant");
             } else {
                 this.resultset = this.statment.executeQuery(" select * from restaurant where " + filter + " LIKE'%" + valueFilter + "%' order by " + filter + " " + sortBy);

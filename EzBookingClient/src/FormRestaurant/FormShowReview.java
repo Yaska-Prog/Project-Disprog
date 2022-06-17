@@ -31,7 +31,7 @@ public class FormShowReview extends javax.swing.JFrame {
         String usernameRestaurant = FormLogIn.txtUsername.getText();
         int idResto = idRestaurant(usernameRestaurant);
         List<Report> res = new ArrayList<>();
-        res = port.showReport(idResto, "");
+        res = port.showReport(idResto, "none");
         
         DefaultTableModel model = (DefaultTableModel) tableReview.getModel();
         for (int i = 0; i < res.size(); i++) {
@@ -72,16 +72,7 @@ public class FormShowReview extends javax.swing.JFrame {
         tableReview.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         tableReview.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Quality Of Service", "Food Quality", "Review"

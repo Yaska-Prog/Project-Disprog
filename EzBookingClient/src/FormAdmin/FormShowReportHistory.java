@@ -7,6 +7,7 @@ package FormAdmin;
 import com.ubaya.disprog.Report;
 import com.ubaya.disprog.Restaurant;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -24,10 +25,15 @@ public class FormShowReportHistory extends javax.swing.JFrame {
     public FormShowReportHistory() {
         initComponents();
         try {
-            ArrayList<Report> collections = (ArrayList<Report>) showListReport(0, "");
+            
+            List<Report> collections = new ArrayList<>();
+            com.ubaya.disprog.EzBookingWebService_Service service = new com.ubaya.disprog.EzBookingWebService_Service();
+            com.ubaya.disprog.EzBookingWebService port = service.getEzBookingWebServicePort();
+            collections = port.showReport(0, "none");
             DefaultTableModel model = (DefaultTableModel) tableReport.getModel();
             for (int i = 0; i < collections.size(); i++) {
                 Report report = collections.get(i);
+                System.out.println("coba" + report.getAccountUsername());
                 model.addRow(new Object[]{report.getAccountUsername(), report.getIdRestaurant(), report.getQualityOfService(), report.getFoodQuality(), report.getReview()});
             }
         } catch (Exception e) {
@@ -59,10 +65,7 @@ public class FormShowReportHistory extends javax.swing.JFrame {
         tableReport.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         tableReport.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Account Username", "Id Restaurant", "Quality Of Service ", "Food Quality", "Review"
@@ -130,11 +133,6 @@ public class FormShowReportHistory extends javax.swing.JFrame {
         });
     }
 
-    private static java.util.List<com.ubaya.disprog.Report> showListReport(int idRest, String account) {
-        com.ubaya.disprog.EzBookingWebService_Service service = new com.ubaya.disprog.EzBookingWebService_Service();
-        com.ubaya.disprog.EzBookingWebService port = service.getEzBookingWebServicePort();
-        return port.showReport(idRest, account);
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel2;

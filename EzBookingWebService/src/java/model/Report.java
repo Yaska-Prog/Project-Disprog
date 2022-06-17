@@ -75,14 +75,14 @@ public class Report extends MyModel {
         ArrayList<Report> collections = new ArrayList<Report>();
         try {
             this.statment = (Statement) MyModel.conn.createStatement();
-            if (idRestaurant != 0 && usernameAccount == "") {
-                this.resultset = this.statment.executeQuery("select * from report where restaurant_id = " + idRestaurant);
-            } else if (idRestaurant == 0 && usernameAccount != "") {
-                this.resultset = this.statment.executeQuery("select * from report where account_username= " + usernameAccount);
-            } else if (idRestaurant == 0 && usernameAccount == "") {
+            if (idRestaurant != 0 && usernameAccount.equals("none")) {
+                this.resultset = this.statment.executeQuery("select * from report where restaurant_id = '" + idRestaurant + "'");
+            } else if (idRestaurant == 0 && !usernameAccount.equals("none")) {
+                this.resultset = this.statment.executeQuery("select * from report where account_username = '" + usernameAccount + "'");
+            } else if (idRestaurant == 0 && usernameAccount.equals("none")) {
                 this.resultset = this.statment.executeQuery("select * from report");
             } else {
-                this.resultset = this.statment.executeQuery("select * from report where restaurant_id = " + idRestaurant + " and account_username = " + usernameAccount);
+                this.resultset = this.statment.executeQuery("select * from report where restaurant_id = '" + idRestaurant + "' and account_username = '" + usernameAccount + "'");
             }
 
             while (this.resultset.next()) {

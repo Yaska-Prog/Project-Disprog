@@ -84,9 +84,9 @@ public class FormLogIn extends javax.swing.JFrame {
         jLabel4.setText("Don't have an account?");
 
         txtUsername.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        txtUsername.setText("JohnDoe");
+        txtUsername.setText("bagas");
 
-        txtPassword.setText("jPasswordField1");
+        txtPassword.setText("bagas456");
 
         jLabel5.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel5.setText("Password:");
@@ -179,7 +179,7 @@ public class FormLogIn extends javax.swing.JFrame {
             GlobalUsername = user.getUsername();
             this.setVisible(false);
             switch (user.getRole()) {
-                case "Partner":
+                case "Partner Restaurant":
                     new FormHomeRestaurant().setVisible(true);
                     break;
                 case "Administrator":
