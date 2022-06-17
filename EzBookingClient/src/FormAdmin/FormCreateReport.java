@@ -25,15 +25,15 @@ public class FormCreateReport extends javax.swing.JFrame {
     public FormCreateReport() {
         initComponents();
 
-        service = new com.ubaya.disprog.EzBookingWebService_Service();
-        port = service.getEzBookingWebServicePort();
-
-        String idRest[];
-        List<String> idResto = new ArrayList<String>();
-        idResto = port.showListIdRestaurant();
-        for (String id : idResto) {
-            cboRestId.addItem(id);
-        }
+//        service = new com.ubaya.disprog.EzBookingWebService_Service();
+//        port = service.getEzBookingWebServicePort();
+//
+//        String idRest[];
+//        List<String> idResto = new ArrayList<String>();
+//        idResto = port.showListIdRestaurant();
+//        for (String id : idResto) {
+//            cboRestId.addItem(id);
+//        }
     }
 
     /**
@@ -212,9 +212,9 @@ public class FormCreateReport extends javax.swing.JFrame {
     private javax.swing.JTextField txtReview;
     // End of variables declaration//GEN-END:variables
 
-    private static java.util.List<java.lang.String> showListIdRestaurant() {
-        com.ubaya.disprog.EzBookingWebService_Service service = new com.ubaya.disprog.EzBookingWebService_Service();
-        com.ubaya.disprog.EzBookingWebService port = service.getEzBookingWebServicePort();
-        return port.showListIdRestaurant();
-    }
+//    private static java.util.List<java.lang.String> showListIdRestaurant() {
+//        com.ubaya.disprog.EzBookingWebService_Service service = new com.ubaya.disprog.EzBookingWebService_Service();
+//        com.ubaya.disprog.EzBookingWebService port = service.getEzBookingWebServicePort();
+//        //return port.showListIdRestaurant();
+//    }
 }

@@ -21,10 +21,19 @@ public class Restaurant extends MyModel {
     String alamatRestaurant;
     int max_table;
     int total_Pelanggan;
-    String usernameRestaurant;
+    String usernameAccount;
     int totalBintang;
 
     public Restaurant() {
+    }
+
+    public Restaurant(String namaRestaurant, String alamatRestaurant, int max_table, int total_Pelanggan, String usernameRestaurant, int totalBintang) {
+        this.namaRestaurant = namaRestaurant;
+        this.alamatRestaurant = alamatRestaurant;
+        this.max_table = max_table;
+        this.total_Pelanggan = total_Pelanggan;
+        this.usernameAccount = usernameRestaurant;
+        this.totalBintang = totalBintang;
     }
 
     public Restaurant(int idRestaurant, String namaPemilik, String namaRestaurant, String alamatRestaurant, int max_table) {
@@ -40,7 +49,7 @@ public class Restaurant extends MyModel {
         this.namaRestaurant = namaRestaurant;
         this.alamatRestaurant = alamatRestaurant;
         this.max_table = max_table;
-        this.usernameRestaurant = usernameRestaurant;
+        this.usernameAccount = usernameRestaurant;
     }
 
     public Restaurant(int id, String namaPemilik, String namaRestaurant, String alamatRestaurant, int max_table, int total_Pelanggan, String usernameRestaurant, int totalBintang) {
@@ -50,7 +59,7 @@ public class Restaurant extends MyModel {
         this.alamatRestaurant = alamatRestaurant;
         this.max_table = max_table;
         this.total_Pelanggan = total_Pelanggan;
-        this.usernameRestaurant = usernameRestaurant;
+        this.usernameAccount = usernameRestaurant;
         this.totalBintang = totalBintang;
     }
 
@@ -60,7 +69,7 @@ public class Restaurant extends MyModel {
         this.alamatRestaurant = alamatRestaurant;
         this.max_table = max_table;
         this.total_Pelanggan = total_Pelanggan;
-        this.usernameRestaurant = usernameRestaurant;
+        this.usernameAccount = usernameRestaurant;
         this.totalBintang = totalBintang;
     }
 
@@ -113,11 +122,11 @@ public class Restaurant extends MyModel {
     }
 
     public String getUsernameRestaurant() {
-        return usernameRestaurant;
+        return usernameAccount;
     }
 
     public void setUsernameRestaurant(String usernameRestaurant) {
-        this.usernameRestaurant = usernameRestaurant;
+        this.usernameAccount = usernameRestaurant;
     }
 
     public int getTotalBintang() {
@@ -137,7 +146,7 @@ public class Restaurant extends MyModel {
 
                 sql.setString(1, this.namaPemilik);
                 sql.setString(2, this.namaRestaurant);
-                sql.setString(3, this.usernameRestaurant);
+                sql.setString(3, this.usernameAccount);
                 sql.setString(4, this.alamatRestaurant);
                 sql.setInt(5, this.max_table);
                 sql.executeUpdate();
@@ -205,7 +214,7 @@ public class Restaurant extends MyModel {
         }
         return collections;
     }
-    
+
     public ArrayList<Restaurant> showAllResto(String filter, String value) {
         ArrayList<Restaurant> collections = new ArrayList<Restaurant>();
         System.out.println(filter);
@@ -288,5 +297,5 @@ public class Restaurant extends MyModel {
             System.out.println("error pada show restoran, pesan: " + e.getMessage());
         }
         return collections;
-    }
+    }    
 }
