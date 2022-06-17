@@ -4,6 +4,9 @@
  */
 package FormCustomer;
 
+import com.ubaya.disprog.Restaurant;
+import java.util.ArrayList;
+
 /**
  *
  * @author RUTH
@@ -118,6 +121,10 @@ public class FormAvailableRestaurant extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
 
+        Restaurant resto = new Restaurant();
+        ArrayList<Restaurant> collections = (ArrayList<Restaurant>) showListRestaurant("none", "none");
+        
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -132,4 +139,10 @@ public class FormAvailableRestaurant extends javax.swing.JFrame {
     private javax.swing.JLabel lblRestaurant;
     private javax.swing.JTable tableRestaurant;
     // End of variables declaration//GEN-END:variables
+
+    private static java.util.List<com.ubaya.disprog.Restaurant> showListRestaurant(java.lang.String filter, java.lang.String value) {
+        com.ubaya.disprog.EzBookingWebService_Service service = new com.ubaya.disprog.EzBookingWebService_Service();
+        com.ubaya.disprog.EzBookingWebService port = service.getEzBookingWebServicePort();
+        return port.showListRestaurant(filter, value);
+    }
 }
