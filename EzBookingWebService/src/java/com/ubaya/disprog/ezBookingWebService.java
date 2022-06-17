@@ -152,7 +152,6 @@ public class ezBookingWebService {
         status1 = laporan.saveReport();
         return status1;
     }
-    
 
     @WebMethod(operationName = "showListIdRestaurant")
     public ArrayList<String> showListIdRestaurant() {
@@ -161,7 +160,8 @@ public class ezBookingWebService {
         list = restaurant.listIdRestauramt();
         return list;
     }
-/**
+
+    /**
      * Web service operation
      */
     @WebMethod(operationName = "showListRestaurant")
@@ -191,5 +191,14 @@ public class ezBookingWebService {
         //TODO write your implementation code here:
         Restaurant res = new Restaurant();
         return res.idResto(username);
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "showReport")
+    public ArrayList<Report> showReport(@WebParam(name = "idRestaurant") int idRestaurant, @WebParam(name = "accountUsername") String accountUsername) {
+        Report report = new Report();
+        return report.listReport(idRestaurant, accountUsername);
     }
 }

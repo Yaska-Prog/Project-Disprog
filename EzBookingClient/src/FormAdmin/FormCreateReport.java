@@ -25,15 +25,15 @@ public class FormCreateReport extends javax.swing.JFrame {
     public FormCreateReport() {
         initComponents();
 
-//        service = new com.ubaya.disprog.EzBookingWebService_Service();
-//        port = service.getEzBookingWebServicePort();
-//
-//        String idRest[];
-//        List<String> idResto = new ArrayList<String>();
-//        idResto = port.showListIdRestaurant();
-//        for (String id : idResto) {
-//            cboRestId.addItem(id);
-//        }
+        service = new com.ubaya.disprog.EzBookingWebService_Service();
+        port = service.getEzBookingWebServicePort();
+
+        String idRest[];
+        List<String> idResto = new ArrayList<String>();
+        idResto = port.showListIdRestaurant();
+        for (String id : idResto) {
+            cboRestId.addItem(id);
+        }
     }
 
     /**

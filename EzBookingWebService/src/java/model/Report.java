@@ -79,6 +79,8 @@ public class Report extends MyModel {
                 this.resultset = this.statment.executeQuery("select * from report where restaurant_id = " + idRestaurant);
             } else if (idRestaurant == 0 && usernameAccount != "") {
                 this.resultset = this.statment.executeQuery("select * from report where account_username= " + usernameAccount);
+            } else if (idRestaurant == 0 && usernameAccount == "") {
+                this.resultset = this.statment.executeQuery("select * from report");
             } else {
                 this.resultset = this.statment.executeQuery("select * from report where restaurant_id = " + idRestaurant + " and account_username = " + usernameAccount);
             }
