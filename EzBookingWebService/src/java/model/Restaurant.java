@@ -251,6 +251,20 @@ public class Restaurant extends MyModel {
         return collections;
     }
 
+    public ArrayList<String> listAllIdRestauramt() {
+        ArrayList<String> collections = new ArrayList<>();
+        try {
+            this.statment = (Statement) MyModel.conn.createStatement();
+            this.resultset = this.statment.executeQuery("select id from restaurant order by id asc");
+            while (this.resultset.next()) {
+                collections.add(this.resultset.getString("id"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return collections;
+    }
+
     public ArrayList<Restaurant> showAllResto(String filter, String value) {
         ArrayList<Restaurant> collections = new ArrayList<Restaurant>();
         System.out.println(filter);
@@ -339,7 +353,7 @@ public class Restaurant extends MyModel {
         int id = 0;
         try {
             this.statment = (Statement) MyModel.conn.createStatement();
-            this.resultset = this.statment.executeQuery("select id from restaurant where nama = '" + username + "';");
+            this.resultset = this.statment.executeQuery("select id from restaurant where username_account = '" + username + "';");
             if (this.resultset.next()) {
                 id = this.resultset.getInt("id");
             }
@@ -357,7 +371,7 @@ public class Restaurant extends MyModel {
             if (filter.equals("All")) {
                 this.resultset = this.statment.executeQuery("select * from restaurant");
             } else {
-                this.resultset = this.statment.executeQuery(" select * from restaurant where " + filter + " LIKE'%" + valueFilter + "%' order by " + filter + " " + sortBy);
+                this.resultset = this.statment.executeQuery("select * from restaurant where " + filter + " LIKE'%" + valueFilter + "%' order by " + filter + " " + sortBy);
             }
 
             while (this.resultset.next()) {
@@ -378,4 +392,5 @@ public class Restaurant extends MyModel {
         }
         return collections;
     }
+
 }

@@ -31,6 +31,7 @@ public class FormShowReportHistory extends javax.swing.JFrame {
             com.ubaya.disprog.EzBookingWebService port = service.getEzBookingWebServicePort();
             collections = port.showReport(0, "none");
             DefaultTableModel model = (DefaultTableModel) tableReport.getModel();
+            model.setRowCount(0);
             for (int i = 0; i < collections.size(); i++) {
                 Report report = collections.get(i);
                 System.out.println("coba" + report.getAccountUsername());

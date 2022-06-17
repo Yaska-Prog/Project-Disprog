@@ -4,17 +4,33 @@
  */
 package FormRestaurant;
 
+import FormRegistrasiAccount.FormLogIn;
+
 /**
  *
  * @author asus
  */
 public class FormRestaurant {
 
+    com.ubaya.disprog.EzBookingWebService_Service service;
+    com.ubaya.disprog.EzBookingWebService port;
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public void main() {
         //Check apakah restaurant sudah pernah mendaftar? jika blom tampilkan form input data jika sudah tampilkan form home
+
+        service = new com.ubaya.disprog.EzBookingWebService_Service();
+        port = service.getEzBookingWebServicePort();
+        int id = port.getIdRestaurant(FormLogIn.txtUsername.getText());
+//        if (id == null) {
+//
+//        } else {
+//
+//        }
+        FormHomeRestaurant formHomeRestaurant = new FormHomeRestaurant();
+        formHomeRestaurant.setVisible(true);
     }
-    
+
 }

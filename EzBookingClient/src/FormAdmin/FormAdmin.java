@@ -10,7 +10,7 @@ package FormAdmin;
  */
 public class FormAdmin {
 
-    public static void main(String[] args) {
+    public static void main() {
         FormHomeAdmin formHomeAdmin = new FormHomeAdmin();
         formHomeAdmin.setVisible(true);
     }

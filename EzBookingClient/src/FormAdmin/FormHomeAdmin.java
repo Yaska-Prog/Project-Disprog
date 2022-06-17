@@ -24,16 +24,16 @@ public class FormHomeAdmin extends javax.swing.JFrame {
      */
     public FormHomeAdmin() {
         initComponents();
-        List<Restaurant> restoArray = new ArrayList<>();
-        service = new com.ubaya.disprog.EzBookingWebService_Service();
-        port = service.getEzBookingWebServicePort();
-        restoArray = port.showRestaurantWithFilterForAdmin("All", "", "");
-
-        DefaultTableModel model = (DefaultTableModel) tableRestaurant.getModel();
-        for (int i = 0; i < restoArray.size(); i++) {
-            Restaurant restaurant = restoArray.get(i);
-            model.addRow(new Object[]{restaurant.getNamaRestaurant(), restaurant.getAlamatRestaurant(), restaurant.getMaxTable(), restaurant.getTotalPelanggan(), restaurant.getTotalBintang()});
-        }
+//        List<Restaurant> restoArray = new ArrayList<>();
+//        service = new com.ubaya.disprog.EzBookingWebService_Service();
+//        port = service.getEzBookingWebServicePort();
+//        restoArray = port.showRestaurantWithFilterForAdmin("All", "", "");
+//
+//        DefaultTableModel model = (DefaultTableModel) tableRestaurant.getModel();
+//        for (int i = 0; i < restoArray.size(); i++) {
+//            Restaurant restaurant = restoArray.get(i);
+//            model.addRow(new Object[]{restaurant.getNamaRestaurant(), restaurant.getAlamatRestaurant(), restaurant.getMaxTable(), restaurant.getTotalPelanggan(), restaurant.getTotalBintang()});
+//        }
     }
 
     /**
@@ -108,12 +108,11 @@ public class FormHomeAdmin extends javax.swing.JFrame {
 
         cboFilter.setBackground(new java.awt.Color(255, 195, 0));
         cboFilter.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        cboFilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Restaurant", "Number of Table", "Total Customers", "Rating" }));
+        cboFilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Nama Restaurant", "Alamat", "Number of Table", "Total Customers", "Rating", "All" }));
         cboFilter.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 24, 24)));
 
         valueFilter.setBackground(new java.awt.Color(255, 195, 0));
         valueFilter.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        valueFilter.setText("jTextField1");
 
         btnAsc.setBackground(new java.awt.Color(255, 195, 0));
         btnAsc.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
@@ -231,11 +230,28 @@ public class FormHomeAdmin extends javax.swing.JFrame {
 
     private void btnAscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAscActionPerformed
         List<Restaurant> restoArray = new ArrayList<>();
+
         service = new com.ubaya.disprog.EzBookingWebService_Service();
         port = service.getEzBookingWebServicePort();
-        restoArray = port.showRestaurantWithFilterForAdmin(cboFilter.getSelectedItem().toString(), valueFilter.getText(), "asc");
+        String filter = "";
+        String cboSel = cboFilter.getSelectedItem().toString();
+        if (cboSel.equals("Nama Restaurant")) {
+            filter = "nama";
+        } else if (cboSel.equals("Alamat")) {
+            filter = "alamat";
+        } else if (cboSel.equals("Number of Table")) {
+            filter = "max_table";
+        } else if (cboSel.equals("Total Customers")) {
+            filter = "total_pelanggaan";
+        } else if (cboSel.equals("All")) {
+            filter = "All";
+        } else {
+            filter = "overall_rating";
+        }
+        restoArray = port.showRestaurantWithFilterForAdmin(filter, valueFilter.getText(), "asc");
 
         DefaultTableModel model = (DefaultTableModel) tableRestaurant.getModel();
+        model.setRowCount(0);
         for (int i = 0; i < restoArray.size(); i++) {
             Restaurant restaurant = restoArray.get(i);
             model.addRow(new Object[]{restaurant.getNamaRestaurant(), restaurant.getAlamatRestaurant(), restaurant.getMaxTable(), restaurant.getTotalPelanggan(), restaurant.getTotalBintang()});
@@ -246,9 +262,26 @@ public class FormHomeAdmin extends javax.swing.JFrame {
         List<Restaurant> restoArray = new ArrayList<>();
         service = new com.ubaya.disprog.EzBookingWebService_Service();
         port = service.getEzBookingWebServicePort();
-        restoArray = port.showRestaurantWithFilterForAdmin(cboFilter.getSelectedItem().toString(), valueFilter.getText(), "desc");
+
+        String filter = "";
+        String cboSel = cboFilter.getSelectedItem().toString();
+        if (cboSel.equals("Nama Restaurant")) {
+            filter = "nama";
+        } else if (cboSel.equals("Alamat")) {
+            filter = "alamat";
+        } else if (cboSel.equals("Number of Table")) {
+            filter = "max_table";
+        } else if (cboSel.equals("Total Customers")) {
+            filter = "total_pelanggaan";
+        } else if (cboSel.equals("All")) {
+            filter = "All";
+        } else {
+            filter = "overall_rating";
+        }
+        restoArray = port.showRestaurantWithFilterForAdmin(filter, valueFilter.getText(), "desc");
 
         DefaultTableModel model = (DefaultTableModel) tableRestaurant.getModel();
+        model.setRowCount(0);
         for (int i = 0; i < restoArray.size(); i++) {
             Restaurant restaurant = restoArray.get(i);
             model.addRow(new Object[]{restaurant.getNamaRestaurant(), restaurant.getAlamatRestaurant(), restaurant.getMaxTable(), restaurant.getTotalPelanggan(), restaurant.getTotalBintang()});

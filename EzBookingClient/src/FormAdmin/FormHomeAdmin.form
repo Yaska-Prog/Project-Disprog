@@ -186,12 +186,14 @@
           <Font name="Dubai" size="14" style="0"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="5">
+          <StringArray count="7">
             <StringItem index="0" value="All"/>
-            <StringItem index="1" value="Restaurant"/>
-            <StringItem index="2" value="Number of Table"/>
-            <StringItem index="3" value="Total Customers"/>
-            <StringItem index="4" value="Rating"/>
+            <StringItem index="1" value="Nama Restaurant"/>
+            <StringItem index="2" value="Alamat"/>
+            <StringItem index="3" value="Number of Table"/>
+            <StringItem index="4" value="Total Customers"/>
+            <StringItem index="5" value="Rating"/>
+            <StringItem index="6" value="All"/>
           </StringArray>
         </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -214,7 +216,6 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dubai" size="14" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnAsc">

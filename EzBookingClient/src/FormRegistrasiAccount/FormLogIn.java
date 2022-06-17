@@ -3,9 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package FormRegistrasiAccount;
-import FormAdmin.FormHomeAdmin;
-import FormCustomer.FormHomeCustomer;
-import FormRestaurant.FormHomeRestaurant;
+import FormAdmin.FormAdmin;
+import FormCustomer.homeUser;
+import FormRestaurant.FormRestaurant;
 import com.ubaya.disprog.Account;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -180,13 +180,16 @@ public class FormLogIn extends javax.swing.JFrame {
             this.setVisible(false);
             switch (user.getRole()) {
                 case "Partner Restaurant":
-                    new FormHomeRestaurant().setVisible(true);
+                    FormRestaurant formRestaurant = new FormRestaurant();
+                    formRestaurant.main();
                     break;
                 case "Administrator":
-                    new FormHomeAdmin().setVisible(true);
+                    FormAdmin formAdmin = new FormAdmin();
+                    formAdmin.main();
                     break;
                 case "Pelanggan":
-                    new FormHomeCustomer().setVisible(true);
+                    homeUser formHomeUser = new homeUser();
+                    formHomeUser.main();
                     break;
                 default:
                     break;

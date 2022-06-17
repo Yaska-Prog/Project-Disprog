@@ -230,4 +230,12 @@ public class ezBookingWebService {
         restaurantList = restaurant.ShowListRestaurantWithFilter(namaFilter, valueFilter, SortBy);
         return restaurantList;
     }
+
+    @WebMethod(operationName = "showListAllIdRestaurant")
+    public ArrayList<String> showListAllIdRestaurant() {
+        ArrayList<String> list = new ArrayList();
+        Restaurant restaurant = new Restaurant();
+        list = restaurant.listAllIdRestauramt();
+        return list;
+    }
 }

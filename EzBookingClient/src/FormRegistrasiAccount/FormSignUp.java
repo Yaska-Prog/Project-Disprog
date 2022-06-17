@@ -76,7 +76,7 @@ public class FormSignUp extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel8.setText("Role:");
 
-        cboRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pelanggan", "Partner", "Administrator" }));
+        cboRole.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pelanggan", "Partner Restaurant", "Administrator" }));
 
         btnSignUp.setBackground(new java.awt.Color(255, 195, 0));
         btnSignUp.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
@@ -159,7 +159,7 @@ public class FormSignUp extends javax.swing.JFrame {
         String role = (String) cboRole.getSelectedItem();
 
         try {
-            if (!newPassword.equals(newPassword)) {
+            if (!newPassword.equals(newRetypepassword)) {
                 JOptionPane.showMessageDialog(this, "Registration failed, password and your re type password doesn't match.");
             } else {
                 if (newUsername.isEmpty() || newMail.isEmpty() || newPassword.isEmpty() || newRetypepassword.isEmpty() || role.isEmpty()) {
