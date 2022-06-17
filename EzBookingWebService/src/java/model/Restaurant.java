@@ -340,12 +340,42 @@ public class Restaurant extends MyModel {
         try {
             this.statment = (Statement) MyModel.conn.createStatement();
             this.resultset = this.statment.executeQuery("select id from restaurant where nama = '" + username + "';");
-            if(this.resultset.next()){
+            if (this.resultset.next()) {
                 id = this.resultset.getInt("id");
             }
         } catch (Exception e) {
             System.out.println("Error pada ambil id, pesan: " + e.getMessage());
         }
         return id;
+    }
+
+    public ArrayList<Restaurant> ShowListRestaurantWithFilter(String filter, String valueFilter, String sortBy) {
+        ArrayList<Restaurant> collections = new ArrayList<>();
+        try {
+
+            this.statment = (Statement) MyModel.conn.createStatement();
+            if (filter == "All") {
+                this.resultset = this.statment.executeQuery("select * from restaurant");
+            } else {
+                this.resultset = this.statment.executeQuery(" select * from restaurant where " + filter + " LIKE'%" + valueFilter + "%' order by " + filter + " " + sortBy);
+            }
+
+            while (this.resultset.next()) {
+                Restaurant resto = new Restaurant(
+                        this.resultset.getInt("id"),
+                        this.resultset.getString("ownerName"),
+                        this.resultset.getString("nama"),
+                        this.resultset.getString("alamat"),
+                        this.resultset.getInt("max_table"),
+                        this.resultset.getInt("total_pelanggaan"),
+                        this.resultset.getString("account_username"),
+                        this.resultset.getInt("overall_rating")
+                );
+                collections.add(resto);
+            }
+        } catch (Exception e) {
+            System.out.println("error pada show restoran, pesan: " + e.getMessage());
+        }
+        return collections;
     }
 }

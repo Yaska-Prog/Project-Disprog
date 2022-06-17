@@ -192,7 +192,7 @@ public class ezBookingWebService {
         Restaurant res = new Restaurant();
         return res.idResto(username);
     }
-    
+
     @WebMethod(operationName = "showListDataRestaurant")
     public Restaurant showListDataRestaurant(@WebParam(name = "username") String username) {
         int idResto = GetIdRestaurant(username);
@@ -218,5 +218,16 @@ public class ezBookingWebService {
         Restaurant resto = new Restaurant();
         int id = resto.ambilIdResto(username);
         return id;
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "showRestaurantWithFilterForAdmin")
+    public ArrayList<Restaurant> showRestaurantWithFilterForAdmin(@WebParam(name = "namaFilter") String namaFilter, @WebParam(name = "valueFilter") String valueFilter, @WebParam(name = "SortBy") String SortBy) {
+        ArrayList<Restaurant> restaurantList = new ArrayList<>();
+        Restaurant restaurant = new Restaurant();
+        restaurantList = restaurant.ShowListRestaurantWithFilter(namaFilter, valueFilter, SortBy);
+        return restaurantList;
     }
 }

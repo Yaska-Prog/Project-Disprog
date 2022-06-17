@@ -4,20 +4,37 @@
  */
 package FormAdmin;
 
+import com.ubaya.disprog.Report;
+import com.ubaya.disprog.Restaurant;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author asus
  */
 public class FormHomeAdmin extends javax.swing.JFrame {
+
     public String usernameAccount;
     com.ubaya.disprog.EzBookingWebService_Service service;
     com.ubaya.disprog.EzBookingWebService port;
+
     /**
      * Creates new form homeAdminForm
      */
     public FormHomeAdmin() {
         initComponents();
-        
+        List<Restaurant> restoArray = new ArrayList<>();
+        service = new com.ubaya.disprog.EzBookingWebService_Service();
+        port = service.getEzBookingWebServicePort();
+        restoArray = port.showRestaurantWithFilterForAdmin("All", "", "");
+
+        DefaultTableModel model = (DefaultTableModel) tableRestaurant.getModel();
+        for (int i = 0; i < restoArray.size(); i++) {
+            Restaurant restaurant = restoArray.get(i);
+            model.addRow(new Object[]{restaurant.getNamaRestaurant(), restaurant.getAlamatRestaurant(), restaurant.getMaxTable(), restaurant.getTotalPelanggan(), restaurant.getTotalBintang()});
+        }
     }
 
     /**
@@ -37,12 +54,12 @@ public class FormHomeAdmin extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         btnCreateReport = new javax.swing.JButton();
         btnReportHistory = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        cboFilter = new javax.swing.JComboBox<>();
+        valueFilter = new javax.swing.JTextField();
+        btnAsc = new javax.swing.JButton();
+        btnDesc = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tableRestaurant = new javax.swing.JTable();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -72,7 +89,6 @@ public class FormHomeAdmin extends javax.swing.JFrame {
 
         btnCreateReport.setBackground(new java.awt.Color(255, 195, 0));
         btnCreateReport.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        btnCreateReport.setIcon(new javax.swing.ImageIcon("F:\\Ubaya\\Materi\\1604C044 Distributed Programming KP B\\github\\Project-Disprog\\EzBookingClient\\src\\FormAdmin\\report (1).png")); // NOI18N
         btnCreateReport.setText("Create Report");
         btnCreateReport.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 24, 24), 2));
         btnCreateReport.addActionListener(new java.awt.event.ActionListener() {
@@ -83,7 +99,6 @@ public class FormHomeAdmin extends javax.swing.JFrame {
 
         btnReportHistory.setBackground(new java.awt.Color(255, 195, 0));
         btnReportHistory.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        btnReportHistory.setIcon(new javax.swing.ImageIcon("F:\\Ubaya\\Materi\\1604C044 Distributed Programming KP B\\github\\Project-Disprog\\EzBookingClient\\src\\FormAdmin\\history (1).png")); // NOI18N
         btnReportHistory.setText("Report History");
         btnReportHistory.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 24, 24), 2));
         btnReportHistory.addActionListener(new java.awt.event.ActionListener() {
@@ -92,25 +107,35 @@ public class FormHomeAdmin extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setBackground(new java.awt.Color(255, 195, 0));
-        jComboBox1.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Restaurant", "Number of Table", "Total Customers", "Rating" }));
-        jComboBox1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 24, 24)));
+        cboFilter.setBackground(new java.awt.Color(255, 195, 0));
+        cboFilter.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        cboFilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Restaurant", "Number of Table", "Total Customers", "Rating" }));
+        cboFilter.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 24, 24)));
 
-        jTextField1.setBackground(new java.awt.Color(255, 195, 0));
-        jTextField1.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        jTextField1.setText("jTextField1");
+        valueFilter.setBackground(new java.awt.Color(255, 195, 0));
+        valueFilter.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        valueFilter.setText("jTextField1");
 
-        jButton1.setBackground(new java.awt.Color(255, 195, 0));
-        jButton1.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        jButton1.setText("Ascending");
+        btnAsc.setBackground(new java.awt.Color(255, 195, 0));
+        btnAsc.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        btnAsc.setText("Ascending");
+        btnAsc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAscActionPerformed(evt);
+            }
+        });
 
-        jButton2.setBackground(new java.awt.Color(255, 195, 0));
-        jButton2.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        jButton2.setText("Descending");
+        btnDesc.setBackground(new java.awt.Color(255, 195, 0));
+        btnDesc.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        btnDesc.setText("Descending");
+        btnDesc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDescActionPerformed(evt);
+            }
+        });
 
-        jTable2.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tableRestaurant.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        tableRestaurant.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -136,13 +161,13 @@ public class FormHomeAdmin extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
-        if (jTable2.getColumnModel().getColumnCount() > 0) {
-            jTable2.getColumnModel().getColumn(0).setResizable(false);
-            jTable2.getColumnModel().getColumn(1).setResizable(false);
-            jTable2.getColumnModel().getColumn(2).setResizable(false);
-            jTable2.getColumnModel().getColumn(3).setResizable(false);
-            jTable2.getColumnModel().getColumn(4).setResizable(false);
+        jScrollPane2.setViewportView(tableRestaurant);
+        if (tableRestaurant.getColumnModel().getColumnCount() > 0) {
+            tableRestaurant.getColumnModel().getColumn(0).setResizable(false);
+            tableRestaurant.getColumnModel().getColumn(1).setResizable(false);
+            tableRestaurant.getColumnModel().getColumn(2).setResizable(false);
+            tableRestaurant.getColumnModel().getColumn(3).setResizable(false);
+            tableRestaurant.getColumnModel().getColumn(4).setResizable(false);
         }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -154,13 +179,13 @@ public class FormHomeAdmin extends javax.swing.JFrame {
                 .addGap(138, 138, 138)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jComboBox1, 0, 214, Short.MAX_VALUE)
+                        .addComponent(cboFilter, 0, 214, Short.MAX_VALUE)
                         .addGap(0, 2, Short.MAX_VALUE))
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnAsc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(valueFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(176, 176, 176))
             .addGroup(layout.createSequentialGroup()
                 .addGap(118, 118, 118)
@@ -179,12 +204,12 @@ public class FormHomeAdmin extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cboFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(valueFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(btnAsc)
+                    .addComponent(btnDesc))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
@@ -205,8 +230,34 @@ public class FormHomeAdmin extends javax.swing.JFrame {
     private void btnReportHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportHistoryActionPerformed
         FormShowReportHistory formShowReportHistory = new FormShowReportHistory();
         formShowReportHistory.setVisible(true);
-                
+
     }//GEN-LAST:event_btnReportHistoryActionPerformed
+
+    private void btnAscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAscActionPerformed
+        List<Restaurant> restoArray = new ArrayList<>();
+        service = new com.ubaya.disprog.EzBookingWebService_Service();
+        port = service.getEzBookingWebServicePort();
+        restoArray = port.showRestaurantWithFilterForAdmin(cboFilter.getSelectedItem().toString(), valueFilter.getText(), "asc");
+
+        DefaultTableModel model = (DefaultTableModel) tableRestaurant.getModel();
+        for (int i = 0; i < restoArray.size(); i++) {
+            Restaurant restaurant = restoArray.get(i);
+            model.addRow(new Object[]{restaurant.getNamaRestaurant(), restaurant.getAlamatRestaurant(), restaurant.getMaxTable(), restaurant.getTotalPelanggan(), restaurant.getTotalBintang()});
+        }
+    }//GEN-LAST:event_btnAscActionPerformed
+
+    private void btnDescActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDescActionPerformed
+        List<Restaurant> restoArray = new ArrayList<>();
+        service = new com.ubaya.disprog.EzBookingWebService_Service();
+        port = service.getEzBookingWebServicePort();
+        restoArray = port.showRestaurantWithFilterForAdmin(cboFilter.getSelectedItem().toString(), valueFilter.getText(), "desc");
+
+        DefaultTableModel model = (DefaultTableModel) tableRestaurant.getModel();
+        for (int i = 0; i < restoArray.size(); i++) {
+            Restaurant restaurant = restoArray.get(i);
+            model.addRow(new Object[]{restaurant.getNamaRestaurant(), restaurant.getAlamatRestaurant(), restaurant.getMaxTable(), restaurant.getTotalPelanggan(), restaurant.getTotalBintang()});
+        }
+    }//GEN-LAST:event_btnDescActionPerformed
 
     /**
      * @param args the command line arguments
@@ -246,12 +297,13 @@ public class FormHomeAdmin extends javax.swing.JFrame {
         });
     }
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAsc;
     private javax.swing.JButton btnCreateReport;
+    private javax.swing.JButton btnDesc;
     private javax.swing.JButton btnReportHistory;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cboFilter;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -259,7 +311,7 @@ public class FormHomeAdmin extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable tableRestaurant;
+    private javax.swing.JTextField valueFilter;
     // End of variables declaration//GEN-END:variables
 }
