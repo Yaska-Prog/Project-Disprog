@@ -4,6 +4,7 @@
  */
 package FormRestaurant;
 import FormRegistrasiAccount.FormLogIn;
+import javax.swing.JOptionPane;
 /**
  *
  * @author RUTH
@@ -28,6 +29,11 @@ public class FormEditDataRestaurant extends javax.swing.JFrame {
         service = new com.ubaya.disprog.EzBookingWebService_Service();
         port = service.getEzBookingWebServicePort();
         return port.updateDataRestaurant(ownerName, namaResto, alamatResto, maxTable, idResto);
+    }
+    public int idRestaurant(String username){
+        service = new com.ubaya.disprog.EzBookingWebService_Service();
+        port = service.getEzBookingWebServicePort();
+        return port.getIdRestaurant(username);
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -136,8 +142,15 @@ public class FormEditDataRestaurant extends javax.swing.JFrame {
         String namaPemilik = txtName.getText();
         String namaRestaurant = txtRestaurantName.getText();
         String alamatRestaurant = txtAddress.getText();
-        //String usernameRestaurant = .getText();
+        String usernameRestaurant = FormLogIn.txtUsername.getText();
         int jumlahTable = Integer.parseInt(txtMaxTable.getText());
+        int idResto = idRestaurant(usernameRestaurant);
+        
+        boolean hasil = this.updateDataRestaurant(namaPemilik, namaRestaurant, alamatRestaurant, jumlahTable, idResto);
+        if(hasil == true){
+            JOptionPane.showMessageDialog(this, "Successful Update Data Restaurant!");
+            this.setVisible(false);
+        }
     }//GEN-LAST:event_btnConfirmActionPerformed
 
     /**

@@ -200,6 +200,23 @@ public class Restaurant extends MyModel {
         return jumlah;
     }
 
+    public int idResto(String usernameRestaurant) {
+        int id = 0;
+        try {
+            if (!MyModel.conn.isClosed()) {
+                this.statment = (Statement) MyModel.conn.createStatement();
+                this.resultset = this.statment.executeQuery("select id from restaurant where account_username = '" + usernameRestaurant + "'");
+                if(resultset.next()){
+                    id = this.resultset.getInt("id");
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("error : " + e.getMessage());
+        }
+        return id;
+
+    }
+
     public ArrayList<String> listIdRestauramt() {
         ArrayList<String> collections = new ArrayList<>();
         try {
@@ -297,5 +314,5 @@ public class Restaurant extends MyModel {
             System.out.println("error pada show restoran, pesan: " + e.getMessage());
         }
         return collections;
-    }    
+    }
 }

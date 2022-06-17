@@ -63,7 +63,7 @@ public class ezBookingWebService {
      */
     @WebMethod(operationName = "updateDataRestaurant")
     public boolean updateDataRestaurant(@WebParam(name = "ownerName") String ownerName, @WebParam(name = "nama_resto") String nama_resto, @WebParam(name = "alamat") String alamat, @WebParam(name = "max_table") int max_table, @WebParam(name = "id_restaurant") int id_restaurant) {
-        boolean hasil = false;
+        boolean hasil = true;
         Restaurant restaurant = new Restaurant(id_restaurant, ownerName, nama_resto, alamat, max_table);
         hasil = restaurant.updateRestaurant();
         return hasil;
@@ -152,6 +152,7 @@ public class ezBookingWebService {
         status1 = laporan.saveReport();
         return status1;
     }
+    
 
     @WebMethod(operationName = "showListIdRestaurant")
     public ArrayList<String> showListIdRestaurant() {
@@ -180,5 +181,15 @@ public class ezBookingWebService {
         Reservasi res = new Reservasi();
         ArrayList<Reservasi> coll = res.userReservasi(accountName);
         return coll;
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "GetIdRestaurant")
+    public int GetIdRestaurant(@WebParam(name = "username") String username) {
+        //TODO write your implementation code here:
+        Restaurant res = new Restaurant();
+        return res.idResto(username);
     }
 }
