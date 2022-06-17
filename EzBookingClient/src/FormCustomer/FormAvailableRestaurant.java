@@ -4,6 +4,11 @@
  */
 package FormCustomer;
 
+import com.ubaya.disprog.Restaurant;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
+
 /**
  *
  * @author RUTH
@@ -15,6 +20,17 @@ public class FormAvailableRestaurant extends javax.swing.JFrame {
      */
     public FormAvailableRestaurant() {
         initComponents();
+        try {
+            ArrayList<Restaurant> collections = (ArrayList<Restaurant>) showListRestaurant("none", "none");
+            DefaultTableModel model = (DefaultTableModel) tableRestaurant.getModel();
+            for(int i = 0; i < collections.size(); i++){
+                Restaurant resto = collections.get(i);
+                model.addRow(new Object[]{resto.getNamaRestaurant(), resto.getMaxTable(), jumlahKetersediaanMeja(resto.getId()), resto.getTotalBintang()});
+            }
+        } catch (Exception e) {
+            System.out.println("Error, pesan: " + e.getMessage());
+        }
+
     }
 
     /**
@@ -132,4 +148,16 @@ public class FormAvailableRestaurant extends javax.swing.JFrame {
     private javax.swing.JLabel lblRestaurant;
     private javax.swing.JTable tableRestaurant;
     // End of variables declaration//GEN-END:variables
+
+    private static java.util.List<com.ubaya.disprog.Restaurant> showListRestaurant(java.lang.String filter, java.lang.String value) {
+        com.ubaya.disprog.EzBookingWebService_Service service = new com.ubaya.disprog.EzBookingWebService_Service();
+        com.ubaya.disprog.EzBookingWebService port = service.getEzBookingWebServicePort();
+        return port.showListRestaurant(filter, value);
+    }
+
+    private static int jumlahKetersediaanMeja(int idRestaurant) {
+        com.ubaya.disprog.EzBookingWebService_Service service = new com.ubaya.disprog.EzBookingWebService_Service();
+        com.ubaya.disprog.EzBookingWebService port = service.getEzBookingWebServicePort();
+        return port.jumlahKetersediaanMeja(idRestaurant);
+    }
 }

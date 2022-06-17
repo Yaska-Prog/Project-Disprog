@@ -23,6 +23,7 @@ public class FormLogIn extends javax.swing.JFrame {
     com.ubaya.disprog.EzBookingWebService_Service service;
     com.ubaya.disprog.EzBookingWebService port;
 
+    public static String GlobalUsername;
     public FormLogIn() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
@@ -173,6 +174,7 @@ public class FormLogIn extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Login succesful, welcome " + username);
             Account user = acc.get(0);
+            GlobalUsername = user.getUsername();
             this.setVisible(false);
             switch (user.getRole()) {
                 case "Partner":
