@@ -206,7 +206,7 @@ public class Restaurant extends MyModel {
             if (!MyModel.conn.isClosed()) {
                 this.statment = (Statement) MyModel.conn.createStatement();
                 this.resultset = this.statment.executeQuery("select id from restaurant where account_username = '" + usernameRestaurant + "'");
-                if(resultset.next()){
+                if (resultset.next()) {
                     id = this.resultset.getInt("id");
                 }
             }
@@ -216,6 +216,7 @@ public class Restaurant extends MyModel {
         return id;
 
     }
+
     public Restaurant listDataRestaurant(int idResto) {
         Restaurant res = new Restaurant();
         try {
@@ -332,5 +333,19 @@ public class Restaurant extends MyModel {
             System.out.println("error pada show restoran, pesan: " + e.getMessage());
         }
         return collections;
+    }
+
+    public int ambilIdResto(String username) {
+        int id = 0;
+        try {
+            this.statment = (Statement) MyModel.conn.createStatement();
+            this.resultset = this.statment.executeQuery("select id from restaurant where nama = '" + username + "';");
+            if(this.resultset.next()){
+                id = this.resultset.getInt("id");
+            }
+        } catch (Exception e) {
+            System.out.println("Error pada ambil id, pesan: " + e.getMessage());
+        }
+        return id;
     }
 }

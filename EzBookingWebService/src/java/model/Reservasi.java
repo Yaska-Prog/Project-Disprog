@@ -201,7 +201,7 @@ public class Reservasi extends MyModel {
                         this.resultset.getInt("jumlahMeja"),
                         this.resultset.getInt("jumlahOrang"));
                 collections.add(reservasi);
-                System.out.println("Berhasil");
+                System.out.println("Berhasil1");
             }
         } catch (SQLException e) {
             System.out.println("Error pada user reservasi, pesan: " + e.getMessage());

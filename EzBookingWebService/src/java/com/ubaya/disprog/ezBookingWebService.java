@@ -208,4 +208,15 @@ public class ezBookingWebService {
         Report report = new Report();
         return report.listReport(idRestaurant, accountUsername);
     }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "ambil_id")
+    public int ambil_id(@WebParam(name = "username") String username) {
+        //TODO write your implementation code here:
+        Restaurant resto = new Restaurant();
+        int id = resto.ambilIdResto(username);
+        return id;
+    }
 }

@@ -26,7 +26,7 @@ public class FormLogIn extends javax.swing.JFrame {
     public static String GlobalUsername;
     public FormLogIn() {
         initComponents();
-        setExtendedState(MAXIMIZED_BOTH);
+//        setExtendedState(MAXIMIZED_BOTH);
     }
     public static String username;
 
@@ -53,6 +53,8 @@ public class FormLogIn extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+
+        lblImage.setIcon(new javax.swing.ImageIcon("C:\\Users\\LENOVO\\Documents\\NetBeansProjects\\project-disprog\\Project-Disprog\\EzBookingClient\\src\\FormRegistrasiAccount\\backgroundMainPageResized.jpg")); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel3.setText("Username:");
@@ -165,7 +167,7 @@ public class FormLogIn extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSignUpActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        String username = txtUsername.getText();
+        username = txtUsername.getText();
         String password = String.valueOf(txtPassword.getPassword());
         
         ArrayList<Account> acc = (ArrayList<Account>) checkLogin(username, password);

@@ -25,7 +25,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jLabel1" max="32767" attributes="0"/>
                   <Component id="txtReservant" alignment="0" max="32767" attributes="0"/>
@@ -37,19 +37,19 @@
                       </Group>
                       <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jSpinTable" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="jTotalTable" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
                           <Component id="lblTable" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lblPeople" min="-2" max="-2" attributes="0"/>
-                          <Component id="jSpinPeople" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="tNumberPeople" min="-2" pref="200" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Component id="btnBook" alignment="0" max="32767" attributes="0"/>
                   <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="53" max="32767" attributes="0"/>
+              <EmptySpace pref="38" max="32767" attributes="0"/>
           </Group>
           <Component id="lblReservation" alignment="0" max="32767" attributes="0"/>
       </Group>
@@ -74,8 +74,8 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                      <Component id="jSpinTable" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jSpinPeople" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTotalTable" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="tNumberPeople" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="Date" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -157,7 +157,7 @@
         <Property name="text" type="java.lang.String" value="Total Table:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JSpinner" name="jSpinTable">
+    <Component class="javax.swing.JSpinner" name="jTotalTable">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dubai" size="14" style="0"/>
@@ -182,7 +182,7 @@
         <Property name="text" type="java.lang.String" value="Number of People:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JSpinner" name="jSpinPeople">
+    <Component class="javax.swing.JSpinner" name="tNumberPeople">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Dubai" size="14" style="0"/>

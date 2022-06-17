@@ -4,7 +4,12 @@
  */
 package FormCustomer;
 
-
+import FormRegistrasiAccount.FormLogIn;
+import static FormRegistrasiAccount.FormLogIn.username;
+import com.ubaya.disprog.Restaurant;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,6 +22,17 @@ public class FormReservation extends javax.swing.JFrame {
      */
     public FormReservation() {
         initComponents();
+        txtReservant.setText(FormLogIn.GlobalUsername);
+        try {
+            ArrayList<Restaurant> collections = (ArrayList<Restaurant>) showListRestaurant("none", "none");
+            DefaultTableModel model = (DefaultTableModel) tableRestaurantList.getModel();
+            for (int i = 0; i < collections.size(); i++) {
+                Restaurant resto = collections.get(i);
+                model.addRow(new Object[]{resto.getNamaRestaurant(), resto.getMaxTable(), jumlahKetersediaanMeja(resto.getId()), resto.getTotalBintang()});
+            }
+        } catch (Exception e) {
+            System.out.println("Error, pesan: " + e.getMessage());
+        }
     }
 
     /**
@@ -34,9 +50,9 @@ public class FormReservation extends javax.swing.JFrame {
         lblDate = new javax.swing.JLabel();
         Date = new com.toedter.calendar.JDateChooser();
         lblTable = new javax.swing.JLabel();
-        jSpinTable = new javax.swing.JSpinner();
+        jTotalTable = new javax.swing.JSpinner();
         lblPeople = new javax.swing.JLabel();
-        jSpinPeople = new javax.swing.JSpinner();
+        tNumberPeople = new javax.swing.JSpinner();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableRestaurantList = new javax.swing.JTable();
         btnBook = new javax.swing.JButton();
@@ -67,16 +83,16 @@ public class FormReservation extends javax.swing.JFrame {
         lblTable.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         lblTable.setText("Total Table:");
 
-        jSpinTable.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        jSpinTable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 195, 0)));
-        jSpinTable.setPreferredSize(new java.awt.Dimension(3, 26));
+        jTotalTable.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        jTotalTable.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 195, 0)));
+        jTotalTable.setPreferredSize(new java.awt.Dimension(3, 26));
 
         lblPeople.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         lblPeople.setText("Number of People:");
 
-        jSpinPeople.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        jSpinPeople.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 195, 0)));
-        jSpinPeople.setPreferredSize(new java.awt.Dimension(3, 26));
+        tNumberPeople.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        tNumberPeople.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 195, 0)));
+        tNumberPeople.setPreferredSize(new java.awt.Dimension(3, 26));
 
         tableRestaurantList.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 195, 0)));
         tableRestaurantList.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
@@ -128,7 +144,7 @@ public class FormReservation extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(65, 65, 65)
+                .addGap(80, 80, 80)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtReservant)
@@ -139,15 +155,15 @@ public class FormReservation extends javax.swing.JFrame {
                             .addComponent(Date, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSpinTable, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTotalTable, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblTable))
                         .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblPeople)
-                            .addComponent(jSpinPeople, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(tNumberPeople, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(btnBook, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1))
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
             .addComponent(lblReservation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -168,8 +184,8 @@ public class FormReservation extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jSpinTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jSpinPeople, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTotalTable, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tNumberPeople, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(Date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addComponent(jLabel1)
@@ -185,6 +201,21 @@ public class FormReservation extends javax.swing.JFrame {
 
     private void btnBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookActionPerformed
         // TODO add your handling code here:
+        try {
+            String reservant = txtReservant.getText();
+            java.sql.Date waktu = new java.sql.Date(Date.getDate().getTime());
+            String time = String.valueOf(waktu);
+            int totalTable = (int) jTotalTable.getValue();
+            int people = (int) tNumberPeople.getValue();
+            int row = tableRestaurantList.getSelectedRow();
+            int column = tableRestaurantList.getSelectedColumn();
+            Restaurant resto = (Restaurant) tableRestaurantList.getValueAt(row, column);
+            int resto_id = ambilId(resto.getNamaRestaurant());
+            boolean helper = insertDataReservasi(time, totalTable, people, "On Process", 5, resto_id, resto.getNamaRestaurant());
+            JOptionPane.showMessageDialog(this, "Reservation succesful, now please wait for the restaurant to accept your reservation order.");
+        } catch (Exception e) {
+            System.out.println("Error, pesan error: " + e.getMessage());
+        }
     }//GEN-LAST:event_btnBookActionPerformed
 
     /**
@@ -228,14 +259,44 @@ public class FormReservation extends javax.swing.JFrame {
     private javax.swing.JButton btnBook;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSpinner jSpinPeople;
-    private javax.swing.JSpinner jSpinTable;
+    private javax.swing.JSpinner jTotalTable;
     private javax.swing.JLabel lblDate;
     private javax.swing.JLabel lblPeople;
     private javax.swing.JLabel lblReservant;
     private javax.swing.JLabel lblReservation;
     private javax.swing.JLabel lblTable;
+    private javax.swing.JSpinner tNumberPeople;
     private javax.swing.JTable tableRestaurantList;
     private javax.swing.JTextField txtReservant;
     // End of variables declaration//GEN-END:variables
+
+    private static java.util.List<java.lang.String> showListIdRestaurant() {
+        com.ubaya.disprog.EzBookingWebService_Service service = new com.ubaya.disprog.EzBookingWebService_Service();
+        com.ubaya.disprog.EzBookingWebService port = service.getEzBookingWebServicePort();
+        return port.showListIdRestaurant();
+    }
+
+    private static int jumlahKetersediaanMeja(int idRestaurant) {
+        com.ubaya.disprog.EzBookingWebService_Service service = new com.ubaya.disprog.EzBookingWebService_Service();
+        com.ubaya.disprog.EzBookingWebService port = service.getEzBookingWebServicePort();
+        return port.jumlahKetersediaanMeja(idRestaurant);
+    }
+
+    private static java.util.List<com.ubaya.disprog.Restaurant> showListRestaurant(java.lang.String filter, java.lang.String value) {
+        com.ubaya.disprog.EzBookingWebService_Service service = new com.ubaya.disprog.EzBookingWebService_Service();
+        com.ubaya.disprog.EzBookingWebService port = service.getEzBookingWebServicePort();
+        return port.showListRestaurant(filter, value);
+    }
+
+    private static boolean insertDataReservasi(java.lang.String tanggalPemesanan, int jumlahMeja, int jumlahOrang, java.lang.String status, int penilaianBintang, int restaurantId, java.lang.String accountUsername) {
+        com.ubaya.disprog.EzBookingWebService_Service service = new com.ubaya.disprog.EzBookingWebService_Service();
+        com.ubaya.disprog.EzBookingWebService port = service.getEzBookingWebServicePort();
+        return port.insertDataReservasi(tanggalPemesanan, jumlahMeja, jumlahOrang, status, penilaianBintang, restaurantId, accountUsername);
+    }
+
+    private static int ambilId(java.lang.String username) {
+        com.ubaya.disprog.EzBookingWebService_Service service = new com.ubaya.disprog.EzBookingWebService_Service();
+        com.ubaya.disprog.EzBookingWebService port = service.getEzBookingWebServicePort();
+        return port.ambilId(username);
+    }
 }

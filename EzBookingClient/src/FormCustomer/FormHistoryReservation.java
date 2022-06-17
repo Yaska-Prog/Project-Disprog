@@ -4,6 +4,14 @@
  */
 package FormCustomer;
 
+import FormRegistrasiAccount.FormLogIn;
+import com.ubaya.disprog.Date;
+import com.ubaya.disprog.Reservasi;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author RUTH
@@ -15,6 +23,19 @@ public class FormHistoryReservation extends javax.swing.JFrame {
      */
     public FormHistoryReservation() {
         initComponents();
+        try {
+            Reservasi res = new Reservasi();
+            ArrayList<Reservasi> collections = (ArrayList<Reservasi>) showReservasiUser(FormLogIn.GlobalUsername);
+            System.out.println(FormLogIn.GlobalUsername);
+            DefaultTableModel model = (DefaultTableModel) jTableReservasi.getModel();
+
+            for (int i = 0; i < collections.size(); i++) {
+                Reservasi reserve = (Reservasi) collections.get(i);
+                model.addRow(new Object[]{reserve.getAccountUsername(), reserve.getTanggalPesanan(), reserve.getJumlahMeja(), reserve.getJumlahOrang()});
+            }
+        } catch (Exception e) {
+            System.out.println("Error, pesan error: " + e.getMessage());
+        }
     }
 
     /**
@@ -28,7 +49,7 @@ public class FormHistoryReservation extends javax.swing.JFrame {
 
         lblReservation = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableReservasi = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -39,26 +60,17 @@ public class FormHistoryReservation extends javax.swing.JFrame {
         lblReservation.setText("HISTORY");
         lblReservation.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jTable1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 195, 0)));
-        jTable1.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableReservasi.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 195, 0)));
+        jTableReservasi.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        jTableReservasi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Reservant ", "Reservant Date", "Total Table", "Number of People"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableReservasi);
 
         jLabel1.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -129,7 +141,13 @@ public class FormHistoryReservation extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableReservasi;
     private javax.swing.JLabel lblReservation;
     // End of variables declaration//GEN-END:variables
+
+    private static java.util.List<com.ubaya.disprog.Reservasi> showReservasiUser(java.lang.String accountName) {
+        com.ubaya.disprog.EzBookingWebService_Service service = new com.ubaya.disprog.EzBookingWebService_Service();
+        com.ubaya.disprog.EzBookingWebService port = service.getEzBookingWebServicePort();
+        return port.showReservasiUser(accountName);
+    }
 }

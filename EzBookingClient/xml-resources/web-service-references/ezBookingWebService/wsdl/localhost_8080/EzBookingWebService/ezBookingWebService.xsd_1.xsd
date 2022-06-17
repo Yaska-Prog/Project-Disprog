@@ -8,6 +8,10 @@
 
 <xs:element name="SaveReportResponse" type="tns:SaveReportResponse"/>
 
+<xs:element name="ambil_id" type="tns:ambil_id"/>
+
+<xs:element name="ambil_idResponse" type="tns:ambil_idResponse"/>
+
 <xs:element name="check_login" type="tns:check_login"/>
 
 <xs:element name="check_loginResponse" type="tns:check_loginResponse"/>
@@ -229,30 +233,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="check_username">
-<xs:sequence>
-<xs:element name="username" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="check_usernameResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:boolean"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="GetIdRestaurant">
-<xs:sequence>
-<xs:element name="username" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="GetIdRestaurantResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:int"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="showListIdRestaurant">
 <xs:sequence/>
 </xs:complexType>
@@ -288,6 +268,42 @@
 </xs:sequence>
 </xs:extension>
 </xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="check_username">
+<xs:sequence>
+<xs:element name="username" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="check_usernameResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="GetIdRestaurant">
+<xs:sequence>
+<xs:element name="username" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="GetIdRestaurantResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ambil_id">
+<xs:sequence>
+<xs:element name="username" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ambil_idResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="updateStatusReservasi">
