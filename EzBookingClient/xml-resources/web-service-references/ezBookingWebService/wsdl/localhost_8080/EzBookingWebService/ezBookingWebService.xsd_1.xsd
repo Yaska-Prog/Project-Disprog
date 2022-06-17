@@ -166,18 +166,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="showReservasi">
-<xs:sequence>
-<xs:element name="idRestaurant" type="xs:int"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="showReservasiResponse">
-<xs:sequence>
-<xs:element name="return" type="tns:reservasi" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="showListReservasi">
 <xs:sequence>
 <xs:element name="idRestaurant" type="xs:int"/>
@@ -203,6 +191,28 @@
 </xs:sequence>
 </xs:extension>
 </xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="showReservasi">
+<xs:sequence>
+<xs:element name="idRestaurant" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="showReservasiResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:reservasi" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="showListIdRestaurant">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="showListIdRestaurantResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="check_username">
@@ -242,16 +252,6 @@
 </xs:sequence>
 </xs:extension>
 </xs:complexContent>
-</xs:complexType>
-
-<xs:complexType name="showListIdRestaurant">
-<xs:sequence/>
-</xs:complexType>
-
-<xs:complexType name="showListIdRestaurantResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="updateStatusReservasi">

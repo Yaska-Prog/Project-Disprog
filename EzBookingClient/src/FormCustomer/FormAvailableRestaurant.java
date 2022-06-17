@@ -6,6 +6,8 @@ package FormCustomer;
 
 import com.ubaya.disprog.Restaurant;
 import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
@@ -18,6 +20,17 @@ public class FormAvailableRestaurant extends javax.swing.JFrame {
      */
     public FormAvailableRestaurant() {
         initComponents();
+        try {
+            ArrayList<Restaurant> collections = (ArrayList<Restaurant>) showListRestaurant("none", "none");
+            DefaultTableModel model = (DefaultTableModel) tableRestaurant.getModel();
+            for(int i = 0; i < collections.size(); i++){
+                Restaurant resto = collections.get(i);
+                model.addRow(new Object[]{resto.getNamaRestaurant(), resto.getMaxTable(), jumlahKetersediaanMeja(resto.getId()), resto.getTotalBintang()});
+            }
+        } catch (Exception e) {
+            System.out.println("Error, pesan: " + e.getMessage());
+        }
+
     }
 
     /**
@@ -121,10 +134,6 @@ public class FormAvailableRestaurant extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
 
-        Restaurant resto = new Restaurant();
-        ArrayList<Restaurant> collections = (ArrayList<Restaurant>) showListRestaurant("none", "none");
-        
-        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -144,5 +153,11 @@ public class FormAvailableRestaurant extends javax.swing.JFrame {
         com.ubaya.disprog.EzBookingWebService_Service service = new com.ubaya.disprog.EzBookingWebService_Service();
         com.ubaya.disprog.EzBookingWebService port = service.getEzBookingWebServicePort();
         return port.showListRestaurant(filter, value);
+    }
+
+    private static int jumlahKetersediaanMeja(int idRestaurant) {
+        com.ubaya.disprog.EzBookingWebService_Service service = new com.ubaya.disprog.EzBookingWebService_Service();
+        com.ubaya.disprog.EzBookingWebService port = service.getEzBookingWebServicePort();
+        return port.jumlahKetersediaanMeja(idRestaurant);
     }
 }
