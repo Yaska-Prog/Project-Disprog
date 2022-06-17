@@ -4,17 +4,47 @@
  */
 package FormRestaurant;
 
+import FormRegistrasiAccount.FormLogIn;
+import com.ubaya.disprog.Report;
+import com.ubaya.disprog.Restaurant;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
+
 /**
  *
  * @author RUTH
  */
 public class FormShowReview extends javax.swing.JFrame {
 
+    com.ubaya.disprog.EzBookingWebService_Service service;
+    com.ubaya.disprog.EzBookingWebService port;
+
     /**
      * Creates new form Review
      */
     public FormShowReview() {
         initComponents();
+        service = new com.ubaya.disprog.EzBookingWebService_Service();
+        port = service.getEzBookingWebServicePort();
+        String usernameRestaurant = FormLogIn.txtUsername.getText();
+        int idResto = idRestaurant(usernameRestaurant);
+        List<Report> res = new ArrayList<>();
+        res = port.showReport(idResto, "");
+        
+        DefaultTableModel model = (DefaultTableModel) tableReview.getModel();
+        for (int i = 0; i < res.size(); i++) {
+            Report report = res.get(i);
+            model.addRow(new Object[]{report.getQualityOfService(), report.getFoodQuality(), report.getReview()});
+        }
+    }
+
+
+    public int idRestaurant(String username) {
+        service = new com.ubaya.disprog.EzBookingWebService_Service();
+        port = service.getEzBookingWebServicePort();
+        return port.getIdRestaurant(username);
     }
 
     /**

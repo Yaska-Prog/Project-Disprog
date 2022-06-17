@@ -152,7 +152,8 @@ public class FormHomeRestaurant extends javax.swing.JFrame {
     }//GEN-LAST:event_btnStatisticRestaurantActionPerformed
 
     private void btnShowReservationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowReservationActionPerformed
-        // TODO add your handling code here:
+        FormShowReservasi formShowReservasi = new FormShowReservasi();
+        formShowReservasi.setVisible(true);
     }//GEN-LAST:event_btnShowReservationActionPerformed
 
     /**

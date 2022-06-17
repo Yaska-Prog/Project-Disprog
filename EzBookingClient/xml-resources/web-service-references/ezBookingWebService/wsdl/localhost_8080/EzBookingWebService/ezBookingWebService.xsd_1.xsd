@@ -247,30 +247,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="GetIdRestaurant">
-<xs:sequence>
-<xs:element name="username" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="GetIdRestaurantResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:int"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="check_username">
-<xs:sequence>
-<xs:element name="username" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="check_usernameResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:boolean"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="check_login">
 <xs:sequence>
 <xs:element name="username" type="xs:string" minOccurs="0"/>
@@ -296,6 +272,30 @@
 </xs:sequence>
 </xs:extension>
 </xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="check_username">
+<xs:sequence>
+<xs:element name="username" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="check_usernameResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="GetIdRestaurant">
+<xs:sequence>
+<xs:element name="username" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="GetIdRestaurantResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="ambil_id">
@@ -341,19 +341,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="showReport">
-<xs:sequence>
-<xs:element name="idRestaurant" type="xs:int"/>
-<xs:element name="accountUsername" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="showReportResponse">
-<xs:sequence>
-<xs:element name="return" type="tns:report" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="showRestaurantWithFilterForAdmin">
 <xs:sequence>
 <xs:element name="namaFilter" type="xs:string" minOccurs="0"/>
@@ -365,6 +352,19 @@
 <xs:complexType name="showRestaurantWithFilterForAdminResponse">
 <xs:sequence>
 <xs:element name="return" type="tns:restaurant" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="showReport">
+<xs:sequence>
+<xs:element name="idRestaurant" type="xs:int"/>
+<xs:element name="accountUsername" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="showReportResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:report" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 
