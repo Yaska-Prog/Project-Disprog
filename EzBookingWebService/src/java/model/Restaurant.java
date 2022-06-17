@@ -216,6 +216,24 @@ public class Restaurant extends MyModel {
         return id;
 
     }
+    public Restaurant listDataRestaurant(int idResto) {
+        Restaurant res = new Restaurant();
+        try {
+            this.statment = (Statement) MyModel.conn.createStatement();
+            this.resultset = this.statment.executeQuery("select * from restaurant where id = '" + idResto + "'");
+            if (this.resultset.next()) {
+                res.setNamaRestaurant(this.resultset.getString("nama"));
+                res.setAlamatRestaurant(this.resultset.getString("alamat"));
+                res.setNamaPemilik(this.resultset.getString("ownerName"));
+                res.setMax_table(this.resultset.getInt("max_table"));
+                res.setTotal_Pelanggan(this.resultset.getInt("total_pelanggaan"));
+                res.setTotalBintang(this.resultset.getInt("overall_rating"));
+            }
+        } catch (Exception e) {
+            System.out.println("error : " + e.getMessage());
+        }
+        return res;
+    }
 
     public ArrayList<String> listIdRestauramt() {
         ArrayList<String> collections = new ArrayList<>();

@@ -192,6 +192,13 @@ public class ezBookingWebService {
         Restaurant res = new Restaurant();
         return res.idResto(username);
     }
+    
+    @WebMethod(operationName = "showListDataRestaurant")
+    public Restaurant showListDataRestaurant(@WebParam(name = "username") String username) {
+        int idResto = GetIdRestaurant(username);
+        Restaurant restaurant = new Restaurant();
+        return restaurant.listDataRestaurant(idResto);
+    }
 
     /**
      * Web service operation

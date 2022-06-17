@@ -4,17 +4,35 @@
  */
 package FormRestaurant;
 
+import FormRegistrasiAccount.FormLogIn;
+import com.ubaya.disprog.Restaurant;
+
 /**
  *
  * @author asus
  */
 public class FormStatisticRestaurant extends javax.swing.JFrame {
-
+    com.ubaya.disprog.EzBookingWebService_Service service;
+    com.ubaya.disprog.EzBookingWebService port;
     /**
      * Creates new form statisticRestaurantForm
      */
     public FormStatisticRestaurant() {
         initComponents();
+        
+        service = new com.ubaya.disprog.EzBookingWebService_Service();
+        port = service.getEzBookingWebServicePort();
+        
+        String usernameRestaurant = FormLogIn.txtUsername.getText();
+        
+        Restaurant res = new Restaurant();
+        res = port.showListDataRestaurant(usernameRestaurant);
+        lblNamaResto.setText(res.getNamaRestaurant());
+        lblAlamat.setText(res.getAlamatRestaurant());
+        lblPemilik.setText(res.getNamaPemilik());
+        lblMax_Table.setText(String.valueOf(res.getMaxTable()));
+        lblJumlahPelanggan.setText(String.valueOf(res.getTotalPelanggan()));
+        lblRating.setText(String.valueOf(res.getTotalBintang()));
     }
 
     /**
@@ -27,15 +45,15 @@ public class FormStatisticRestaurant extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lblNamaResto = new javax.swing.JLabel();
+        lblPemilik = new javax.swing.JLabel();
+        lblAlamat = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        lblMax_Table = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        lblJumlahPelanggan = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        lblRating = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,47 +63,47 @@ public class FormStatisticRestaurant extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("STATISTIC RESTAURANT");
 
-        jLabel1.setFont(new java.awt.Font("Dubai", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 195, 0));
-        jLabel1.setText("Westin Food Court");
+        lblNamaResto.setFont(new java.awt.Font("Dubai", 0, 24)); // NOI18N
+        lblNamaResto.setForeground(new java.awt.Color(255, 195, 0));
+        lblNamaResto.setText("Westin Food Court");
 
-        jLabel3.setFont(new java.awt.Font("Dubai", 0, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 195, 0));
-        jLabel3.setText("John Doe");
+        lblPemilik.setFont(new java.awt.Font("Dubai", 0, 24)); // NOI18N
+        lblPemilik.setForeground(new java.awt.Color(255, 195, 0));
+        lblPemilik.setText("John Doe");
 
-        jLabel4.setFont(new java.awt.Font("Dubai", 0, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 195, 0));
-        jLabel4.setText("East No 11");
+        lblAlamat.setFont(new java.awt.Font("Dubai", 0, 24)); // NOI18N
+        lblAlamat.setForeground(new java.awt.Color(255, 195, 0));
+        lblAlamat.setText("East No 11");
 
         jLabel5.setFont(new java.awt.Font("Dubai", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 195, 0));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Total table :");
 
-        jLabel6.setFont(new java.awt.Font("Dubai", 0, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 195, 0));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("200");
+        lblMax_Table.setFont(new java.awt.Font("Dubai", 0, 24)); // NOI18N
+        lblMax_Table.setForeground(new java.awt.Color(255, 195, 0));
+        lblMax_Table.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblMax_Table.setText("200");
 
         jLabel7.setFont(new java.awt.Font("Dubai", 0, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 195, 0));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Total Customer :");
 
-        jLabel8.setFont(new java.awt.Font("Dubai", 0, 24)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 195, 0));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("200");
+        lblJumlahPelanggan.setFont(new java.awt.Font("Dubai", 0, 24)); // NOI18N
+        lblJumlahPelanggan.setForeground(new java.awt.Color(255, 195, 0));
+        lblJumlahPelanggan.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblJumlahPelanggan.setText("200");
 
         jLabel9.setFont(new java.awt.Font("Dubai", 0, 24)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 195, 0));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("Overall Rating :");
 
-        jLabel10.setFont(new java.awt.Font("Dubai", 0, 24)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 195, 0));
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("4");
+        lblRating.setFont(new java.awt.Font("Dubai", 0, 24)); // NOI18N
+        lblRating.setForeground(new java.awt.Color(255, 195, 0));
+        lblRating.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblRating.setText("4");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -99,14 +117,14 @@ public class FormStatisticRestaurant extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(22, 22, 22)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
+                                    .addComponent(lblAlamat)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(10, 10, 10)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel3)
+                                            .addComponent(lblPemilik)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGap(42, 42, 42)
-                                                .addComponent(jLabel10))))
+                                                .addComponent(lblRating))))
                                     .addComponent(jLabel5)))
                             .addComponent(jLabel7)
                             .addComponent(jLabel9)))
@@ -118,13 +136,13 @@ public class FormStatisticRestaurant extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel8)
+                        .addComponent(lblJumlahPelanggan)
                         .addGap(370, 370, 370))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel6)
+                        .addComponent(lblMax_Table)
                         .addGap(371, 371, 371))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(lblNamaResto)
                         .addGap(298, 298, 298))))
         );
         layout.setVerticalGroup(
@@ -133,23 +151,23 @@ public class FormStatisticRestaurant extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel1)
+                .addComponent(lblNamaResto)
                 .addGap(2, 2, 2)
-                .addComponent(jLabel4)
+                .addComponent(lblAlamat)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
+                .addComponent(lblPemilik)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addGap(2, 2, 2)
-                .addComponent(jLabel6)
+                .addComponent(lblMax_Table)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8)
+                .addComponent(lblJumlahPelanggan)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel10)
+                .addComponent(lblRating)
                 .addContainerGap(92, Short.MAX_VALUE))
         );
 
@@ -193,15 +211,15 @@ public class FormStatisticRestaurant extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel lblAlamat;
+    private javax.swing.JLabel lblJumlahPelanggan;
+    private javax.swing.JLabel lblMax_Table;
+    private javax.swing.JLabel lblNamaResto;
+    private javax.swing.JLabel lblPemilik;
+    private javax.swing.JLabel lblRating;
     // End of variables declaration//GEN-END:variables
 }
