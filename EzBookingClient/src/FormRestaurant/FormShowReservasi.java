@@ -7,10 +7,18 @@ package FormRestaurant;
 import FormRegistrasiAccount.FormLogIn;
 import com.ubaya.disprog.Report;
 import com.ubaya.disprog.Reservasi;
+import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 
 /**
  *
@@ -20,6 +28,9 @@ public class FormShowReservasi extends javax.swing.JFrame {
 
     com.ubaya.disprog.EzBookingWebService_Service service;
     com.ubaya.disprog.EzBookingWebService port;
+    
+    private static JButton btnAccept = new JButton();
+    private static JButton btnDecline = new JButton();
 
     /**
      * Creates new form form
@@ -36,14 +47,100 @@ public class FormShowReservasi extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) tableReservation.getModel();
         for (int i = 0; i < res.size(); i++) {
             Reservasi reservasi = res.get(i);
-            model.addRow(new Object[]{reservasi.getAccountUsername(), reservasi.getTanggalPesanan(), reservasi.getJumlahMeja(), reservasi.getJumlahOrang(), new JButton("Accept"), "Decline"});
+            model.addRow(new Object[]{reservasi.getAccountUsername(), reservasi.getTanggalPesanan(), reservasi.getJumlahMeja(), reservasi.getJumlahOrang()});
+            
+            btnAccept.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    boolean hasil;
+                    hasil = port.updateStatusReservasi("Confirm", reservasi.getId());
+                    JOptionPane.showMessageDialog(null, "Success Confirm this reservation");
+                }
+            });
+            
+            btnDecline.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    boolean hasil;
+                    hasil = port.updateStatusReservasi("Canceled", reservasi.getId());
+                    JOptionPane.showMessageDialog(null, "Success Canceled this reservation");
+                }
+            });
         }
-    }
+        tableReservation.getColumn("Accept").setCellRenderer(new ButtonRendererAccept());
+        tableReservation.getColumn("Accept").setCellEditor(new ButtonEditorAccept(new JCheckBox()));
+        
+        tableReservation.getColumn("Decline").setCellRenderer(new ButtonRendererDecline());
+        tableReservation.getColumn("Decline").setCellEditor(new ButtonEditorDecline(new JCheckBox()));
     
+    }
     public int idRestaurant(String username) {
         service = new com.ubaya.disprog.EzBookingWebService_Service();
         port = service.getEzBookingWebServicePort();
         return port.getIdRestaurant(username);
+    }
+    
+    // BUTTON ACCEPT
+    class ButtonRendererAccept extends JButton implements TableCellRenderer {
+        public ButtonRendererAccept() {
+            setOpaque(true);
+        }
+
+        public Component getTableCellRendererComponent(JTable table, Object value,
+                boolean isSelected, boolean hasFocus, int row, int column) {
+            setText((value == null) ? "Add" : value.toString());
+            return this;
+        }
+    }
+    class ButtonEditorAccept extends DefaultCellEditor {
+
+        private String label;
+
+        public ButtonEditorAccept(JCheckBox checkBox) {
+            super(checkBox);
+        }
+
+        public Component getTableCellEditorComponent(JTable table, Object value,
+                boolean isSelected, int row, int column) {
+            label = (value == null) ? "Add" : value.toString();
+            btnAccept.setText(label);
+            return btnAccept;
+        }
+
+        public Object getCellEditorValue() {
+            return new String(label);
+        }
+    }
+    // BUTTON DECLINE
+    class ButtonRendererDecline extends JButton implements TableCellRenderer {
+        public ButtonRendererDecline() {
+            setOpaque(true);
+        }
+
+        public Component getTableCellRendererComponent(JTable table, Object value,
+                boolean isSelected, boolean hasFocus, int row, int column) {
+            setText((value == null) ? "Add" : value.toString());
+            return this;
+        }
+    }
+    class ButtonEditorDecline extends DefaultCellEditor {
+
+        private String label;
+
+        public ButtonEditorDecline(JCheckBox checkBox) {
+            super(checkBox);
+        }
+
+        public Component getTableCellEditorComponent(JTable table, Object value,
+                boolean isSelected, int row, int column) {
+            label = (value == null) ? "Add" : value.toString();
+            btnDecline.setText(label);
+            return btnDecline;
+        }
+
+        public Object getCellEditorValue() {
+            return new String(label);
+        }
     }
 
     /**
