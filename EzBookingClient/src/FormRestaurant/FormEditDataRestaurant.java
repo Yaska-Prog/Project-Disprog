@@ -5,6 +5,7 @@
 package FormRestaurant;
 import FormRegistrasiAccount.FormLogIn;
 import javax.swing.JOptionPane;
+import com.ubaya.disprog.Restaurant;
 /**
  *
  * @author RUTH
@@ -17,6 +18,11 @@ public class FormEditDataRestaurant extends javax.swing.JFrame {
      */
     public FormEditDataRestaurant() {
         initComponents();
+        Restaurant restaurantt = restaurant(FormLogIn.txtUsername.getText());
+        txtName.setText(restaurantt.getNamaPemilik());
+        txtRestaurantName.setText(restaurantt.getNamaRestaurant());
+        txtAddress.setText(restaurantt.getAlamatRestaurant());
+        txtMaxTable.setText(String.valueOf(restaurantt.getMaxTable()));
     }
 
     /**
@@ -35,6 +41,13 @@ public class FormEditDataRestaurant extends javax.swing.JFrame {
         port = service.getEzBookingWebServicePort();
         return port.getIdRestaurant(username);
     }
+    
+    public Restaurant restaurant(String username){
+        service = new com.ubaya.disprog.EzBookingWebService_Service();
+        port = service.getEzBookingWebServicePort();
+        return port.showListDataRestaurant(username);
+    }
+    
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 

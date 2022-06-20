@@ -54,8 +54,6 @@ public class FormLogIn extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        lblImage.setIcon(new javax.swing.ImageIcon("C:\\Users\\LENOVO\\Documents\\NetBeansProjects\\project-disprog\\Project-Disprog\\EzBookingClient\\src\\FormRegistrasiAccount\\backgroundMainPageResized.jpg")); // NOI18N
-
         jLabel3.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel3.setText("Username:");
 
@@ -84,9 +82,9 @@ public class FormLogIn extends javax.swing.JFrame {
         jLabel4.setText("Don't have an account?");
 
         txtUsername.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        txtUsername.setText("bagas");
+        txtUsername.setText("anugrah");
 
-        txtPassword.setText("bagas456");
+        txtPassword.setText("anugrah789");
 
         jLabel5.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel5.setText("Password:");

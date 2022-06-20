@@ -4,17 +4,29 @@
 <xsd:import namespace="http://disprog.ubaya.com/" schemaLocation="http://localhost:8080/EzBookingWebService/ezBookingWebService?xsd=1"/>
 </xsd:schema>
 </types>
-<message name="SaveReport">
-<part name="parameters" element="tns:SaveReport"/>
+<message name="ambil_id">
+<part name="parameters" element="tns:ambil_id"/>
 </message>
-<message name="SaveReportResponse">
-<part name="parameters" element="tns:SaveReportResponse"/>
+<message name="ambil_idResponse">
+<part name="parameters" element="tns:ambil_idResponse"/>
 </message>
 <message name="check_login">
 <part name="parameters" element="tns:check_login"/>
 </message>
 <message name="check_loginResponse">
 <part name="parameters" element="tns:check_loginResponse"/>
+</message>
+<message name="showReservasi">
+<part name="parameters" element="tns:showReservasi"/>
+</message>
+<message name="showReservasiResponse">
+<part name="parameters" element="tns:showReservasiResponse"/>
+</message>
+<message name="SaveReport">
+<part name="parameters" element="tns:SaveReport"/>
+</message>
+<message name="SaveReportResponse">
+<part name="parameters" element="tns:SaveReportResponse"/>
 </message>
 <message name="check_username">
 <part name="parameters" element="tns:check_username"/>
@@ -28,47 +40,29 @@
 <message name="GetIdRestaurantResponse">
 <part name="parameters" element="tns:GetIdRestaurantResponse"/>
 </message>
-<message name="showReservasi">
-<part name="parameters" element="tns:showReservasi"/>
-</message>
-<message name="showReservasiResponse">
-<part name="parameters" element="tns:showReservasiResponse"/>
-</message>
 <message name="showReport">
 <part name="parameters" element="tns:showReport"/>
 </message>
 <message name="showReportResponse">
 <part name="parameters" element="tns:showReportResponse"/>
 </message>
-<message name="ambil_id">
-<part name="parameters" element="tns:ambil_id"/>
+<message name="updateStatusReservasi">
+<part name="parameters" element="tns:updateStatusReservasi"/>
 </message>
-<message name="ambil_idResponse">
-<part name="parameters" element="tns:ambil_idResponse"/>
-</message>
-<message name="insertDataRestaurant">
-<part name="parameters" element="tns:insertDataRestaurant"/>
-</message>
-<message name="insertDataRestaurantResponse">
-<part name="parameters" element="tns:insertDataRestaurantResponse"/>
-</message>
-<message name="jumlahKetersediaanMeja">
-<part name="parameters" element="tns:jumlahKetersediaanMeja"/>
-</message>
-<message name="jumlahKetersediaanMejaResponse">
-<part name="parameters" element="tns:jumlahKetersediaanMejaResponse"/>
-</message>
-<message name="showListAllIdRestaurant">
-<part name="parameters" element="tns:showListAllIdRestaurant"/>
-</message>
-<message name="showListAllIdRestaurantResponse">
-<part name="parameters" element="tns:showListAllIdRestaurantResponse"/>
+<message name="updateStatusReservasiResponse">
+<part name="parameters" element="tns:updateStatusReservasiResponse"/>
 </message>
 <message name="insertDataReservasi">
 <part name="parameters" element="tns:insertDataReservasi"/>
 </message>
 <message name="insertDataReservasiResponse">
 <part name="parameters" element="tns:insertDataReservasiResponse"/>
+</message>
+<message name="showListAllIdRestaurant">
+<part name="parameters" element="tns:showListAllIdRestaurant"/>
+</message>
+<message name="showListAllIdRestaurantResponse">
+<part name="parameters" element="tns:showListAllIdRestaurantResponse"/>
 </message>
 <message name="updateDataRestaurant">
 <part name="parameters" element="tns:updateDataRestaurant"/>
@@ -94,11 +88,23 @@
 <message name="showRestaurantWithFilterForAdminResponse">
 <part name="parameters" element="tns:showRestaurantWithFilterForAdminResponse"/>
 </message>
-<message name="showListDataRestaurant">
-<part name="parameters" element="tns:showListDataRestaurant"/>
+<message name="showListRestaurant">
+<part name="parameters" element="tns:showListRestaurant"/>
 </message>
-<message name="showListDataRestaurantResponse">
-<part name="parameters" element="tns:showListDataRestaurantResponse"/>
+<message name="showListRestaurantResponse">
+<part name="parameters" element="tns:showListRestaurantResponse"/>
+</message>
+<message name="insertDataRestaurant">
+<part name="parameters" element="tns:insertDataRestaurant"/>
+</message>
+<message name="insertDataRestaurantResponse">
+<part name="parameters" element="tns:insertDataRestaurantResponse"/>
+</message>
+<message name="jumlahKetersediaanMeja">
+<part name="parameters" element="tns:jumlahKetersediaanMeja"/>
+</message>
+<message name="jumlahKetersediaanMejaResponse">
+<part name="parameters" element="tns:jumlahKetersediaanMejaResponse"/>
 </message>
 <message name="showListReservasi">
 <part name="parameters" element="tns:showListReservasi"/>
@@ -112,26 +118,28 @@
 <message name="showListIdRestaurantResponse">
 <part name="parameters" element="tns:showListIdRestaurantResponse"/>
 </message>
-<message name="showListRestaurant">
-<part name="parameters" element="tns:showListRestaurant"/>
+<message name="showListDataRestaurant">
+<part name="parameters" element="tns:showListDataRestaurant"/>
 </message>
-<message name="showListRestaurantResponse">
-<part name="parameters" element="tns:showListRestaurantResponse"/>
-</message>
-<message name="updateStatusReservasi">
-<part name="parameters" element="tns:updateStatusReservasi"/>
-</message>
-<message name="updateStatusReservasiResponse">
-<part name="parameters" element="tns:updateStatusReservasiResponse"/>
+<message name="showListDataRestaurantResponse">
+<part name="parameters" element="tns:showListDataRestaurantResponse"/>
 </message>
 <portType name="ezBookingWebService">
-<operation name="SaveReport">
-<input wsam:Action="http://disprog.ubaya.com/ezBookingWebService/SaveReportRequest" message="tns:SaveReport"/>
-<output wsam:Action="http://disprog.ubaya.com/ezBookingWebService/SaveReportResponse" message="tns:SaveReportResponse"/>
+<operation name="ambil_id">
+<input wsam:Action="http://disprog.ubaya.com/ezBookingWebService/ambil_idRequest" message="tns:ambil_id"/>
+<output wsam:Action="http://disprog.ubaya.com/ezBookingWebService/ambil_idResponse" message="tns:ambil_idResponse"/>
 </operation>
 <operation name="check_login">
 <input wsam:Action="http://disprog.ubaya.com/ezBookingWebService/check_loginRequest" message="tns:check_login"/>
 <output wsam:Action="http://disprog.ubaya.com/ezBookingWebService/check_loginResponse" message="tns:check_loginResponse"/>
+</operation>
+<operation name="showReservasi">
+<input wsam:Action="http://disprog.ubaya.com/ezBookingWebService/showReservasiRequest" message="tns:showReservasi"/>
+<output wsam:Action="http://disprog.ubaya.com/ezBookingWebService/showReservasiResponse" message="tns:showReservasiResponse"/>
+</operation>
+<operation name="SaveReport">
+<input wsam:Action="http://disprog.ubaya.com/ezBookingWebService/SaveReportRequest" message="tns:SaveReport"/>
+<output wsam:Action="http://disprog.ubaya.com/ezBookingWebService/SaveReportResponse" message="tns:SaveReportResponse"/>
 </operation>
 <operation name="check_username">
 <input wsam:Action="http://disprog.ubaya.com/ezBookingWebService/check_usernameRequest" message="tns:check_username"/>
@@ -141,33 +149,21 @@
 <input wsam:Action="http://disprog.ubaya.com/ezBookingWebService/GetIdRestaurantRequest" message="tns:GetIdRestaurant"/>
 <output wsam:Action="http://disprog.ubaya.com/ezBookingWebService/GetIdRestaurantResponse" message="tns:GetIdRestaurantResponse"/>
 </operation>
-<operation name="showReservasi">
-<input wsam:Action="http://disprog.ubaya.com/ezBookingWebService/showReservasiRequest" message="tns:showReservasi"/>
-<output wsam:Action="http://disprog.ubaya.com/ezBookingWebService/showReservasiResponse" message="tns:showReservasiResponse"/>
-</operation>
 <operation name="showReport">
 <input wsam:Action="http://disprog.ubaya.com/ezBookingWebService/showReportRequest" message="tns:showReport"/>
 <output wsam:Action="http://disprog.ubaya.com/ezBookingWebService/showReportResponse" message="tns:showReportResponse"/>
 </operation>
-<operation name="ambil_id">
-<input wsam:Action="http://disprog.ubaya.com/ezBookingWebService/ambil_idRequest" message="tns:ambil_id"/>
-<output wsam:Action="http://disprog.ubaya.com/ezBookingWebService/ambil_idResponse" message="tns:ambil_idResponse"/>
-</operation>
-<operation name="insertDataRestaurant">
-<input wsam:Action="http://disprog.ubaya.com/ezBookingWebService/insertDataRestaurantRequest" message="tns:insertDataRestaurant"/>
-<output wsam:Action="http://disprog.ubaya.com/ezBookingWebService/insertDataRestaurantResponse" message="tns:insertDataRestaurantResponse"/>
-</operation>
-<operation name="jumlahKetersediaanMeja">
-<input wsam:Action="http://disprog.ubaya.com/ezBookingWebService/jumlahKetersediaanMejaRequest" message="tns:jumlahKetersediaanMeja"/>
-<output wsam:Action="http://disprog.ubaya.com/ezBookingWebService/jumlahKetersediaanMejaResponse" message="tns:jumlahKetersediaanMejaResponse"/>
-</operation>
-<operation name="showListAllIdRestaurant">
-<input wsam:Action="http://disprog.ubaya.com/ezBookingWebService/showListAllIdRestaurantRequest" message="tns:showListAllIdRestaurant"/>
-<output wsam:Action="http://disprog.ubaya.com/ezBookingWebService/showListAllIdRestaurantResponse" message="tns:showListAllIdRestaurantResponse"/>
+<operation name="updateStatusReservasi">
+<input wsam:Action="http://disprog.ubaya.com/ezBookingWebService/updateStatusReservasiRequest" message="tns:updateStatusReservasi"/>
+<output wsam:Action="http://disprog.ubaya.com/ezBookingWebService/updateStatusReservasiResponse" message="tns:updateStatusReservasiResponse"/>
 </operation>
 <operation name="insertDataReservasi">
 <input wsam:Action="http://disprog.ubaya.com/ezBookingWebService/insertDataReservasiRequest" message="tns:insertDataReservasi"/>
 <output wsam:Action="http://disprog.ubaya.com/ezBookingWebService/insertDataReservasiResponse" message="tns:insertDataReservasiResponse"/>
+</operation>
+<operation name="showListAllIdRestaurant">
+<input wsam:Action="http://disprog.ubaya.com/ezBookingWebService/showListAllIdRestaurantRequest" message="tns:showListAllIdRestaurant"/>
+<output wsam:Action="http://disprog.ubaya.com/ezBookingWebService/showListAllIdRestaurantResponse" message="tns:showListAllIdRestaurantResponse"/>
 </operation>
 <operation name="updateDataRestaurant">
 <input wsam:Action="http://disprog.ubaya.com/ezBookingWebService/updateDataRestaurantRequest" message="tns:updateDataRestaurant"/>
@@ -185,9 +181,17 @@
 <input wsam:Action="http://disprog.ubaya.com/ezBookingWebService/showRestaurantWithFilterForAdminRequest" message="tns:showRestaurantWithFilterForAdmin"/>
 <output wsam:Action="http://disprog.ubaya.com/ezBookingWebService/showRestaurantWithFilterForAdminResponse" message="tns:showRestaurantWithFilterForAdminResponse"/>
 </operation>
-<operation name="showListDataRestaurant">
-<input wsam:Action="http://disprog.ubaya.com/ezBookingWebService/showListDataRestaurantRequest" message="tns:showListDataRestaurant"/>
-<output wsam:Action="http://disprog.ubaya.com/ezBookingWebService/showListDataRestaurantResponse" message="tns:showListDataRestaurantResponse"/>
+<operation name="showListRestaurant">
+<input wsam:Action="http://disprog.ubaya.com/ezBookingWebService/showListRestaurantRequest" message="tns:showListRestaurant"/>
+<output wsam:Action="http://disprog.ubaya.com/ezBookingWebService/showListRestaurantResponse" message="tns:showListRestaurantResponse"/>
+</operation>
+<operation name="insertDataRestaurant">
+<input wsam:Action="http://disprog.ubaya.com/ezBookingWebService/insertDataRestaurantRequest" message="tns:insertDataRestaurant"/>
+<output wsam:Action="http://disprog.ubaya.com/ezBookingWebService/insertDataRestaurantResponse" message="tns:insertDataRestaurantResponse"/>
+</operation>
+<operation name="jumlahKetersediaanMeja">
+<input wsam:Action="http://disprog.ubaya.com/ezBookingWebService/jumlahKetersediaanMejaRequest" message="tns:jumlahKetersediaanMeja"/>
+<output wsam:Action="http://disprog.ubaya.com/ezBookingWebService/jumlahKetersediaanMejaResponse" message="tns:jumlahKetersediaanMejaResponse"/>
 </operation>
 <operation name="showListReservasi">
 <input wsam:Action="http://disprog.ubaya.com/ezBookingWebService/showListReservasiRequest" message="tns:showListReservasi"/>
@@ -197,18 +201,14 @@
 <input wsam:Action="http://disprog.ubaya.com/ezBookingWebService/showListIdRestaurantRequest" message="tns:showListIdRestaurant"/>
 <output wsam:Action="http://disprog.ubaya.com/ezBookingWebService/showListIdRestaurantResponse" message="tns:showListIdRestaurantResponse"/>
 </operation>
-<operation name="showListRestaurant">
-<input wsam:Action="http://disprog.ubaya.com/ezBookingWebService/showListRestaurantRequest" message="tns:showListRestaurant"/>
-<output wsam:Action="http://disprog.ubaya.com/ezBookingWebService/showListRestaurantResponse" message="tns:showListRestaurantResponse"/>
-</operation>
-<operation name="updateStatusReservasi">
-<input wsam:Action="http://disprog.ubaya.com/ezBookingWebService/updateStatusReservasiRequest" message="tns:updateStatusReservasi"/>
-<output wsam:Action="http://disprog.ubaya.com/ezBookingWebService/updateStatusReservasiResponse" message="tns:updateStatusReservasiResponse"/>
+<operation name="showListDataRestaurant">
+<input wsam:Action="http://disprog.ubaya.com/ezBookingWebService/showListDataRestaurantRequest" message="tns:showListDataRestaurant"/>
+<output wsam:Action="http://disprog.ubaya.com/ezBookingWebService/showListDataRestaurantResponse" message="tns:showListDataRestaurantResponse"/>
 </operation>
 </portType>
 <binding name="ezBookingWebServicePortBinding" type="tns:ezBookingWebService">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-<operation name="SaveReport">
+<operation name="ambil_id">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -218,6 +218,24 @@
 </output>
 </operation>
 <operation name="check_login">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="showReservasi">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="SaveReport">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -244,15 +262,6 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="showReservasi">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
 <operation name="showReport">
 <soap:operation soapAction=""/>
 <input>
@@ -262,34 +271,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="ambil_id">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="insertDataRestaurant">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="jumlahKetersediaanMeja">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="showListAllIdRestaurant">
+<operation name="updateStatusReservasi">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -299,6 +281,15 @@
 </output>
 </operation>
 <operation name="insertDataReservasi">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="showListAllIdRestaurant">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -343,7 +334,25 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="showListDataRestaurant">
+<operation name="showListRestaurant">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="insertDataRestaurant">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="jumlahKetersediaanMeja">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -370,16 +379,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="showListRestaurant">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="updateStatusReservasi">
+<operation name="showListDataRestaurant">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
