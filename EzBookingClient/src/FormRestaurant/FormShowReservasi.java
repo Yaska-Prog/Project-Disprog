@@ -88,7 +88,7 @@ public class FormShowReservasi extends javax.swing.JFrame {
 
         public Component getTableCellRendererComponent(JTable table, Object value,
                 boolean isSelected, boolean hasFocus, int row, int column) {
-            setText((value == null) ? "Add" : value.toString());
+            setText((value == null) ? "Accept" : value.toString());
             return this;
         }
     }
@@ -102,7 +102,7 @@ public class FormShowReservasi extends javax.swing.JFrame {
 
         public Component getTableCellEditorComponent(JTable table, Object value,
                 boolean isSelected, int row, int column) {
-            label = (value == null) ? "Add" : value.toString();
+            label = (value == null) ? "Accept" : value.toString();
             btnAccept.setText(label);
             return btnAccept;
         }
@@ -119,7 +119,7 @@ public class FormShowReservasi extends javax.swing.JFrame {
 
         public Component getTableCellRendererComponent(JTable table, Object value,
                 boolean isSelected, boolean hasFocus, int row, int column) {
-            setText((value == null) ? "Add" : value.toString());
+            setText((value == null) ? "Decline" : value.toString());
             return this;
         }
     }
@@ -133,7 +133,7 @@ public class FormShowReservasi extends javax.swing.JFrame {
 
         public Component getTableCellEditorComponent(JTable table, Object value,
                 boolean isSelected, int row, int column) {
-            label = (value == null) ? "Add" : value.toString();
+            label = (value == null) ? "Decline" : value.toString();
             btnDecline.setText(label);
             return btnDecline;
         }
