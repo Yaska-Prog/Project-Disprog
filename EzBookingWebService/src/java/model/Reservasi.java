@@ -197,12 +197,14 @@ public class Reservasi extends MyModel {
             this.statment = (Statement) MyModel.conn.createStatement();
             this.resultset = this.statment.executeQuery("select account_username, tanggalPesanan, jumlahMeja, jumlahOrang from reservasi where account_username = '" + username + "';");
             while (this.resultset.next()) {
+                System.out.println("Resultset: " + this.resultset.getString("tanggalPesanan"));
                 Reservasi reservasi = new Reservasi(
                         this.resultset.getString("account_username"),
                         this.resultset.getString("tanggalPesanan"),
                         this.resultset.getInt("jumlahMeja"),
                         this.resultset.getInt("jumlahOrang"));
                 collections.add(reservasi);
+                System.out.println("Reservasi: " + reservasi.getTanggalPesanan());
                 System.out.println("Berhasil1");
             }
         } catch (SQLException e) {

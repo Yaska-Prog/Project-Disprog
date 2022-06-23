@@ -46,7 +46,11 @@
                           <Component id="tNumberPeople" min="-2" pref="200" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Component id="btnBook" alignment="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jButtonBack" min="-2" pref="330" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btnBook" max="32767" attributes="0"/>
+                  </Group>
                   <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace pref="38" max="32767" attributes="0"/>
@@ -83,9 +87,12 @@
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="190" max="-2" attributes="0"/>
-              <EmptySpace pref="31" max="32767" attributes="0"/>
-              <Component id="btnBook" min="-2" pref="40" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+              <EmptySpace pref="20" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="btnBook" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="jButtonBack" pref="0" max="32767" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -269,7 +276,7 @@
           <Color blue="0" green="c3" red="ff" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dubai" size="18" style="1"/>
+          <Font name="Dubai" size="24" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="BOOK NOW"/>
       </Properties>
@@ -285,6 +292,17 @@
         <Property name="horizontalAlignment" type="int" value="0"/>
         <Property name="text" type="java.lang.String" value="Restaurant List"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonBack">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dubai" size="24" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Back to home"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonBackActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

@@ -30,10 +30,7 @@ public class FormHistoryReservation extends javax.swing.JFrame {
 
             for (int i = 0; i < collections.size(); i++) {
                 Reservasi reserve = (Reservasi) collections.get(i);
-                System.out.println(reserve.getTanggalPesanan());
-                Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                String tgl = formatter.format(reserve.getTanggalPesanan());
-                System.out.println(tgl);
+                System.out.println("Menggunakan class:" + reserve.getTanggalPesanan());
                 model.addRow(new Object[]{reserve.getAccountUsername(), reserve.getTanggalPesanan(), reserve.getJumlahMeja(), reserve.getJumlahOrang()});
             }
         } catch (Exception e) {
@@ -54,6 +51,7 @@ public class FormHistoryReservation extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableReservasi = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        jButtonBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("History Reservation");
@@ -79,6 +77,14 @@ public class FormHistoryReservation extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Reservation History");
 
+        jButtonBack.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jButtonBack.setText("Back to home");
+        jButtonBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -89,6 +95,10 @@ public class FormHistoryReservation extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(65, 65, 65))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(253, 253, 253)
+                .addComponent(jButtonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,11 +109,20 @@ public class FormHistoryReservation extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(270, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButtonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(156, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
+        // TODO add your handling code here:
+        FormHomeCustomer frm = new FormHomeCustomer();
+        this.setVisible(false);
+        frm.setVisible(true);
+    }//GEN-LAST:event_jButtonBackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -142,6 +161,7 @@ public class FormHistoryReservation extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonBack;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableReservasi;
