@@ -54,6 +54,7 @@ public class FormStatisticRestaurant extends javax.swing.JFrame {
         lblJumlahPelanggan = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         lblRating = new javax.swing.JLabel();
+        btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -105,51 +106,64 @@ public class FormStatisticRestaurant extends javax.swing.JFrame {
         lblRating.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblRating.setText("4");
 
+        btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(330, 330, 330)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(24, 24, 24)
+                            .addComponent(btnBack)
+                            .addGap(128, 128, 128)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(307, 307, 307)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(lblNamaResto)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblAlamat)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lblPemilik)
+                                            .addComponent(jLabel5)
+                                            .addComponent(lblAlamat))
+                                        .addGap(32, 32, 32))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addGap(42, 42, 42)
-                                                .addComponent(lblRating))))
-                                    .addComponent(jLabel5)))
+                                                .addGap(22, 22, 22)
+                                                .addComponent(lblPemilik))
+                                            .addComponent(jLabel9))
+                                        .addGap(12, 12, 12)))))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(379, 379, 379)
+                            .addComponent(lblMax_Table))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addContainerGap()
                             .addComponent(jLabel7)
-                            .addComponent(jLabel9)))
+                            .addGap(159, 159, 159)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(205, 205, 205)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(377, 377, 377)
+                        .addComponent(lblJumlahPelanggan))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(391, 391, 391)
+                        .addComponent(lblRating)))
                 .addContainerGap(161, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lblJumlahPelanggan)
-                        .addGap(370, 370, 370))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lblMax_Table)
-                        .addGap(371, 371, 371))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lblNamaResto)
-                        .addGap(298, 298, 298))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(btnBack))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblNamaResto)
                 .addGap(2, 2, 2)
@@ -173,6 +187,12 @@ public class FormStatisticRestaurant extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        this.dispose();
+        FormHomeRestaurant frm = new FormHomeRestaurant();
+        frm.setEnabled(true);
+    }//GEN-LAST:event_btnBackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -211,6 +231,7 @@ public class FormStatisticRestaurant extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;

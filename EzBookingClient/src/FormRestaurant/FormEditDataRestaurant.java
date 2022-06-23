@@ -61,6 +61,7 @@ public class FormEditDataRestaurant extends javax.swing.JFrame {
         btnConfirm = new javax.swing.JButton();
         lblAddress = new javax.swing.JLabel();
         txtAddress = new javax.swing.JTextField();
+        btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Edit Restaurant");
@@ -103,29 +104,43 @@ public class FormEditDataRestaurant extends javax.swing.JFrame {
         txtAddress.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         txtAddress.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 195, 0)));
 
+        btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(65, 65, 65)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblYourName)
-                    .addComponent(lblRestaurantName)
-                    .addComponent(txtRestaurantName, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)
-                    .addComponent(lblAddress)
-                    .addComponent(txtAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)
-                    .addComponent(lblMaxTable)
-                    .addComponent(txtMaxTable, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)
-                    .addComponent(btnConfirm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtName))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(lblEditRestaurant, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblYourName)
+                            .addComponent(lblRestaurantName)
+                            .addComponent(txtRestaurantName, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)
+                            .addComponent(lblAddress)
+                            .addComponent(txtAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)
+                            .addComponent(lblMaxTable)
+                            .addComponent(txtMaxTable, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)
+                            .addComponent(btnConfirm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtName)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(btnBack)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addContainerGap()
+                .addComponent(btnBack)
+                .addGap(4, 4, 4)
                 .addComponent(lblEditRestaurant, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(lblYourName)
@@ -166,6 +181,12 @@ public class FormEditDataRestaurant extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnConfirmActionPerformed
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        this.dispose();
+        FormHomeRestaurant frm = new FormHomeRestaurant();
+        frm.setEnabled(true);
+    }//GEN-LAST:event_btnBackActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -203,6 +224,7 @@ public class FormEditDataRestaurant extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnConfirm;
     private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblEditRestaurant;
