@@ -179,16 +179,18 @@ public class FormSignUp extends javax.swing.JFrame {
                 if (newUsername.isEmpty() || newMail.isEmpty() || newPassword.isEmpty() || newRetypepassword.isEmpty() || role.isEmpty()) {
                     JOptionPane.showMessageDialog(this, "Registration failed, please input the require data in the text box");
                 } else {
-                    registrasiAccount(newUsername, newMail, newPassword, role);
-                    if (role.equals("Partner")) {
-                        JOptionPane.showMessageDialog(this, "Registration account success, now please fill in the details of the restaurant.");
-                        this.setVisible(false);
-                        new FormInputDataRestaurant().setVisible(true);
-                    } else {
-                        JOptionPane.showMessageDialog(this, "Registration success, now please log in with the new account you just created.");
-                        this.setVisible(false);
-                        FormLogIn formLogin = new FormLogIn();
-                        formLogin.setVisible(true);
+                    if(checkUsername(newUsername)){
+                        registrasiAccount(newUsername, newMail, newPassword, role);
+                        if (role.equals("Partner")) {
+                            JOptionPane.showMessageDialog(this, "Registration account success, now please fill in the details of the restaurant.");
+                            this.setVisible(false);
+                            new FormInputDataRestaurant().setVisible(true);
+                        } else {
+                            JOptionPane.showMessageDialog(this, "Registration success, now please log in with the new account you just created.");
+                            this.setVisible(false);
+                            FormLogIn formLogin = new FormLogIn();
+                            formLogin.setVisible(true);
+                        }
                     }
                 }
             }
@@ -261,5 +263,11 @@ public class FormSignUp extends javax.swing.JFrame {
         com.ubaya.disprog.EzBookingWebService_Service service = new com.ubaya.disprog.EzBookingWebService_Service();
         com.ubaya.disprog.EzBookingWebService port = service.getEzBookingWebServicePort();
         return port.registrasiAccount(username, email, password, role);
+    }
+
+    private static boolean checkUsername(java.lang.String username) {
+        com.ubaya.disprog.EzBookingWebService_Service service = new com.ubaya.disprog.EzBookingWebService_Service();
+        com.ubaya.disprog.EzBookingWebService port = service.getEzBookingWebServicePort();
+        return port.checkUsername(username);
     }
 }

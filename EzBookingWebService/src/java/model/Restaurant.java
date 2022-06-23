@@ -187,15 +187,22 @@ public class Restaurant extends MyModel {
         try {
             if (!MyModel.conn.isClosed()) {
                 this.statment = (Statement) MyModel.conn.createStatement();
-                this.resultset = this.statment.executeQuery("select ra.max_table - (sum(ri.jumlahMeja)) as jumlah\n"
-                        + "from reservasi ri inner join restaurant ra on ra.id = ri.restaurant_id\n"
-                        + "where date(tanggalPesanan) = date(now()) and ra.id = + " + restaurantId + " and (status = 'On Process' or status = 'Confirm')");
+                this.resultset = this.statment.executeQuery("SELECT (ra.max_table - sum(ri.jumlahMeja)) as jumlah from restaurant ra inner join reservasi ri on ri.restaurant_id = ra.id where ri.restaurant_id = " + restaurantId + " and (date(ri.tanggalPesanan) = date(now())) and (ri.status='confirmed' OR ri.status='On Process')");
                 if (resultset.next()) {
+                    System.out.println(this.resultset.getInt("jumlah"));
                     jumlah += this.resultset.getInt("jumlah");
+                    if (jumlah == 0) {
+                        this.statment = (Statement) MyModel.conn.createStatement();
+                        this.resultset = this.statment.executeQuery("select max_table as tabel from restaurant where id = " + restaurantId);
+                        if (resultset.next()){
+                            System.out.println(this.resultset.getInt("tabel"));
+                            jumlah += this.resultset.getInt("tabel");
+                        }
+                    }
                 }
             }
         } catch (Exception e) {
-            System.out.println("error :: " + e.getMessage());
+            System.out.println("error : " + e.getMessage());
         }
         return jumlah;
     }
@@ -353,7 +360,7 @@ public class Restaurant extends MyModel {
         int id = 0;
         try {
             this.statment = (Statement) MyModel.conn.createStatement();
-            this.resultset = this.statment.executeQuery("select id from restaurant where username_account = '" + username + "';");
+            this.resultset = this.statment.executeQuery("select id from restaurant where nama = '" + username + "';");
             if (this.resultset.next()) {
                 id = this.resultset.getInt("id");
             }

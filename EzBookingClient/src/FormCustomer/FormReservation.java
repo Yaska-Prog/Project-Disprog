@@ -23,6 +23,7 @@ public class FormReservation extends javax.swing.JFrame {
     public FormReservation() {
         initComponents();
         txtReservant.setText(FormLogIn.GlobalUsername);
+        txtReservant.enable(false);
         try {
             ArrayList<Restaurant> collections = (ArrayList<Restaurant>) showListRestaurant("none", "none");
             DefaultTableModel model = (DefaultTableModel) tableRestaurantList.getModel();
@@ -71,6 +72,7 @@ public class FormReservation extends javax.swing.JFrame {
 
         txtReservant.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         txtReservant.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 195, 0)));
+        txtReservant.setEnabled(false);
 
         lblDate.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         lblDate.setText("Reservation Date:");
@@ -194,24 +196,21 @@ public class FormReservation extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             String reservant = txtReservant.getText();
-
             java.sql.Date waktu = new java.sql.Date(jdateTanggel.getDate().getTime());
             String time = String.valueOf(waktu);
             int totalTable = (int) jTotalTable.getValue();
             int people = (int) tNumberPeople.getValue();
             int row = tableRestaurantList.getSelectedRow();
             String namaResto = (String) tableRestaurantList.getValueAt(row, 0);
-            System.out.println("");
+            System.out.println(namaResto);
             int resto_id = ambilId(namaResto);
-            System.out.println(totalTable);
-            System.out.println(people);
-            System.out.println(resto_id);
+            System.out.println("Resto id: " + resto_id);
+            System.out.println("Waktu: " + time);
 
             boolean helper = insertDataReservasi(time, totalTable, people, "On Process", 5, resto_id, reservant);
             System.out.println(helper);
             if (helper) {
                 JOptionPane.showMessageDialog(this, "Reservation succesful, now please wait for the restaurant to accept your reservation order.");
-
             } else {
                 JOptionPane.showMessageDialog(this, "Reservation failed, please re check your order");
 
