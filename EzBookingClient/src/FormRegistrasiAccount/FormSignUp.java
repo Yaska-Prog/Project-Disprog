@@ -44,6 +44,7 @@ public class FormSignUp extends javax.swing.JFrame {
         cboRole = new javax.swing.JComboBox<>();
         btnSignUp = new javax.swing.JButton();
         lblImage = new javax.swing.JLabel();
+        btnSignUp1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,6 +88,15 @@ public class FormSignUp extends javax.swing.JFrame {
             }
         });
 
+        btnSignUp1.setBackground(new java.awt.Color(255, 195, 0));
+        btnSignUp1.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
+        btnSignUp1.setText("Back to login");
+        btnSignUp1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSignUp1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -112,7 +122,9 @@ public class FormSignUp extends javax.swing.JFrame {
                         .addComponent(txtUsername, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
-                        .addComponent(btnSignUp, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnSignUp, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnSignUp1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(23, 23, 23))
         );
         layout.setVerticalGroup(
@@ -142,7 +154,9 @@ public class FormSignUp extends javax.swing.JFrame {
                 .addComponent(cboRole)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSignUp)
-                .addGap(36, 36, 36))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSignUp1)
+                .addGap(84, 84, 84))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(lblImage)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -183,6 +197,13 @@ public class FormSignUp extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSignUpActionPerformed
 
+    private void btnSignUp1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUp1ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        FormLogIn formLogin = new FormLogIn();
+        formLogin.setVisible(true);
+    }//GEN-LAST:event_btnSignUp1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -221,6 +242,7 @@ public class FormSignUp extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSignUp;
+    private javax.swing.JButton btnSignUp1;
     private javax.swing.JComboBox<String> cboRole;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;

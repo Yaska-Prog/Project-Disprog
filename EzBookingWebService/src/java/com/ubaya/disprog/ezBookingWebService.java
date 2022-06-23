@@ -44,7 +44,7 @@ public class ezBookingWebService {
     @WebMethod(operationName = "insertDataReservasi")
     public boolean insertDataReservasi(@WebParam(name = "tanggalPemesanan") String tanggalPemesanan, @WebParam(name = "jumlahMeja") int jumlahMeja, @WebParam(name = "jumlahOrang") int jumlahOrang, @WebParam(name = "status") String status, @WebParam(name = "penilaianBintang") int penilaianBintang, @WebParam(name = "restaurantId") int restaurantId, @WebParam(name = "accountUsername") String accountUsername) {
         boolean hasil = true;
-        Reservasi reservasi = new Reservasi(Date.valueOf(tanggalPemesanan), jumlahMeja, jumlahOrang, status, penilaianBintang, restaurantId, accountUsername);
+        Reservasi reservasi = new Reservasi(String.valueOf(tanggalPemesanan), jumlahMeja, jumlahOrang, status, penilaianBintang, restaurantId, accountUsername);
         hasil = reservasi.insertDataReservasi();
         return hasil;
     }

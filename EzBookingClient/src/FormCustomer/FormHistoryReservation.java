@@ -8,6 +8,7 @@ import FormRegistrasiAccount.FormLogIn;
 import com.ubaya.disprog.Date;
 import com.ubaya.disprog.Reservasi;
 import java.text.DateFormat;
+import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -26,11 +27,14 @@ public class FormHistoryReservation extends javax.swing.JFrame {
         try {
             Reservasi res = new Reservasi();
             ArrayList<Reservasi> collections = (ArrayList<Reservasi>) showReservasiUser(FormLogIn.GlobalUsername);
-            System.out.println(FormLogIn.GlobalUsername);
             DefaultTableModel model = (DefaultTableModel) jTableReservasi.getModel();
 
             for (int i = 0; i < collections.size(); i++) {
                 Reservasi reserve = (Reservasi) collections.get(i);
+                System.out.println(reserve.getTanggalPesanan());
+                Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                String tgl = formatter.format(reserve.getTanggalPesanan());
+                System.out.println(tgl);
                 model.addRow(new Object[]{reserve.getAccountUsername(), reserve.getTanggalPesanan(), reserve.getJumlahMeja(), reserve.getJumlahOrang()});
             }
         } catch (Exception e) {

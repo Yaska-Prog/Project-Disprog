@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class Reservasi extends MyModel {
 
     int id;
-    Date tanggalPesanan;
+    String tanggalPesanan;
     int jumlahMeja;
     int jumlahOrang;
     String status;
@@ -28,7 +28,7 @@ public class Reservasi extends MyModel {
     public Reservasi() {
     }
 
-    public Reservasi(int id, Date tanggalPesanan, int jumlahMeja, int jumlahOrang, String status, int penilaianBintang, int restaurant, String accountUsername) {
+    public Reservasi(int id, String tanggalPesanan, int jumlahMeja, int jumlahOrang, String status, int penilaianBintang, int restaurant, String accountUsername) {
         this.id = id;
         this.tanggalPesanan = tanggalPesanan;
         this.jumlahMeja = jumlahMeja;
@@ -39,7 +39,7 @@ public class Reservasi extends MyModel {
         this.accountUsername = accountUsername;
     }
 
-    public Reservasi(Date tanggalPemesanan, int jumlahMeja, int jumlahOrang, String status, int penilaianBintang, int restaurant, String accountUsername) {
+    public Reservasi(String tanggalPemesanan, int jumlahMeja, int jumlahOrang, String status, int penilaianBintang, int restaurant, String accountUsername) {
         this.tanggalPesanan = tanggalPemesanan;
         this.jumlahMeja = jumlahMeja;
         this.jumlahOrang = jumlahOrang;
@@ -49,7 +49,7 @@ public class Reservasi extends MyModel {
         this.accountUsername = accountUsername;
     }
 
-    public Reservasi(String accountUsername, Date tanggalPemesanan, int jumlahMeja, int jumlahOrang) {
+    public Reservasi(String accountUsername, String tanggalPemesanan, int jumlahMeja, int jumlahOrang) {
         this.tanggalPesanan = tanggalPemesanan;
         this.jumlahOrang = jumlahOrang;
         this.jumlahMeja = jumlahMeja;
@@ -64,11 +64,11 @@ public class Reservasi extends MyModel {
         this.id = id;
     }
 
-    public Date getTanggalPesanan() {
+    public String getTanggalPesanan() {
         return tanggalPesanan;
     }
 
-    public void setTanggalPesanan(Date tanggalPesanan) {
+    public void setTanggalPesanan(String tanggalPesanan) {
         this.tanggalPesanan = tanggalPesanan;
     }
 
@@ -127,7 +127,7 @@ public class Reservasi extends MyModel {
             if (!MyModel.conn.isClosed()) {
                 PreparedStatement sql = (PreparedStatement) MyModel.conn.prepareStatement("insert into reservasi(tanggalPesanan, jumlahMeja, jumlahOrang, status, penilaian, restaurant_id,account_username)"
                         + " values(?,?,?,?,?,?,?)");
-                sql.setDate(1, this.tanggalPesanan);
+                sql.setString(1, this.tanggalPesanan);
                 sql.setInt(2, this.jumlahMeja);
                 sql.setInt(3, this.jumlahOrang);
                 sql.setString(4, ("'" + this.status + "'"));
@@ -151,15 +151,17 @@ public class Reservasi extends MyModel {
             this.statment = (Statement) MyModel.conn.createStatement();
             this.resultset = this.statment.executeQuery("SELECT * FROM reservasi WHERE restaurant_id = " + idRestaurant + " AND status != 'Finished'");
             while (this.resultset.next()) {
+                String date = this.resultset.getString("tanggalPesanan");
                 Reservasi reservasi = new Reservasi(
                         this.resultset.getInt("id"),
-                        this.resultset.getDate("tanggalPesanan"),
+                        date,
                         this.resultset.getInt("jumlahMeja"),
                         this.resultset.getInt("jumlahOrang"),
                         this.resultset.getString("status"),
                         this.resultset.getInt("penilaian"),
                         this.resultset.getInt("restaurant_id"),
                         this.resultset.getString("account_username"));
+                System.out.println(reservasi.getTanggalPesanan());
                 collections.add(reservasi);
                 System.out.println("Berhasil ");
             }
@@ -197,7 +199,7 @@ public class Reservasi extends MyModel {
             while (this.resultset.next()) {
                 Reservasi reservasi = new Reservasi(
                         this.resultset.getString("account_username"),
-                        this.resultset.getDate("tanggalPesanan"),
+                        this.resultset.getString("tanggalPesanan"),
                         this.resultset.getInt("jumlahMeja"),
                         this.resultset.getInt("jumlahOrang"));
                 collections.add(reservasi);
@@ -208,6 +210,12 @@ public class Reservasi extends MyModel {
         }
 
         return collections;
+
+    }
+
+    @Override
+    public String toString() {
+        return "JavaApplication4{" + "date=" + getTanggalPesanan() + '}';
     }
 
 }
