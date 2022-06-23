@@ -15,7 +15,6 @@ public class FormAwal extends javax.swing.JFrame {
      */
     public FormAwal() {
         initComponents();
-        setExtendedState(MAXIMIZED_BOTH);
     }
 
     /**

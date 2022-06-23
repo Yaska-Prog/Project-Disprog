@@ -192,6 +192,10 @@ public class FormSignUp extends javax.swing.JFrame {
                             formLogin.setVisible(true);
                         }
                     }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(this, "Username already, please change username");
+                    }
                 }
             }
         } catch (Exception e) {
