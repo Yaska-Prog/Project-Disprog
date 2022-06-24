@@ -5,6 +5,10 @@
 package FormRestaurant;
 
 import FormRegistrasiAccount.FormLogIn;
+import com.ubaya.disprog.Reservasi;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -12,11 +16,31 @@ import FormRegistrasiAccount.FormLogIn;
  */
 public class FormHomeRestaurant extends javax.swing.JFrame {
 
+    com.ubaya.disprog.EzBookingWebService_Service service;
+    com.ubaya.disprog.EzBookingWebService port;
+
     /**
      * Creates new form HomeAdminForm
      */
     public FormHomeRestaurant() {
         initComponents();
+
+        service = new com.ubaya.disprog.EzBookingWebService_Service();
+        port = service.getEzBookingWebServicePort();
+        String usernameRestaurant = FormLogIn.txtUsername.getText();
+        int idResto = idRestaurant(usernameRestaurant);
+
+        List<Reservasi> reservasi = new ArrayList<>();
+        reservasi = port.showReservasiOnProcess(idResto);
+        
+        String jumlah = String.valueOf(reservasi.size());
+        JOptionPane.showMessageDialog(this, "You have " + jumlah + " reservation On Process");
+    }
+
+    public int idRestaurant(String username) {
+        service = new com.ubaya.disprog.EzBookingWebService_Service();
+        port = service.getEzBookingWebServicePort();
+        return port.getIdRestaurant(username);
     }
 
     /**
@@ -51,7 +75,7 @@ public class FormHomeRestaurant extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Home Admin");
+        setTitle("Home Restaurant");
         setBackground(new java.awt.Color(255, 195, 0));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 

@@ -129,6 +129,14 @@ public class ezBookingWebService {
         collections = reservasi.listDataReservasi(idRestaurant);
         return collections;
     }
+    
+    @WebMethod(operationName = "showReservasiOnProcess")
+    public ArrayList<Reservasi> showReservasiOnProcess(@WebParam(name = "idRestaurant") int idRestaurant) {
+        ArrayList<Reservasi> collections = new ArrayList<>();
+        Reservasi reservasi = new Reservasi();
+        collections = reservasi.listDataReservasiOnProcess(idRestaurant);
+        return collections;
+    }
 
     /**
      * Web service operation

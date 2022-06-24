@@ -145,6 +145,31 @@ public class Reservasi extends MyModel {
         }
         return status1;
     }
+    public ArrayList<Reservasi> listDataReservasiOnProcess(int idRestaurant) {
+        ArrayList<Reservasi> collections = new ArrayList<>();
+        try {
+            this.statment = (Statement) MyModel.conn.createStatement();
+            this.resultset = this.statment.executeQuery("SELECT * FROM reservasi WHERE restaurant_id = " + idRestaurant + " AND status = 'On Process'");
+            while (this.resultset.next()) {
+                String date = this.resultset.getString("tanggalPesanan");
+                Reservasi reservasi = new Reservasi(
+                        this.resultset.getInt("id"),
+                        date,
+                        this.resultset.getInt("jumlahMeja"),
+                        this.resultset.getInt("jumlahOrang"),
+                        this.resultset.getString("status"),
+                        this.resultset.getInt("penilaian"),
+                        this.resultset.getInt("restaurant_id"),
+                        this.resultset.getString("account_username"));
+                System.out.println(reservasi.getTanggalPesanan());
+                collections.add(reservasi);
+                System.out.println("Berhasil ");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return collections;
+    }
 
     public ArrayList<Reservasi> listDataReservasi(int idRestaurant) {
         ArrayList<Reservasi> collections = new ArrayList<>();
