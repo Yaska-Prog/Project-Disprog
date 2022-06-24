@@ -63,6 +63,7 @@ public class FormHomeCustomer extends javax.swing.JFrame {
 
         btnAvailableRestaurant.setBackground(new java.awt.Color(255, 195, 0));
         btnAvailableRestaurant.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        btnAvailableRestaurant.setIcon(new javax.swing.ImageIcon("C:\\Users\\IVAN\\OneDrive\\Documents\\GitHub\\Project-Disprog\\EzBookingClient\\src\\FormCustomer\\scroll (2).png")); // NOI18N
         btnAvailableRestaurant.setText("Available Restaurant");
         btnAvailableRestaurant.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,6 +83,7 @@ public class FormHomeCustomer extends javax.swing.JFrame {
 
         btnHistoryReservation.setBackground(new java.awt.Color(255, 195, 0));
         btnHistoryReservation.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        btnHistoryReservation.setIcon(new javax.swing.ImageIcon("C:\\Users\\IVAN\\OneDrive\\Documents\\GitHub\\Project-Disprog\\EzBookingClient\\src\\FormCustomer\\history (2).png")); // NOI18N
         btnHistoryReservation.setText("History Reservation");
         btnHistoryReservation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,7 +112,7 @@ public class FormHomeCustomer extends javax.swing.JFrame {
                             .addComponent(btnAvailableRestaurant)
                             .addComponent(btnReserveRestaurant)
                             .addComponent(btnHistoryReservation))
-                        .addGap(0, 241, Short.MAX_VALUE))
+                        .addGap(0, 235, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(218, 218, 218)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)

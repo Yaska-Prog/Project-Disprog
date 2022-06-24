@@ -23,6 +23,7 @@ public class FormReview extends javax.swing.JFrame {
         lblStar3.setVisible(false);
         lblStar2.setVisible(false);
         lblStar1.setVisible(false);
+        setExtendedState(MAXIMIZED_BOTH);
     }
 
     /**
@@ -54,6 +55,7 @@ public class FormReview extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setSize(new java.awt.Dimension(1000, 1000));
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(236, 236, 236));

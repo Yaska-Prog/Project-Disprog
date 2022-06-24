@@ -178,7 +178,7 @@ public class FormEditReport extends javax.swing.JFrame {
         Double qualityService = Double.parseDouble(spinEditQualityOfService.getValue().toString());
         Double foodQuality = Double.parseDouble(spinEditFoodQuality.getValue().toString());
         String review = txtEditReview.getText();
-        int idRestaurant = cboEditRestoId.getSelectedIndex();
+        int idRestaurant = Integer.valueOf((String)cboEditRestoId.getSelectedItem());
         String usernameAccount = FormLogIn.txtUsername.getText();
 
         if (qualityService > 5.0 || foodQuality > 5.0) {

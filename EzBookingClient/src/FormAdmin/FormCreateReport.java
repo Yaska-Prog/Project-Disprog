@@ -167,7 +167,7 @@ public class FormCreateReport extends javax.swing.JFrame {
         Double qualityService = Double.parseDouble(spinQualityOfService.getValue().toString());
         Double foodQuality = Double.parseDouble(spinFoodQuality.getValue().toString());
         String review = txtReview.getText();
-        int idRestaurant = cboRestId.getSelectedIndex();
+        int idRestaurant = Integer.valueOf((String)cboRestId.getSelectedItem());
         String usernameAccount = FormLogIn.txtUsername.getText();
 
         if (qualityService > 5.0 || foodQuality > 5.0) {
@@ -178,6 +178,7 @@ public class FormCreateReport extends javax.swing.JFrame {
             boolean resultSave = port.saveReport(usernameAccount, idRestaurant, qualityService, foodQuality, review);
             if (resultSave == true) {
                 JOptionPane.showMessageDialog(this, "Successful!");
+                this.dispose();
             } else {
                 JOptionPane.showMessageDialog(this, "Failed!");
             }

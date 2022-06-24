@@ -34,7 +34,7 @@ public class FormAwal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("F:\\Ubaya\\Materi\\1604C044 Distributed Programming KP B\\github\\Project-Disprog\\EzBookingClient\\src\\FormRegistrasiAccount\\backgroundMainPageResized.jpg")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\IVAN\\OneDrive\\Documents\\GitHub\\Project-Disprog\\EzBookingClient\\src\\FormRegistrasiAccount\\backgroundMainPageResized.jpg")); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Dubai", 1, 36)); // NOI18N
         jLabel6.setText("EzBooking");

@@ -91,6 +91,7 @@ public class FormHomeAdmin extends javax.swing.JFrame {
 
         btnCreateReport.setBackground(new java.awt.Color(255, 195, 0));
         btnCreateReport.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        btnCreateReport.setIcon(new javax.swing.ImageIcon("C:\\Users\\IVAN\\OneDrive\\Documents\\GitHub\\Project-Disprog\\EzBookingClient\\src\\FormAdmin\\report (1).png")); // NOI18N
         btnCreateReport.setText("Create Report");
         btnCreateReport.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 24, 24), 2));
         btnCreateReport.addActionListener(new java.awt.event.ActionListener() {
@@ -101,6 +102,7 @@ public class FormHomeAdmin extends javax.swing.JFrame {
 
         btnReportHistory.setBackground(new java.awt.Color(255, 195, 0));
         btnReportHistory.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        btnReportHistory.setIcon(new javax.swing.ImageIcon("C:\\Users\\IVAN\\OneDrive\\Documents\\GitHub\\Project-Disprog\\EzBookingClient\\src\\FormAdmin\\history (1).png")); // NOI18N
         btnReportHistory.setText("Report History");
         btnReportHistory.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 24, 24), 2));
         btnReportHistory.addActionListener(new java.awt.event.ActionListener() {
@@ -180,6 +182,7 @@ public class FormHomeAdmin extends javax.swing.JFrame {
 
         btnEditReport.setBackground(new java.awt.Color(255, 195, 0));
         btnEditReport.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        btnEditReport.setIcon(new javax.swing.ImageIcon("C:\\Users\\IVAN\\OneDrive\\Documents\\GitHub\\Project-Disprog\\EzBookingClient\\src\\FormRestaurant\\editing (1).png")); // NOI18N
         btnEditReport.setText("Edit Report");
         btnEditReport.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 24, 24), 2));
         btnEditReport.addActionListener(new java.awt.event.ActionListener() {

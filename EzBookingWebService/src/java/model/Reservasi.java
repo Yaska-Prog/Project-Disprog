@@ -131,7 +131,7 @@ public class Reservasi extends MyModel {
                 sql.setString(1, this.tanggalPesanan);
                 sql.setInt(2, this.jumlahMeja);
                 sql.setInt(3, this.jumlahOrang);
-                sql.setString(4, ("'" + this.status + "'"));
+                sql.setString(4, this.status);
                 sql.setInt(5, this.penilaianBintang);
                 sql.setInt(6, this.restaurant);
 

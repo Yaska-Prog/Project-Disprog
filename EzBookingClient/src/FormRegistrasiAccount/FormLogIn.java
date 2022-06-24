@@ -55,6 +55,8 @@ public class FormLogIn extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
+        lblImage.setIcon(new javax.swing.ImageIcon("C:\\Users\\IVAN\\OneDrive\\Documents\\GitHub\\Project-Disprog\\EzBookingClient\\src\\FormRegistrasiAccount\\backgroundMainPageResized.jpg")); // NOI18N
+
         jLabel3.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel3.setText("Username:");
 

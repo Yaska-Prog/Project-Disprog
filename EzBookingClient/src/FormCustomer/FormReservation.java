@@ -214,6 +214,7 @@ public class FormReservation extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Please select the restaurant you want to reserve!");
             } else {
                 Date currentTime = Calendar.getInstance().getTime();
+                System.out.println(currentTime);
                 String reservant = txtReservant.getText();
                 java.sql.Date waktu = new java.sql.Date(jdateTanggel.getDate().getTime());
                 if (waktu.before(currentTime)) {
