@@ -4,6 +4,12 @@
  */
 package FormAdmin;
 
+import FormRegistrasiAccount.FormLogIn;
+import com.ubaya.disprog.Report;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ardel
@@ -13,8 +19,20 @@ public class FormEditReport extends javax.swing.JFrame {
     /**
      * Creates new form FormEditReport
      */
+    com.ubaya.disprog.EzBookingWebService_Service service;
+    com.ubaya.disprog.EzBookingWebService port;
+
     public FormEditReport() {
         initComponents();
+
+        service = new com.ubaya.disprog.EzBookingWebService_Service();
+        port = service.getEzBookingWebServicePort();
+
+        List<Report> report = new ArrayList<Report>();
+        report = port.listYangSudahDireport(FormLogIn.txtUsername.getText());
+        for (int i = 0; i < report.size(); ++i) {
+            cboEditRestoId.addItem(String.valueOf(report.get(i).getIdRestaurant()));
+        }
     }
 
     /**
@@ -54,6 +72,12 @@ public class FormEditReport extends javax.swing.JFrame {
 
         lblQuality1.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         lblQuality1.setText("Restaurant Id");
+
+        cboEditRestoId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboEditRestoIdActionPerformed(evt);
+            }
+        });
 
         lblQuality.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         lblQuality.setText("Quality of Service:");
@@ -169,6 +193,22 @@ public class FormEditReport extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnEditConfirmActionPerformed
+
+    private void cboEditRestoIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboEditRestoIdActionPerformed
+        service = new com.ubaya.disprog.EzBookingWebService_Service();
+        port = service.getEzBookingWebServicePort();
+
+        List<Report> report = new ArrayList<Report>();
+        report = port.listYangSudahDireport(FormLogIn.txtUsername.getText());
+        int idSel = Integer.parseInt(cboEditRestoId.getSelectedItem().toString());
+        for (int i = 0; i < report.size(); ++i) {
+            if (report.get(i).getIdRestaurant() == idSel) {
+                spinEditFoodQuality.setValue(report.get(i).getFoodQuality());
+                spinEditQualityOfService.setValue(report.get(i).getQualityOfService());
+                txtEditReview.setText(report.get(i).getReview());
+            }
+        }
+    }//GEN-LAST:event_cboEditRestoIdActionPerformed
 
     /**
      * @param args the command line arguments

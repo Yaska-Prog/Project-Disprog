@@ -121,4 +121,24 @@ public class Report extends MyModel {
         }
         return status1;
     }
+
+    public ArrayList<Report> listReportYangSudahDireport(String usernameAccount) {
+        ArrayList<Report> collections = new ArrayList<Report>();
+        try {
+            this.statment = (Statement) MyModel.conn.createStatement();
+            this.resultset = this.statment.executeQuery("select * from report where account_username = '" + usernameAccount + "'");
+            while (this.resultset.next()) {
+                Report report = new Report(
+                        this.resultset.getString("account_username"),
+                        this.resultset.getInt("restaurant_id"),
+                        this.resultset.getDouble("qualityOfService"),
+                        this.resultset.getDouble("foodQuality"),
+                        this.resultset.getString("Review"));
+                collections.add(report);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return collections;
+    }
 }

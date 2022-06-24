@@ -238,4 +238,13 @@ public class ezBookingWebService {
         list = restaurant.listAllIdRestauramt();
         return list;
     }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "listYangSudahDireport")
+    public ArrayList<Report> listYangSudahDireport(@WebParam(name = "accountUsername") String accountUsername) {
+        Report report = new Report();
+        return report.listReportYangSudahDireport(accountUsername);
+    }
 }

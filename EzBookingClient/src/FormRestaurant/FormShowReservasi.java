@@ -32,6 +32,8 @@ public class FormShowReservasi extends javax.swing.JFrame {
     private static JButton btnAccept = new JButton();
     private static JButton btnDecline = new JButton();
     private static JButton btnArrived = new JButton();
+    
+    Reservasi reservasi = new Reservasi();
 
     /**
      * Creates new form form
@@ -47,7 +49,7 @@ public class FormShowReservasi extends javax.swing.JFrame {
 
         DefaultTableModel model = (DefaultTableModel) tableReservation.getModel();
         for (int i = 0; i < res.size(); i++) {
-            Reservasi reservasi = res.get(i);
+            reservasi = res.get(i);
             model.addRow(new Object[]{reservasi.getAccountUsername(), reservasi.getTanggalPesanan(), reservasi.getJumlahMeja(), reservasi.getJumlahOrang()});
             btnArrived.setEnabled(false);
             btnAccept.addActionListener(new ActionListener() {
