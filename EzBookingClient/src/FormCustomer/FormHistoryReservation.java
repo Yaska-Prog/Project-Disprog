@@ -5,18 +5,30 @@
 package FormCustomer;
 
 import FormRegistrasiAccount.FormLogIn;
+import FormRestaurant.FormShowReservasi;
 import com.ubaya.disprog.Reservasi;
+import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 
 /**
  *
  * @author RUTH
  */
 public class FormHistoryReservation extends javax.swing.JFrame {
+
+    private static JButton btnRating = new JButton();
 
     /**
      * Creates new form HistoryReservation
@@ -31,8 +43,19 @@ public class FormHistoryReservation extends javax.swing.JFrame {
             for (int i = 0; i < collections.size(); i++) {
                 Reservasi reserve = (Reservasi) collections.get(i);
                 System.out.println("Menggunakan class:" + reserve.getTanggalPesanan());
-                model.addRow(new Object[]{reserve.getAccountUsername(), reserve.getTanggalPesanan(), reserve.getJumlahMeja(), reserve.getJumlahOrang()});
+                model.addRow(new Object[]{reserve.getAccountUsername(), reserve.getTanggalPesanan(), reserve.getJumlahMeja(), reserve.getJumlahOrang(), reserve.getStatus()});
+
+                btnRating.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        //Sambungkan ke form review
+
+                    }
+                });
             }
+            jTableReservasi.getColumn("Give rating").setCellRenderer(new ButtonRendererRating());
+                    jTableReservasi.getColumn("Give rating").setCellEditor(new ButtonEditorRating(new JCheckBox()));
+
         } catch (Exception e) {
             System.out.println("Error, pesan error: " + e.getMessage());
         }
@@ -68,7 +91,7 @@ public class FormHistoryReservation extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Reservant ", "Reservant Date", "Total Table", "Number of People"
+                "Reservant ", "Reservant Date", "Total Table", "Number of People", "Status Reservasi", "Give rating"
             }
         ));
         jScrollPane1.setViewportView(jTableReservasi);
@@ -123,6 +146,39 @@ public class FormHistoryReservation extends javax.swing.JFrame {
         this.setVisible(false);
         frm.setVisible(true);
     }//GEN-LAST:event_jButtonBackActionPerformed
+
+    
+    class ButtonRendererRating extends JButton implements TableCellRenderer {
+        public ButtonRendererRating() {
+            setOpaque(true);
+        }
+
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value,
+                boolean isSelected, boolean hasFocus, int row, int column) {
+            setText((value == null) ? "Rate" : value.toString());
+            return this;
+        }
+    }
+    class ButtonEditorRating extends DefaultCellEditor {
+
+        private String label;
+
+        public ButtonEditorRating(JCheckBox checkBox) {
+            super(checkBox);
+        }
+
+        public Component getTableCellEditorComponent(JTable table, Object value,
+                boolean isSelected, int row, int column) {
+            label = (value == null) ? "Rate" : value.toString();
+            btnRating.setText(label);
+            return btnRating;
+        }
+
+        public Object getCellEditorValue() {
+            return new String(label);
+        }
+    }
 
     /**
      * @param args the command line arguments

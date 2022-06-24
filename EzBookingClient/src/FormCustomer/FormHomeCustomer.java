@@ -171,22 +171,26 @@ public class FormHomeCustomer extends javax.swing.JFrame {
 
     private void btnReserveRestaurantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReserveRestaurantActionPerformed
         FormReservation formReservation = new FormReservation();
+        this.setVisible(false);
         formReservation.setVisible(true);
     }//GEN-LAST:event_btnReserveRestaurantActionPerformed
 
     private void btnAvailableRestaurantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvailableRestaurantActionPerformed
         FormAvailableRestaurant formAvailableRestaurant = new FormAvailableRestaurant();
-        formAvailableRestaurant.setVisible(true);       
+        this.setVisible(false);
+        formAvailableRestaurant.setVisible(true);
     }//GEN-LAST:event_btnAvailableRestaurantActionPerformed
 
     private void btnHistoryReservationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistoryReservationActionPerformed
         FormHistoryReservation formHistoryReservation = new FormHistoryReservation();
+        this.setVisible(false);
         formHistoryReservation.setVisible(true);
     }//GEN-LAST:event_btnHistoryReservationActionPerformed
 
     private void lblLogOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLogOutMouseClicked
         this.setVisible(false);
         FormLogIn formLogin = new FormLogIn();
+        this.setVisible(false);
         formLogin.setVisible(true);
     }//GEN-LAST:event_lblLogOutMouseClicked
 
