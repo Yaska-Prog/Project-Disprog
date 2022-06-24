@@ -32,7 +32,7 @@ public class FormShowReservasi extends javax.swing.JFrame {
     private static JButton btnAccept = new JButton();
     private static JButton btnDecline = new JButton();
     private static JButton btnArrived = new JButton();
-    
+
     Reservasi reservasi = new Reservasi();
 
     /**
@@ -220,6 +220,8 @@ public class FormShowReservasi extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tableReservation = new javax.swing.JTable();
         btnBack = new javax.swing.JButton();
+        btnAcpt = new javax.swing.JButton();
+        btnDec = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -239,14 +241,14 @@ public class FormShowReservasi extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Reservant Name", "Reservation Date", "Total Table", "Number of People", "Accept", "Decline", "Arrived"
+                "Reservant Name", "Reservation Date", "Total Table", "Number of People"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true, true, true
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -263,8 +265,6 @@ public class FormShowReservasi extends javax.swing.JFrame {
             tableReservation.getColumnModel().getColumn(1).setResizable(false);
             tableReservation.getColumnModel().getColumn(2).setResizable(false);
             tableReservation.getColumnModel().getColumn(3).setResizable(false);
-            tableReservation.getColumnModel().getColumn(5).setResizable(false);
-            tableReservation.getColumnModel().getColumn(6).setResizable(false);
         }
 
         btnBack.setText("Back");
@@ -274,6 +274,17 @@ public class FormShowReservasi extends javax.swing.JFrame {
             }
         });
 
+        btnAcpt.setText("Accept");
+        btnAcpt.setEnabled(false);
+        btnAcpt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAcptActionPerformed(evt);
+            }
+        });
+
+        btnDec.setText("Decline");
+        btnDec.setEnabled(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -282,14 +293,21 @@ public class FormShowReservasi extends javax.swing.JFrame {
                 .addGap(102, 102, 102)
                 .addComponent(lblReview, javax.swing.GroupLayout.DEFAULT_SIZE, 645, Short.MAX_VALUE))
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38))
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(btnBack)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnAcpt)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnDec)
+                        .addGap(40, 40, 40))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -300,8 +318,12 @@ public class FormShowReservasi extends javax.swing.JFrame {
                 .addComponent(lblReview, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAcpt)
+                    .addComponent(btnDec))
                 .addContainerGap())
         );
 
@@ -313,6 +335,22 @@ public class FormShowReservasi extends javax.swing.JFrame {
         FormHomeRestaurant frm = new FormHomeRestaurant();
         frm.setEnabled(true);
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnAcptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcptActionPerformed
+        service = new com.ubaya.disprog.EzBookingWebService_Service();
+        port = service.getEzBookingWebServicePort();
+        String usernameRestaurant = FormLogIn.txtUsername.getText();
+        int row = tableReservation.getSelectedRow();
+        String namaAccount = (String) tableReservation.getValueAt(row, 0);
+        String hasil;
+        hasil = port.getStatusReservasi(namaAccount, usernameRestaurant);
+        if (hasil.equals("On Process")) {
+            btnAcpt.setEnabled(false);
+            btnDec.setEnabled(false);
+        } else {
+            JOptionPane.showMessageDialog(this, "Gak");
+        }
+    }//GEN-LAST:event_btnAcptActionPerformed
 
     /**
      * @param args the command line arguments
@@ -351,7 +389,9 @@ public class FormShowReservasi extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAcpt;
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnDec;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblReview;

@@ -216,6 +216,19 @@ public class Reservasi extends MyModel {
         return collections;
 
     }
+    
+    public String getStatusReservation(String username, int restoId){
+        String hasil = "";
+        try {
+            this.statment = (Statement) MyModel.conn.createStatement();
+            this.resultset = this.statment.executeQuery("select status from reservasi where account_username = '" + username + "' AND restaurant_id = '" + restoId + "';");
+            while(this.resultset.next()){
+                hasil = resultset.getString("status");
+            }
+        } catch (Exception e) {
+        }
+        return hasil;
+    }
 
     @Override
     public String toString() {
