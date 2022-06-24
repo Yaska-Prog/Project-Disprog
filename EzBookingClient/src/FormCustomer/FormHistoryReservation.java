@@ -28,11 +28,16 @@ import javax.swing.table.TableCellRenderer;
  */
 public class FormHistoryReservation extends javax.swing.JFrame {
 
-    private static JButton btnRating = new JButton();
+    
+    
 
     /**
      * Creates new form HistoryReservation
      */
+    public static Reservasi reservasi;
+    
+    
+
     public FormHistoryReservation() {
         initComponents();
         try {
@@ -44,18 +49,8 @@ public class FormHistoryReservation extends javax.swing.JFrame {
                 Reservasi reserve = (Reservasi) collections.get(i);
                 System.out.println("Menggunakan class:" + reserve.getTanggalPesanan());
                 model.addRow(new Object[]{reserve.getAccountUsername(), reserve.getTanggalPesanan(), reserve.getJumlahMeja(), reserve.getJumlahOrang(), reserve.getStatus()});
-
-                btnRating.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        //Sambungkan ke form review
-
-                    }
-                });
             }
-            jTableReservasi.getColumn("Give rating").setCellRenderer(new ButtonRendererRating());
-                    jTableReservasi.getColumn("Give rating").setCellEditor(new ButtonEditorRating(new JCheckBox()));
-
+            
         } catch (Exception e) {
             System.out.println("Error, pesan error: " + e.getMessage());
         }
@@ -75,6 +70,7 @@ public class FormHistoryReservation extends javax.swing.JFrame {
         jTableReservasi = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jButtonBack = new javax.swing.JButton();
+        btnRate = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("History Reservation");
@@ -91,9 +87,14 @@ public class FormHistoryReservation extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Reservant ", "Reservant Date", "Total Table", "Number of People", "Status Reservasi", "Give rating"
+                "Id_reservation", "Reservant ", "Reservant Date", "Total Table", "Number of People", "Status Reservasi", "Restaurant ID"
             }
         ));
+        jTableReservasi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableReservasiMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableReservasi);
 
         jLabel1.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
@@ -108,6 +109,15 @@ public class FormHistoryReservation extends javax.swing.JFrame {
             }
         });
 
+        btnRate.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        btnRate.setText("Give rating!");
+        btnRate.setActionCommand("Give rating");
+        btnRate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRateActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -115,13 +125,17 @@ public class FormHistoryReservation extends javax.swing.JFrame {
             .addComponent(lblReservation, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(253, 253, 253)
-                .addComponent(jButtonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(75, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButtonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(95, 95, 95)
+                        .addComponent(btnRate, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,9 +146,11 @@ public class FormHistoryReservation extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(156, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRate, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(167, Short.MAX_VALUE))
         );
 
         pack();
@@ -147,38 +163,21 @@ public class FormHistoryReservation extends javax.swing.JFrame {
         frm.setVisible(true);
     }//GEN-LAST:event_jButtonBackActionPerformed
 
-    
-    class ButtonRendererRating extends JButton implements TableCellRenderer {
-        public ButtonRendererRating() {
-            setOpaque(true);
-        }
+    private void btnRateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRateActionPerformed
 
-        @Override
-        public Component getTableCellRendererComponent(JTable table, Object value,
-                boolean isSelected, boolean hasFocus, int row, int column) {
-            setText((value == null) ? "Rate" : value.toString());
-            return this;
+    private void jTableReservasiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableReservasiMouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) jTableReservasi.getModel();
+        int row = jTableReservasi.getSelectedRow();
+        String status = (String) jTableReservasi.getValueAt(row, 4);
+        if(status.equals("Arrived")){
+            FormReview frm = new FormReview();
+            this.setVisible(false);
+            frm.setVisible(true);
         }
-    }
-    class ButtonEditorRating extends DefaultCellEditor {
-
-        private String label;
-
-        public ButtonEditorRating(JCheckBox checkBox) {
-            super(checkBox);
-        }
-
-        public Component getTableCellEditorComponent(JTable table, Object value,
-                boolean isSelected, int row, int column) {
-            label = (value == null) ? "Rate" : value.toString();
-            btnRating.setText(label);
-            return btnRating;
-        }
-
-        public Object getCellEditorValue() {
-            return new String(label);
-        }
-    }
+    }//GEN-LAST:event_jTableReservasiMouseClicked
 
     /**
      * @param args the command line arguments
@@ -217,6 +216,7 @@ public class FormHistoryReservation extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnRate;
     private javax.swing.JButton jButtonBack;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

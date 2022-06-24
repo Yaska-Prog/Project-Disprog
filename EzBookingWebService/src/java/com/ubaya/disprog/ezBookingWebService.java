@@ -255,4 +255,16 @@ public class ezBookingWebService {
         hasil = reservasi.getStatusReservation(idReservasi);
         return hasil;
     }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "give_rating")
+    public boolean give_rating(@WebParam(name = "id_reservasi") int id_reservasi, @WebParam(name = "bintang") int bintang) {
+        //TODO write your implementation code here:
+        boolean status = false;
+        Reservasi res = new Reservasi();
+        status = res.tambah_rating(id_reservasi, bintang);
+        return status;
+    }
 }

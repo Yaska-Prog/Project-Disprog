@@ -196,15 +196,19 @@ public class Reservasi extends MyModel {
 
         try {
             this.statment = (Statement) MyModel.conn.createStatement();
-            this.resultset = this.statment.executeQuery("select account_username, tanggalPesanan, jumlahMeja, jumlahOrang, status from reservasi where account_username = '" + username + "';");
+            this.resultset = this.statment.executeQuery("select * from reservasi where account_username = '" + username + "';");
             while (this.resultset.next()) {
                 System.out.println("Resultset: " + this.resultset.getString("tanggalPesanan"));
+                String date = this.resultset.getString("tanggalPesanan");
                 Reservasi reservasi = new Reservasi(
-                        this.resultset.getString("account_username"),
-                        this.resultset.getString("tanggalPesanan"),
+                        this.resultset.getInt("id"),
+                        date,
                         this.resultset.getInt("jumlahMeja"),
                         this.resultset.getInt("jumlahOrang"),
-                        this.resultset.getString("status"));
+                        this.resultset.getString("status"),
+                        this.resultset.getInt("penilaian"),
+                        this.resultset.getInt("restaurant_id"),
+                        this.resultset.getString("account_username"));
                 collections.add(reservasi);
                 System.out.println("Reservasi: " + reservasi.getTanggalPesanan());
                 System.out.println("Berhasil1");
@@ -216,18 +220,64 @@ public class Reservasi extends MyModel {
         return collections;
 
     }
-    
-    public String getStatusReservation(int idReservasi){
+
+    public String getStatusReservation(int idReservasi) {
         String hasil = "";
         try {
             this.statment = (Statement) MyModel.conn.createStatement();
             this.resultset = this.statment.executeQuery("select status from reservasi where id = '" + idReservasi + "';");
-            while(this.resultset.next()){
+            while (this.resultset.next()) {
                 hasil = resultset.getString("status");
             }
         } catch (Exception e) {
+            System.out.println("Error pada ambil status reservasi, pesan: " + e.getMessage());
         }
         return hasil;
+    }
+
+    public Reservasi ambil_reservasi(int idReservasi) {
+        Reservasi reservasi = new Reservasi();
+        try {
+            this.statment = (Statement) MyModel.conn.createStatement();
+            this.resultset = this.statment.executeQuery("select * from reservasi where id = '" + idReservasi + "';");
+            while (this.resultset.next()) {
+                String date = this.resultset.getString("tanggalPesanan");
+                reservasi = new Reservasi(
+                        this.resultset.getInt("id"),
+                        date,
+                        this.resultset.getInt("jumlahMeja"),
+                        this.resultset.getInt("jumlahOrang"),
+                        this.resultset.getString("status"),
+                        this.resultset.getInt("penilaian"),
+                        this.resultset.getInt("restaurant_id"),
+                        this.resultset.getString("account_username"));
+                System.out.println(reservasi.getTanggalPesanan());
+                System.out.println("Berhasil ");
+            }
+        } catch (Exception e) {
+            System.out.println("Error pada ambil class reservasi, pesan: " + e.getMessage());
+        }
+        return reservasi;
+    }
+
+    public boolean tambah_rating(int idReservasi, int bintang){
+        boolean status = false;
+        try {
+            this.statment = (Statement) MyModel.conn.createStatement();
+            if (!MyModel.conn.isClosed()) {
+                PreparedStatement sql = (PreparedStatement) MyModel.conn.prepareStatement(
+                        "update reservasi set penilaian = ?, status = ? where id = ?");
+                sql.setInt(1, bintang);
+                sql.setString(2, "Finnished");
+                sql.setInt(3, idReservasi);
+                sql.executeUpdate();
+                sql.close();
+                status = true;
+            }
+        } catch (Exception e) {
+            System.out.println("Error pada tambah rating, pesan kesalahan: " + e.getMessage());
+        }
+        return status;
     }
 
     @Override
