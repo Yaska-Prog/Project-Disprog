@@ -8,6 +8,8 @@ import FormRegistrasiAccount.FormLogIn;
 import static FormRegistrasiAccount.FormLogIn.username;
 import com.ubaya.disprog.Restaurant;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -208,22 +210,48 @@ public class FormReservation extends javax.swing.JFrame {
 
     private void btnBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookActionPerformed
         try {
-            String reservant = txtReservant.getText();
-            java.sql.Date waktu = new java.sql.Date(jdateTanggel.getDate().getTime());
-            String time = String.valueOf(waktu);
-            int totalTable = (int) jTotalTable.getValue();
-            int people = (int) tNumberPeople.getValue();
-            int row = tableRestaurantList.getSelectedRow();
-            String namaResto = (String) tableRestaurantList.getValueAt(row, 0);
-            int resto_id = ambilId(namaResto);
-
-            boolean helper = insertDataReservasi(time, totalTable, people, "On Process", 5, resto_id, reservant);
-            if (helper) {
-                JOptionPane.showMessageDialog(this, "Reservation succesful, now please wait for the restaurant to accept your reservation order.");
+            if (tableRestaurantList.getSelectionModel().isSelectionEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please select the restaurant you want to reserve!");
             } else {
-                JOptionPane.showMessageDialog(this, "Reservation failed, please re check your order");
+                Date currentTime = Calendar.getInstance().getTime();
+                String reservant = txtReservant.getText();
+                java.sql.Date waktu = new java.sql.Date(jdateTanggel.getDate().getTime());
+                if (waktu.before(currentTime)) {
+                    JOptionPane.showMessageDialog(this, "You cannot reserve the past date!");
+                } else {
+                    String time = String.valueOf(waktu);
+                    int totalTable = (int) jTotalTable.getValue();
+                    int people = (int) tNumberPeople.getValue();
+                    int row = tableRestaurantList.getSelectedRow();
+                    String namaResto = (String) tableRestaurantList.getValueAt(row, 0);
+                    int resto_id = ambilId(namaResto);
+                    int availTable = (int) tableRestaurantList.getValueAt(row, 2);
+                    if (totalTable <= 0 || people <= 0) {
+                        JOptionPane.showMessageDialog(this, "Please input the right number for the reservation, don't input a negative or 0 number");
+                    } else {
+                        if (totalTable > people) {
+                            JOptionPane.showMessageDialog(this, "Please input the number of people not less than total table");
+                        } else {
+                            if (availTable < totalTable) {
+                                JOptionPane.showMessageDialog(this, "Error, restaurant don't have that much of available table");
+                            } else {
+                                boolean helper = insertDataReservasi(time, totalTable, people, "On Process", 5, resto_id, reservant);
+                                if (helper) {
+                                    JOptionPane.showMessageDialog(this, "Reservation succesful, now please wait for the restaurant to accept your reservation order.");
+                                    FormHomeCustomer frm = new FormHomeCustomer();
+                                    this.setVisible(false);
+                                    frm.setVisible(true);
+                                } else {
+                                    JOptionPane.showMessageDialog(this, "Reservation failed, please re check your order");
+                                }
+                            }
+                        }
+
+                    }
+                }
 
             }
+
         } catch (Exception e) {
             System.out.println("Error pada button, pesan error: " + e.getMessage());
         }
