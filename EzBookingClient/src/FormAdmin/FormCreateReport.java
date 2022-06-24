@@ -28,11 +28,19 @@ public class FormCreateReport extends javax.swing.JFrame {
         service = new com.ubaya.disprog.EzBookingWebService_Service();
         port = service.getEzBookingWebServicePort();
 
-        String idRest[];
-        List<String> idResto = new ArrayList<String>();
-        idResto = port.showListAllIdRestaurant();
-        for (String id : idResto) {
-            cboRestId.addItem(id);
+        List<Report> report = new ArrayList<Report>();
+        report = port.listYangSudahDireport(FormLogIn.txtUsername.getText());
+
+        List<String> idAllResto = new ArrayList<String>();
+        idAllResto = port.showListAllIdRestaurant();
+        for (int i = 0; i < report.size(); ++i) {
+            String idResto = String.valueOf(report.get(i).getIdRestaurant());
+            if (!idAllResto.contains(idResto)) {
+                System.out.println("bukan " + idResto);
+            }
+            else{
+                System.out.println(idResto);
+            }
         }
     }
 

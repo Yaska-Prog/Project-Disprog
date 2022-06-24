@@ -30,6 +30,7 @@ public class FormEditReport extends javax.swing.JFrame {
 
         List<Report> report = new ArrayList<Report>();
         report = port.listYangSudahDireport(FormLogIn.txtUsername.getText());
+        System.out.println(FormLogIn.txtUsername.getText());
         for (int i = 0; i < report.size(); ++i) {
             cboEditRestoId.addItem(String.valueOf(report.get(i).getIdRestaurant()));
         }
