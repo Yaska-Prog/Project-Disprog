@@ -26,21 +26,149 @@ public class FormEditReport extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnBack = new javax.swing.JButton();
+        lblReport = new javax.swing.JLabel();
+        lblQuality1 = new javax.swing.JLabel();
+        cboEditRestoId = new javax.swing.JComboBox<>();
+        lblQuality = new javax.swing.JLabel();
+        spinEditQualityOfService = new javax.swing.JSpinner();
+        lblFood = new javax.swing.JLabel();
+        spinEditFoodQuality = new javax.swing.JSpinner();
+        lblReview = new javax.swing.JLabel();
+        txtEditReview = new javax.swing.JTextField();
+        btnEditConfirm = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
+        lblReport.setFont(new java.awt.Font("Dubai", 1, 36)); // NOI18N
+        lblReport.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblReport.setText("EDIT REPORT");
+        lblReport.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        lblQuality1.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        lblQuality1.setText("Restaurant Id");
+
+        lblQuality.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        lblQuality.setText("Quality of Service:");
+
+        lblFood.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        lblFood.setText("Food Quality:");
+
+        lblReview.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        lblReview.setText("Review:");
+
+        txtEditReview.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        txtEditReview.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 195, 0)));
+
+        btnEditConfirm.setBackground(new java.awt.Color(255, 195, 0));
+        btnEditConfirm.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
+        btnEditConfirm.setText("CONFIRM");
+        btnEditConfirm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditConfirmActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnEditConfirm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtEditReview)
+                            .addComponent(lblReport, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblReview)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(65, 65, 65))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblQuality1)
+                            .addComponent(cboEditRestoId, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(67, 67, 67)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblQuality)
+                            .addComponent(spinEditQualityOfService, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(72, 72, 72)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblFood)
+                            .addComponent(spinEditFoodQuality, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnBack)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnBack)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblReport, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblQuality1)
+                        .addGap(9, 9, 9)
+                        .addComponent(cboEditRestoId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblQuality)
+                            .addComponent(lblFood))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(spinEditQualityOfService)
+                            .addComponent(spinEditFoodQuality))))
+                .addGap(22, 22, 22)
+                .addComponent(lblReview)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtEditReview, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnEditConfirm)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        this.dispose();
+        FormHomeAdmin frm = new FormHomeAdmin();
+        frm.setEnabled(true);
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnEditConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditConfirmActionPerformed
+        Double qualityService = Double.parseDouble(spinEditQualityOfService.getValue().toString());
+        Double foodQuality = Double.parseDouble(spinEditFoodQuality.getValue().toString());
+        String review = txtEditReview.getText();
+        int idRestaurant = cboEditRestoId.getSelectedIndex();
+        String usernameAccount = FormLogIn.txtUsername.getText();
+
+        if (qualityService > 5.0 || foodQuality > 5.0) {
+            JOptionPane.showMessageDialog(this, "Quality of service atau food quality tidak boleh lebih dari 5");
+        } else {
+            service = new com.ubaya.disprog.EzBookingWebService_Service();
+            port = service.getEzBookingWebServicePort();
+            boolean resultSave = port.saveReport(usernameAccount, idRestaurant, qualityService, foodQuality, review);
+            if (resultSave == true) {
+                JOptionPane.showMessageDialog(this, "Successful!");
+            } else {
+                JOptionPane.showMessageDialog(this, "Failed!");
+            }
+        }
+    }//GEN-LAST:event_btnEditConfirmActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +206,16 @@ public class FormEditReport extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnEditConfirm;
+    private javax.swing.JComboBox<String> cboEditRestoId;
+    private javax.swing.JLabel lblFood;
+    private javax.swing.JLabel lblQuality;
+    private javax.swing.JLabel lblQuality1;
+    private javax.swing.JLabel lblReport;
+    private javax.swing.JLabel lblReview;
+    private javax.swing.JSpinner spinEditFoodQuality;
+    private javax.swing.JSpinner spinEditQualityOfService;
+    private javax.swing.JTextField txtEditReview;
     // End of variables declaration//GEN-END:variables
 }
