@@ -28,19 +28,15 @@ import javax.swing.table.TableCellRenderer;
  */
 public class FormHistoryReservation extends javax.swing.JFrame {
 
-    
-    
-
     /**
      * Creates new form HistoryReservation
      */
-    public static Reservasi reservasi;
-    
-    
+    public static int id_reservasi;
 
     public FormHistoryReservation() {
         initComponents();
         try {
+            btnRate.enable(false);
             Reservasi res = new Reservasi();
             ArrayList<Reservasi> collections = (ArrayList<Reservasi>) showReservasiUser(FormLogIn.GlobalUsername);
             DefaultTableModel model = (DefaultTableModel) jTableReservasi.getModel();
@@ -48,9 +44,9 @@ public class FormHistoryReservation extends javax.swing.JFrame {
             for (int i = 0; i < collections.size(); i++) {
                 Reservasi reserve = (Reservasi) collections.get(i);
                 System.out.println("Menggunakan class:" + reserve.getTanggalPesanan());
-                model.addRow(new Object[]{reserve.getAccountUsername(), reserve.getTanggalPesanan(), reserve.getJumlahMeja(), reserve.getJumlahOrang(), reserve.getStatus()});
+                model.addRow(new Object[]{reserve.getId(), reserve.getAccountUsername(), reserve.getTanggalPesanan(), reserve.getJumlahMeja(), reserve.getJumlahOrang(), reserve.getStatus(), reserve.getRestaurant()});
             }
-            
+
         } catch (Exception e) {
             System.out.println("Error, pesan error: " + e.getMessage());
         }
@@ -125,17 +121,16 @@ public class FormHistoryReservation extends javax.swing.JFrame {
             .addComponent(lblReservation, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(75, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButtonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(95, 95, 95)
                         .addComponent(btnRate, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30))))
+                        .addGap(30, 30, 30))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 757, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,24 +153,23 @@ public class FormHistoryReservation extends javax.swing.JFrame {
 
     private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
         // TODO add your handling code here:
-        FormHomeCustomer frm = new FormHomeCustomer();
-        this.setVisible(false);
-        frm.setVisible(true);
     }//GEN-LAST:event_jButtonBackActionPerformed
 
     private void btnRateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRateActionPerformed
         // TODO add your handling code here:
+        FormReview frm = new FormReview();
+        this.setVisible(false);
+        frm.setVisible(true);
     }//GEN-LAST:event_btnRateActionPerformed
 
     private void jTableReservasiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableReservasiMouseClicked
         // TODO add your handling code here:
         DefaultTableModel model = (DefaultTableModel) jTableReservasi.getModel();
         int row = jTableReservasi.getSelectedRow();
-        String status = (String) jTableReservasi.getValueAt(row, 4);
-        if(status.equals("Arrived")){
-            FormReview frm = new FormReview();
-            this.setVisible(false);
-            frm.setVisible(true);
+        String status = (String) jTableReservasi.getValueAt(row, 5);
+        if (status.equals("Arrived")) {
+            id_reservasi = (int) jTableReservasi.getValueAt(row, 0);
+            btnRate.enable(true);
         }
     }//GEN-LAST:event_jTableReservasiMouseClicked
 

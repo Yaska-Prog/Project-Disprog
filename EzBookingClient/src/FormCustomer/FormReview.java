@@ -5,6 +5,7 @@
 package FormCustomer;
 
 import FormRegistrasiAccount.FormLogIn;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,11 +18,11 @@ public class FormReview extends javax.swing.JFrame {
      */
     public FormReview() {
         initComponents();
-            lblStar5.setVisible(true);
-            lblStar4.setVisible(false);
-            lblStar3.setVisible(false);
-            lblStar2.setVisible(false);
-            lblStar1.setVisible(false);
+        lblStar5.setVisible(true);
+        lblStar4.setVisible(false);
+        lblStar3.setVisible(false);
+        lblStar2.setVisible(false);
+        lblStar1.setVisible(false);
     }
 
     /**
@@ -53,7 +54,6 @@ public class FormReview extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 600));
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(236, 236, 236));
@@ -192,6 +192,11 @@ public class FormReview extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
         jButton2.setText("SUBMIT");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton2);
         jButton2.setBounds(310, 440, 130, 41);
 
@@ -214,6 +219,7 @@ public class FormReview extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    int rating = 0;
     private void lblLogOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLogOutMouseClicked
         this.setVisible(false);
         FormLogIn formLogin = new FormLogIn();
@@ -222,18 +228,22 @@ public class FormReview extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        FormHomeCustomer frm = new FormHomeCustomer();
+        this.setVisible(false);
+        frm.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         Object selectedItem = jComboBox1.getSelectedItem();
         if (selectedItem.equals("1 Star")) {
-            System.out.println("Masuk Kedalam star 1");
+            rating = 1;
             lblStar1.setVisible(true);
             lblStar4.setVisible(false);
             lblStar3.setVisible(false);
             lblStar2.setVisible(false);
             lblStar5.setVisible(false);
         } else if (selectedItem.equals("2 Stars")) {
+            rating = 2;
             lblStar1.setVisible(false);
             lblStar4.setVisible(false);
             lblStar1.setVisible(false);
@@ -241,6 +251,7 @@ public class FormReview extends javax.swing.JFrame {
             lblStar2.setVisible(true);
             lblStar5.setVisible(false);
         } else if (selectedItem.equals("3 Stars")) {
+            rating = 3;
             lblStar1.setVisible(false);
             lblStar4.setVisible(false);
             lblStar1.setVisible(false);
@@ -248,6 +259,7 @@ public class FormReview extends javax.swing.JFrame {
             lblStar2.setVisible(false);
             lblStar5.setVisible(false);
         } else if (selectedItem.equals("4 Stars")) {
+            rating = 4;
             lblStar1.setVisible(false);
             lblStar4.setVisible(true);
             lblStar1.setVisible(false);
@@ -255,6 +267,7 @@ public class FormReview extends javax.swing.JFrame {
             lblStar2.setVisible(false);
             lblStar5.setVisible(false);
         } else if (selectedItem.equals("5 Stars")) {
+            rating = 5;
             lblStar1.setVisible(false);
             lblStar4.setVisible(false);
             lblStar1.setVisible(false);
@@ -263,6 +276,24 @@ public class FormReview extends javax.swing.JFrame {
             lblStar5.setVisible(true);
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        try {
+            boolean status = false;
+            status = giveRating(FormHistoryReservation.id_reservasi, rating);
+            System.out.println(status);
+            if (status == true) {
+                JOptionPane.showMessageDialog(this, "Berhasil memberi rating, silahkan kembali ke form home user");
+                FormHomeCustomer frm = new FormHomeCustomer();
+                this.setVisible(false);
+                frm.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(this, "Gagal memberi rating");
+            }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -319,4 +350,10 @@ public class FormReview extends javax.swing.JFrame {
     private javax.swing.JLabel lblStar4;
     private javax.swing.JLabel lblStar5;
     // End of variables declaration//GEN-END:variables
+
+    private static boolean giveRating(int idReservasi, int bintang) {
+        com.ubaya.disprog.EzBookingWebService_Service service = new com.ubaya.disprog.EzBookingWebService_Service();
+        com.ubaya.disprog.EzBookingWebService port = service.getEzBookingWebServicePort();
+        return port.giveRating(idReservasi, bintang);
+    }
 }
