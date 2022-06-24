@@ -49,11 +49,12 @@ public class Reservasi extends MyModel {
         this.accountUsername = accountUsername;
     }
 
-    public Reservasi(String accountUsername, String tanggalPemesanan, int jumlahMeja, int jumlahOrang) {
+    public Reservasi(String accountUsername, String tanggalPemesanan, int jumlahMeja, int jumlahOrang, String status) {
         this.tanggalPesanan = tanggalPemesanan;
         this.jumlahOrang = jumlahOrang;
         this.jumlahMeja = jumlahMeja;
         this.accountUsername = accountUsername;
+        this.status = status;
     }
 
     public int getId() {
@@ -195,14 +196,15 @@ public class Reservasi extends MyModel {
 
         try {
             this.statment = (Statement) MyModel.conn.createStatement();
-            this.resultset = this.statment.executeQuery("select account_username, tanggalPesanan, jumlahMeja, jumlahOrang from reservasi where account_username = '" + username + "';");
+            this.resultset = this.statment.executeQuery("select account_username, tanggalPesanan, jumlahMeja, jumlahOrang, status from reservasi where account_username = '" + username + "';");
             while (this.resultset.next()) {
                 System.out.println("Resultset: " + this.resultset.getString("tanggalPesanan"));
                 Reservasi reservasi = new Reservasi(
                         this.resultset.getString("account_username"),
                         this.resultset.getString("tanggalPesanan"),
                         this.resultset.getInt("jumlahMeja"),
-                        this.resultset.getInt("jumlahOrang"));
+                        this.resultset.getInt("jumlahOrang"),
+                        this.resultset.getString("status"));
                 collections.add(reservasi);
                 System.out.println("Reservasi: " + reservasi.getTanggalPesanan());
                 System.out.println("Berhasil1");
