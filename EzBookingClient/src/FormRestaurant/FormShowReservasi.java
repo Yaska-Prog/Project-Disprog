@@ -29,11 +29,11 @@ public class FormShowReservasi extends javax.swing.JFrame {
     com.ubaya.disprog.EzBookingWebService_Service service;
     com.ubaya.disprog.EzBookingWebService port;
 
-    private static JButton btnAccept = new JButton();
-    private static JButton btnDecline = new JButton();
-    private static JButton btnArrived = new JButton();
-
+//    private static JButton btnAccept = new JButton();
+//    private static JButton btnDecline = new JButton();
+//    private static JButton btnArrived = new JButton();
     Reservasi reservasi = new Reservasi();
+    List<Reservasi> res = new ArrayList<>();
 
     /**
      * Creates new form form
@@ -44,166 +44,19 @@ public class FormShowReservasi extends javax.swing.JFrame {
         port = service.getEzBookingWebServicePort();
         String usernameRestaurant = FormLogIn.txtUsername.getText();
         int idResto = idRestaurant(usernameRestaurant);
-        List<Reservasi> res = new ArrayList<>();
         res = port.showReservasi(idResto);
 
         DefaultTableModel model = (DefaultTableModel) tableReservation.getModel();
         for (int i = 0; i < res.size(); i++) {
             reservasi = res.get(i);
-            model.addRow(new Object[]{reservasi.getAccountUsername(), reservasi.getTanggalPesanan(), reservasi.getJumlahMeja(), reservasi.getJumlahOrang()});
-            btnArrived.setEnabled(false);
-            btnAccept.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    boolean hasil = true;
-                    hasil = port.updateStatusReservasi("Confirm", reservasi.getId());
-                    JOptionPane.showMessageDialog(null, "Success Confirm this reservation");
-                    if (tableReservation.isCellSelected(tableReservation.getSelectedRow(), tableReservation.getSelectedColumn())) {
-                        btnAccept.setEnabled(false);
-                        btnArrived.setEnabled(true);
-                    }
-
-                }
-            });
-
-            btnDecline.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    boolean hasil;
-                    hasil = port.updateStatusReservasi("Canceled", reservasi.getId());
-                    JOptionPane.showMessageDialog(null, "Success Canceled this reservation");
-                    btnAccept.setEnabled(false);
-                }
-            });
-
-            btnArrived.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    boolean hasil;
-                    hasil = port.updateStatusReservasi("Arrived", reservasi.getId());
-                    JOptionPane.showMessageDialog(null, "Customers has been Arrived");
-                    btnDecline.setEnabled(false);
-                    btnArrived.setEnabled(false);
-                }
-            });
+            model.addRow(new Object[]{reservasi.getId(), reservasi.getAccountUsername(), reservasi.getTanggalPesanan(), reservasi.getJumlahMeja(), reservasi.getJumlahOrang()});
         }
-        tableReservation.getColumn("Accept").setCellRenderer(new ButtonRendererAccept());
-        tableReservation.getColumn("Accept").setCellEditor(new ButtonEditorAccept(new JCheckBox()));
-
-        tableReservation.getColumn("Decline").setCellRenderer(new ButtonRendererDecline());
-        tableReservation.getColumn("Decline").setCellEditor(new ButtonEditorDecline(new JCheckBox()));
-
-        tableReservation.getColumn("Arrived").setCellRenderer(new ButtonRendererArrived());
-        tableReservation.getColumn("Arrived").setCellEditor(new ButtonEditorArrived(new JCheckBox()));
-
     }
 
     public int idRestaurant(String username) {
         service = new com.ubaya.disprog.EzBookingWebService_Service();
         port = service.getEzBookingWebServicePort();
         return port.getIdRestaurant(username);
-    }
-
-    // BUTTON ACCEPT
-    class ButtonRendererAccept extends JButton implements TableCellRenderer {
-
-        public ButtonRendererAccept() {
-            setOpaque(true);
-        }
-
-        public Component getTableCellRendererComponent(JTable table, Object value,
-                boolean isSelected, boolean hasFocus, int row, int column) {
-            setText((value == null) ? "Accept" : value.toString());
-            return this;
-        }
-    }
-
-    class ButtonEditorAccept extends DefaultCellEditor {
-
-        private String label;
-
-        public ButtonEditorAccept(JCheckBox checkBox) {
-            super(checkBox);
-        }
-
-        public Component getTableCellEditorComponent(JTable table, Object value,
-                boolean isSelected, int row, int column) {
-            label = (value == null) ? "Accept" : value.toString();
-            btnAccept.setText(label);
-            return btnAccept;
-        }
-
-        public Object getCellEditorValue() {
-            return new String(label);
-        }
-    }
-
-    //BUTTON ARRIVED
-    class ButtonRendererArrived extends JButton implements TableCellRenderer {
-
-        public ButtonRendererArrived() {
-            setOpaque(true);
-        }
-
-        public Component getTableCellRendererComponent(JTable table, Object value,
-                boolean isSelected, boolean hasFocus, int row, int column) {
-            setText((value == null) ? "Arrived" : value.toString());
-            return this;
-        }
-    }
-
-    class ButtonEditorArrived extends DefaultCellEditor {
-
-        private String label;
-
-        public ButtonEditorArrived(JCheckBox checkBox) {
-            super(checkBox);
-        }
-
-        public Component getTableCellEditorComponent(JTable table, Object value,
-                boolean isSelected, int row, int column) {
-            label = (value == null) ? "Arrived" : value.toString();
-            btnArrived.setText(label);
-            return btnArrived;
-        }
-
-        public Object getCellEditorValue() {
-            return new String(label);
-        }
-    }
-
-    // BUTTON DECLINE
-    class ButtonRendererDecline extends JButton implements TableCellRenderer {
-
-        public ButtonRendererDecline() {
-            setOpaque(true);
-        }
-
-        public Component getTableCellRendererComponent(JTable table, Object value,
-                boolean isSelected, boolean hasFocus, int row, int column) {
-            setText((value == null) ? "Decline" : value.toString());
-            return this;
-        }
-    }
-
-    class ButtonEditorDecline extends DefaultCellEditor {
-
-        private String label;
-
-        public ButtonEditorDecline(JCheckBox checkBox) {
-            super(checkBox);
-        }
-
-        public Component getTableCellEditorComponent(JTable table, Object value,
-                boolean isSelected, int row, int column) {
-            label = (value == null) ? "Decline" : value.toString();
-            btnDecline.setText(label);
-            return btnDecline;
-        }
-
-        public Object getCellEditorValue() {
-            return new String(label);
-        }
     }
 
     /**
@@ -222,6 +75,7 @@ public class FormShowReservasi extends javax.swing.JFrame {
         btnBack = new javax.swing.JButton();
         btnAcpt = new javax.swing.JButton();
         btnDec = new javax.swing.JButton();
+        btnArrived = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -241,14 +95,14 @@ public class FormShowReservasi extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Reservant Name", "Reservation Date", "Total Table", "Number of People"
+                "Reservation Id", "Reservant Name", "Reservation Date", "Total Table", "Number of People"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -259,12 +113,18 @@ public class FormShowReservasi extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tableReservation.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableReservationMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableReservation);
         if (tableReservation.getColumnModel().getColumnCount() > 0) {
             tableReservation.getColumnModel().getColumn(0).setResizable(false);
             tableReservation.getColumnModel().getColumn(1).setResizable(false);
             tableReservation.getColumnModel().getColumn(2).setResizable(false);
             tableReservation.getColumnModel().getColumn(3).setResizable(false);
+            tableReservation.getColumnModel().getColumn(4).setResizable(false);
         }
 
         btnBack.setText("Back");
@@ -283,7 +143,19 @@ public class FormShowReservasi extends javax.swing.JFrame {
         });
 
         btnDec.setText("Decline");
-        btnDec.setEnabled(false);
+        btnDec.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDecActionPerformed(evt);
+            }
+        });
+
+        btnArrived.setText("Arrived");
+        btnArrived.setEnabled(false);
+        btnArrived.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnArrivedActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -304,6 +176,8 @@ public class FormShowReservasi extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(38, 38, 38))
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnArrived)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnAcpt)
                         .addGap(18, 18, 18)
                         .addComponent(btnDec)
@@ -321,8 +195,10 @@ public class FormShowReservasi extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAcpt)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnAcpt)
+                        .addComponent(btnArrived))
                     .addComponent(btnDec))
                 .addContainerGap())
         );
@@ -339,18 +215,90 @@ public class FormShowReservasi extends javax.swing.JFrame {
     private void btnAcptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcptActionPerformed
         service = new com.ubaya.disprog.EzBookingWebService_Service();
         port = service.getEzBookingWebServicePort();
+
+        int row = tableReservation.getSelectedRow();
+        int idReservation = (int) tableReservation.getValueAt(row, 0);
+
+        boolean res = true;
+        res = port.updateStatusReservasi("Confirmed", idReservation);
+        JOptionPane.showMessageDialog(null, "Success Confirm this reservation");
+        btnAcpt.setEnabled(false);
+        btnArrived.setEnabled(true);
+    }//GEN-LAST:event_btnAcptActionPerformed
+
+    private void tableReservationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableReservationMouseClicked
+        service = new com.ubaya.disprog.EzBookingWebService_Service();
+        port = service.getEzBookingWebServicePort();
         String usernameRestaurant = FormLogIn.txtUsername.getText();
         int row = tableReservation.getSelectedRow();
-        String namaAccount = (String) tableReservation.getValueAt(row, 0);
+        int idReservasi = (int) tableReservation.getValueAt(row, 0);
         String hasil;
-        hasil = port.getStatusReservasi(namaAccount, usernameRestaurant);
+        hasil = port.getStatusReservasi(idReservasi);
         if (hasil.equals("On Process")) {
+            btnAcpt.setEnabled(true);
+            btnArrived.setEnabled(false);
+            btnDec.setEnabled(true);
+        } else if (hasil.equals("Confirmed")) {
             btnAcpt.setEnabled(false);
-            btnDec.setEnabled(false);
+            btnArrived.setEnabled(true);
+            btnDec.setEnabled(true);
         } else {
-            JOptionPane.showMessageDialog(this, "Gak");
+            btnAcpt.setEnabled(false);
+            btnArrived.setEnabled(false);
+            btnDec.setEnabled(false);
         }
-    }//GEN-LAST:event_btnAcptActionPerformed
+    }//GEN-LAST:event_tableReservationMouseClicked
+
+    private void btnArrivedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArrivedActionPerformed
+        service = new com.ubaya.disprog.EzBookingWebService_Service();
+        port = service.getEzBookingWebServicePort();
+
+        int row = tableReservation.getSelectedRow();
+        int idReservation = (int) tableReservation.getValueAt(row, 0);
+
+        boolean result = true;
+        result = port.updateStatusReservasi("Arrived", idReservation);
+        JOptionPane.showMessageDialog(null, "The Customer already Arrived");
+        btnArrived.setEnabled(false);
+        btnDec.setEnabled(false);
+
+        String usernameRestaurant = FormLogIn.txtUsername.getText();
+        int idResto = idRestaurant(usernameRestaurant);
+        res = new ArrayList<>();
+        res = port.showReservasi(idResto);
+        DefaultTableModel model = (DefaultTableModel) tableReservation.getModel();
+        model.setRowCount(0);
+        for (int i = 0; i < res.size(); i++) {
+            reservasi = res.get(i);
+            model.addRow(new Object[]{reservasi.getId(), reservasi.getAccountUsername(), reservasi.getTanggalPesanan(), reservasi.getJumlahMeja(), reservasi.getJumlahOrang()});
+        }
+    }//GEN-LAST:event_btnArrivedActionPerformed
+
+    private void btnDecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDecActionPerformed
+        service = new com.ubaya.disprog.EzBookingWebService_Service();
+        port = service.getEzBookingWebServicePort();
+
+        int row = tableReservation.getSelectedRow();
+        int idReservation = (int) tableReservation.getValueAt(row, 0);
+
+        boolean result = true;
+        result = port.updateStatusReservasi("Decline", idReservation);
+        JOptionPane.showMessageDialog(null, "Success Decline this reservation");
+        btnDec.setEnabled(false);
+        btnAcpt.setEnabled(false);
+        btnArrived.setEnabled(false);
+
+        String usernameRestaurant = FormLogIn.txtUsername.getText();
+        int idResto = idRestaurant(usernameRestaurant);
+        res = new ArrayList<>();
+        res = port.showReservasi(idResto);
+        DefaultTableModel model = (DefaultTableModel) tableReservation.getModel();
+        model.setRowCount(0);
+        for (int i = 0; i < res.size(); i++) {
+            reservasi = res.get(i);
+            model.addRow(new Object[]{reservasi.getId(), reservasi.getAccountUsername(), reservasi.getTanggalPesanan(), reservasi.getJumlahMeja(), reservasi.getJumlahOrang()});
+        }
+    }//GEN-LAST:event_btnDecActionPerformed
 
     /**
      * @param args the command line arguments
@@ -390,6 +338,7 @@ public class FormShowReservasi extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAcpt;
+    private javax.swing.JButton btnArrived;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnDec;
     private javax.swing.JLabel jLabel1;

@@ -249,12 +249,10 @@ public class ezBookingWebService {
     }
     
     @WebMethod(operationName = "getStatusReservasi")
-    public String statusReservasi(@WebParam(name = "username") String usernameAccount, @WebParam(name = "usernameResto") String usernameResto) {
+    public String statusReservasi(@WebParam(name = "idReservasi") int idReservasi) {
         String hasil = "";
-        Restaurant resto = new Restaurant();
-        int id = resto.ambilIdResto(usernameResto);
         Reservasi reservasi = new Reservasi();
-        hasil = reservasi.getStatusReservation(usernameAccount, id);
+        hasil = reservasi.getStatusReservation(idReservasi);
         return hasil;
     }
 }
