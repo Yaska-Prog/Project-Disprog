@@ -54,6 +54,7 @@ public class FormCreateReport extends javax.swing.JFrame {
         spinQualityOfService = new javax.swing.JSpinner();
         spinFoodQuality = new javax.swing.JSpinner();
         lblQuality1 = new javax.swing.JLabel();
+        btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(236, 236, 236));
@@ -87,6 +88,13 @@ public class FormCreateReport extends javax.swing.JFrame {
         lblQuality1.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         lblQuality1.setText("Restaurant Id");
 
+        btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -116,11 +124,17 @@ public class FormCreateReport extends javax.swing.JFrame {
                             .addComponent(lblFood)
                             .addComponent(spinFoodQuality, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 266, Short.MAX_VALUE))))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnBack)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addContainerGap()
+                .addComponent(btnBack)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblReport, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -142,7 +156,7 @@ public class FormCreateReport extends javax.swing.JFrame {
                 .addComponent(txtReview, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnConfirm)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
@@ -169,6 +183,12 @@ public class FormCreateReport extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnConfirmActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        this.dispose();
+        FormHomeAdmin frm = new FormHomeAdmin();
+        frm.setEnabled(true);
+    }//GEN-LAST:event_btnBackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -209,6 +229,7 @@ public class FormCreateReport extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnConfirm;
     private javax.swing.JComboBox<String> cboRestId;
     private javax.swing.JLabel lblFood;

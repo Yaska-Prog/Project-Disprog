@@ -4,6 +4,8 @@
  */
 package FormCustomer;
 
+import FormRegistrasiAccount.FormLogIn;
+
 /**
  *
  * @author asus
@@ -33,6 +35,7 @@ public class FormHomeCustomer extends javax.swing.JFrame {
         btnAvailableRestaurant = new javax.swing.JButton();
         btnReserveRestaurant = new javax.swing.JButton();
         btnHistoryReservation = new javax.swing.JButton();
+        lblLogOut = new java.awt.Label();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -69,6 +72,7 @@ public class FormHomeCustomer extends javax.swing.JFrame {
 
         btnReserveRestaurant.setBackground(new java.awt.Color(255, 195, 0));
         btnReserveRestaurant.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        btnReserveRestaurant.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FormCustomer/restaurant (3).png"))); // NOI18N
         btnReserveRestaurant.setText("Reserve Restaurant");
         btnReserveRestaurant.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,48 +89,62 @@ public class FormHomeCustomer extends javax.swing.JFrame {
             }
         });
 
+        lblLogOut.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        lblLogOut.setForeground(new java.awt.Color(255, 0, 0));
+        lblLogOut.setText("Log Out");
+        lblLogOut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblLogOutMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(218, 218, 218)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(195, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAvailableRestaurant)
-                    .addComponent(btnReserveRestaurant)
-                    .addComponent(btnHistoryReservation))
-                .addGap(230, 230, 230))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(243, 243, 243)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnAvailableRestaurant)
+                            .addComponent(btnReserveRestaurant)
+                            .addComponent(btnHistoryReservation))
+                        .addGap(0, 241, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(218, 218, 218)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnReserveRestaurant)
                 .addGap(18, 18, 18)
                 .addComponent(btnAvailableRestaurant)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btnHistoryReservation)
-                .addContainerGap())
+                .addContainerGap(189, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -146,6 +164,12 @@ public class FormHomeCustomer extends javax.swing.JFrame {
         FormHistoryReservation formHistoryReservation = new FormHistoryReservation();
         formHistoryReservation.setVisible(true);
     }//GEN-LAST:event_btnHistoryReservationActionPerformed
+
+    private void lblLogOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLogOutMouseClicked
+        this.setVisible(false);
+        FormLogIn formLogin = new FormLogIn();
+        formLogin.setVisible(true);
+    }//GEN-LAST:event_lblLogOutMouseClicked
 
     /**
      * @param args the command line arguments
@@ -197,5 +221,6 @@ public class FormHomeCustomer extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private java.awt.Label lblLogOut;
     // End of variables declaration//GEN-END:variables
 }

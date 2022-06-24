@@ -4,6 +4,7 @@
  */
 package FormAdmin;
 
+import FormRegistrasiAccount.FormLogIn;
 import com.ubaya.disprog.Restaurant;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,16 +25,16 @@ public class FormHomeAdmin extends javax.swing.JFrame {
      */
     public FormHomeAdmin() {
         initComponents();
-//        List<Restaurant> restoArray = new ArrayList<>();
-//        service = new com.ubaya.disprog.EzBookingWebService_Service();
-//        port = service.getEzBookingWebServicePort();
-//        restoArray = port.showRestaurantWithFilterForAdmin("All", "", "");
-//
-//        DefaultTableModel model = (DefaultTableModel) tableRestaurant.getModel();
-//        for (int i = 0; i < restoArray.size(); i++) {
-//            Restaurant restaurant = restoArray.get(i);
-//            model.addRow(new Object[]{restaurant.getNamaRestaurant(), restaurant.getAlamatRestaurant(), restaurant.getMaxTable(), restaurant.getTotalPelanggan(), restaurant.getTotalBintang()});
-//        }
+        List<Restaurant> restoArray = new ArrayList<>();
+        service = new com.ubaya.disprog.EzBookingWebService_Service();
+        port = service.getEzBookingWebServicePort();
+        restoArray = port.showRestaurantWithFilterForAdmin("All", "", "");
+
+        DefaultTableModel model = (DefaultTableModel) tableRestaurant.getModel();
+        for (int i = 0; i < restoArray.size(); i++) {
+            Restaurant restaurant = restoArray.get(i);
+            model.addRow(new Object[]{restaurant.getNamaRestaurant(), restaurant.getAlamatRestaurant(), restaurant.getMaxTable(), restaurant.getTotalPelanggan(), restaurant.getTotalBintang()});
+        }
     }
 
     /**
@@ -59,6 +60,7 @@ public class FormHomeAdmin extends javax.swing.JFrame {
         btnDesc = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableRestaurant = new javax.swing.JTable();
+        lblLogOut = new java.awt.Label();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -108,7 +110,7 @@ public class FormHomeAdmin extends javax.swing.JFrame {
 
         cboFilter.setBackground(new java.awt.Color(255, 195, 0));
         cboFilter.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        cboFilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Nama Restaurant", "Alamat", "Number of Table", "Total Customers", "Rating", "All" }));
+        cboFilter.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nama Restaurant", "Alamat", "Number of Table", "Total Customers", "Rating" }));
         cboFilter.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 24, 24)));
 
         valueFilter.setBackground(new java.awt.Color(255, 195, 0));
@@ -156,6 +158,7 @@ public class FormHomeAdmin extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tableRestaurant.setName(""); // NOI18N
         jScrollPane2.setViewportView(tableRestaurant);
         if (tableRestaurant.getColumnModel().getColumnCount() > 0) {
             tableRestaurant.getColumnModel().getColumn(0).setResizable(false);
@@ -165,11 +168,24 @@ public class FormHomeAdmin extends javax.swing.JFrame {
             tableRestaurant.getColumnModel().getColumn(4).setResizable(false);
         }
 
+        lblLogOut.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        lblLogOut.setForeground(new java.awt.Color(255, 0, 0));
+        lblLogOut.setText("Log Out");
+        lblLogOut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblLogOutMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(138, 138, 138)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,7 +212,9 @@ public class FormHomeAdmin extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(lblLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cboFilter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -288,6 +306,12 @@ public class FormHomeAdmin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnDescActionPerformed
 
+    private void lblLogOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLogOutMouseClicked
+        this.setVisible(false);
+        FormLogIn formLogin = new FormLogIn();
+        formLogin.setVisible(true);
+    }//GEN-LAST:event_lblLogOutMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -340,6 +364,7 @@ public class FormHomeAdmin extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+    private java.awt.Label lblLogOut;
     private javax.swing.JTable tableRestaurant;
     private javax.swing.JTextField valueFilter;
     // End of variables declaration//GEN-END:variables

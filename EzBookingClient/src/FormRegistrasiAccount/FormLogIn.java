@@ -27,6 +27,7 @@ public class FormLogIn extends javax.swing.JFrame {
     public FormLogIn() {
         initComponents();
 //        setExtendedState(MAXIMIZED_BOTH);
+        txtUsername.requestFocus();
     }
     public static String username;
 
@@ -82,9 +83,6 @@ public class FormLogIn extends javax.swing.JFrame {
         jLabel4.setText("Don't have an account?");
 
         txtUsername.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        txtUsername.setText("anugrah");
-
-        txtPassword.setText("anugrah789");
 
         jLabel5.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel5.setText("Password:");

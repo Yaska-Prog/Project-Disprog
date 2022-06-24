@@ -207,7 +207,6 @@ public class FormReservation extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBookActionPerformed
-        // TODO add your handling code here:
         try {
             String reservant = txtReservant.getText();
             java.sql.Date waktu = new java.sql.Date(jdateTanggel.getDate().getTime());
@@ -216,13 +215,9 @@ public class FormReservation extends javax.swing.JFrame {
             int people = (int) tNumberPeople.getValue();
             int row = tableRestaurantList.getSelectedRow();
             String namaResto = (String) tableRestaurantList.getValueAt(row, 0);
-            System.out.println(namaResto);
             int resto_id = ambilId(namaResto);
-            System.out.println("Resto id: " + resto_id);
-            System.out.println("Waktu: " + time);
 
             boolean helper = insertDataReservasi(time, totalTable, people, "On Process", 5, resto_id, reservant);
-            System.out.println(helper);
             if (helper) {
                 JOptionPane.showMessageDialog(this, "Reservation succesful, now please wait for the restaurant to accept your reservation order.");
             } else {

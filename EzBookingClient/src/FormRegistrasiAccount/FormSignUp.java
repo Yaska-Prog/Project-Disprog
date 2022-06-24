@@ -55,24 +55,18 @@ public class FormSignUp extends javax.swing.JFrame {
         jLabel7.setText("Email:");
 
         txtEmail.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        txtEmail.setText("johndoe@gmail.com");
         txtEmail.setName(""); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel3.setText("Username:");
 
         txtUsername.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        txtUsername.setText("johndoe");
 
         jLabel5.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel5.setText("Password:");
 
-        txtPassword.setText("jPasswordField1");
-
         jLabel9.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel9.setText("Retype Password:");
-
-        txtRePassword.setText("jPasswordField1");
 
         jLabel8.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
         jLabel8.setText("Role:");
