@@ -185,7 +185,7 @@ public class FormEditReport extends javax.swing.JFrame {
         } else {
             service = new com.ubaya.disprog.EzBookingWebService_Service();
             port = service.getEzBookingWebServicePort();
-            boolean resultSave = port.updateReport(usernameAccount, idRestaurant, qualityService, foodQuality, review);
+            boolean resultSave = true;//port.updateReport(usernameAccount, idRestaurant, qualityService, foodQuality, review);
             if (resultSave == true) {
                 JOptionPane.showMessageDialog(this, "Successful!");
                 this.dispose();

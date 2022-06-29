@@ -4,6 +4,12 @@
     <service name="ezBookingWebService">
       <implementation-class>com.ubaya.disprog.ezBookingWebService</implementation-class>
     </service>
+    <service name="loginWebService">
+      <implementation-class>com.ubaya.disprog.loginWebService</implementation-class>
+    </service>
+    <service name="reservationWebService">
+      <implementation-class>com.ubaya.disprog.reservationWebService</implementation-class>
+    </service>
   </services>
   <clients/>
 </jax-ws>
