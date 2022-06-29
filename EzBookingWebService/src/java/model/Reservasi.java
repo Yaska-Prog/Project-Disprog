@@ -175,7 +175,7 @@ public class Reservasi extends MyModel {
         ArrayList<Reservasi> collections = new ArrayList<>();
         try {
             this.statment = (Statement) MyModel.conn.createStatement();
-            this.resultset = this.statment.executeQuery("SELECT * FROM reservasi WHERE restaurant_id = " + idRestaurant + " AND status != 'Arrived' AND status != 'Decline'");
+            this.resultset = this.statment.executeQuery("SELECT * FROM reservasi WHERE restaurant_id = " + idRestaurant + " AND status != 'Arrived' AND status != 'Decline' AND status != 'Finish'");
             while (this.resultset.next()) {
                 String date = this.resultset.getString("tanggalPesanan");
                 Reservasi reservasi = new Reservasi(
@@ -293,7 +293,7 @@ public class Reservasi extends MyModel {
                 PreparedStatement sql = (PreparedStatement) MyModel.conn.prepareStatement(
                         "update reservasi set penilaian = ?, status = ? where id = ?");
                 sql.setInt(1, bintang);
-                sql.setString(2, "Finnished");
+                sql.setString(2, "Finish");
                 sql.setInt(3, idReservasi);
                 sql.executeUpdate();
                 sql.close();

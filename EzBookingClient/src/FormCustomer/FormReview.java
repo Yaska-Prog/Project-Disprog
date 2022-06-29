@@ -51,7 +51,7 @@ public class FormReview extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jButtonSubmit = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
 
@@ -193,15 +193,15 @@ public class FormReview extends javax.swing.JFrame {
         getContentPane().add(jButton1);
         jButton1.setBounds(10, 530, 170, 41);
 
-        jButton2.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
-        jButton2.setText("SUBMIT");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonSubmit.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
+        jButtonSubmit.setText("SUBMIT");
+        jButtonSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonSubmitActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2);
-        jButton2.setBounds(310, 440, 130, 41);
+        getContentPane().add(jButtonSubmit);
+        jButtonSubmit.setBounds(310, 440, 130, 41);
 
         jLabel9.setBackground(new java.awt.Color(255, 195, 0));
         jLabel9.setFont(new java.awt.Font("Dubai", 1, 24)); // NOI18N
@@ -230,7 +230,7 @@ public class FormReview extends javax.swing.JFrame {
     }//GEN-LAST:event_lblLogOutMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+
         FormHomeCustomer frm = new FormHomeCustomer();
         this.setVisible(false);
         frm.setVisible(true);
@@ -280,8 +280,8 @@ public class FormReview extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+    private void jButtonSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSubmitActionPerformed
+
         try {
             boolean status = false;
             status = giveRating(FormHistoryReservation.id_reservasi, rating);
@@ -295,7 +295,7 @@ public class FormReview extends javax.swing.JFrame {
             }
         } catch (Exception e) {
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButtonSubmitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -334,7 +334,7 @@ public class FormReview extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonSubmit;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

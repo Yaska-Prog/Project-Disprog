@@ -20,6 +20,8 @@ public class FormSignUp extends javax.swing.JFrame {
     public FormSignUp() {
         initComponents();
     }
+    public static String restoUsername;
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,7 +45,7 @@ public class FormSignUp extends javax.swing.JFrame {
         cboRole = new javax.swing.JComboBox<>();
         btnSignUp = new javax.swing.JButton();
         lblImage = new javax.swing.JLabel();
-        btnSignUp1 = new javax.swing.JButton();
+        btnLogin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(450, 700));
@@ -83,12 +85,12 @@ public class FormSignUp extends javax.swing.JFrame {
             }
         });
 
-        btnSignUp1.setBackground(new java.awt.Color(255, 195, 0));
-        btnSignUp1.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
-        btnSignUp1.setText("Back to login");
-        btnSignUp1.addActionListener(new java.awt.event.ActionListener() {
+        btnLogin.setBackground(new java.awt.Color(255, 195, 0));
+        btnLogin.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
+        btnLogin.setText("Back to login");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSignUp1ActionPerformed(evt);
+                btnLoginActionPerformed(evt);
             }
         });
 
@@ -121,7 +123,7 @@ public class FormSignUp extends javax.swing.JFrame {
                                 .addGap(10, 10, 10)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnSignUp, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnSignUp1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -153,7 +155,7 @@ public class FormSignUp extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSignUp)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSignUp1)
+                .addComponent(btnLogin)
                 .addGap(51, 51, 51))
         );
 
@@ -166,7 +168,7 @@ public class FormSignUp extends javax.swing.JFrame {
         String newPassword = String.valueOf(txtPassword.getPassword());
         String newRetypepassword = String.valueOf(txtRePassword.getPassword());
         String role = (String) cboRole.getSelectedItem();
-
+        restoUsername = newUsername;
         try {
             if (!newPassword.equals(newRetypepassword)) {
                 JOptionPane.showMessageDialog(this, "Registration failed, password and your re type password doesn't match.");
@@ -176,7 +178,7 @@ public class FormSignUp extends javax.swing.JFrame {
                 } else {
                     if(checkUsername(newUsername)){
                         registrasiAccount(newUsername, newMail, newPassword, role);
-                        if (role.equals("Partner")) {
+                        if (role.equals("Partner Restaurant")) {
                             JOptionPane.showMessageDialog(this, "Registration account success, now please fill in the details of the restaurant.");
                             this.setVisible(false);
                             new FormInputDataRestaurant().setVisible(true);
@@ -198,12 +200,12 @@ public class FormSignUp extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSignUpActionPerformed
 
-    private void btnSignUp1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUp1ActionPerformed
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
         FormLogIn formLogin = new FormLogIn();
         formLogin.setVisible(true);
-    }//GEN-LAST:event_btnSignUp1ActionPerformed
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -242,8 +244,8 @@ public class FormSignUp extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnSignUp;
-    private javax.swing.JButton btnSignUp1;
     private javax.swing.JComboBox<String> cboRole;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
