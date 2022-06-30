@@ -4,6 +4,7 @@
  */
 package FormCustomer;
 
+import static FormCustomer.FormReservation.namaResto;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -20,9 +21,8 @@ public class FormOrderMenu extends javax.swing.JFrame {
     /**
      * Creates new form FormOrderMenu
      */
-    
-    ArrayList<Menu> listMenu = new ArrayList<Menu>();
-    
+    public static ArrayList<Menu> listMenu = new ArrayList<Menu>();
+
     public FormOrderMenu() {
         initComponents();
         try {
@@ -30,8 +30,9 @@ public class FormOrderMenu extends javax.swing.JFrame {
             lblRestaurantName.setText(namaResto);
             DefaultTableModel model = (DefaultTableModel) tableMenuList.getModel();
             listMenu = (ArrayList<Menu>) lihatMenu(FormReservation.id_resto, "none", "");
+            model.setRowCount(0);
             for (Menu menu : listMenu) {
-                model.addRow(new Object[]{menu.getJenisMenu(), menu.getNamaMenu(), menu.getHarga()});
+                model.addRow(new Object[]{menu.getId(), menu.getJenisMenu(), menu.getNamaMenu(), menu.getHarga()});
             }
         } catch (Exception e) {
             System.out.println("Error pada form load, pesan error: " + e.getMessage());
@@ -54,8 +55,6 @@ public class FormOrderMenu extends javax.swing.JFrame {
         lblReservation = new javax.swing.JLabel();
         jTotalOrder = new javax.swing.JSpinner();
         cboMenuType = new javax.swing.JComboBox<>();
-        btnAsc = new javax.swing.JButton();
-        btnDesc = new javax.swing.JButton();
         txtMenuName = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -73,11 +72,11 @@ public class FormOrderMenu extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Menu Type", "Menu Name", "Price"
+                "id", "Menu Type", "Menu Name", "Price"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -123,26 +122,18 @@ public class FormOrderMenu extends javax.swing.JFrame {
         cboMenuType.setMinimumSize(new java.awt.Dimension(130, 32));
         cboMenuType.setPreferredSize(new java.awt.Dimension(130, 32));
 
-        btnAsc.setBackground(new java.awt.Color(255, 195, 0));
-        btnAsc.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        btnAsc.setText("Ascending");
-        btnAsc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAscActionPerformed(evt);
-            }
-        });
-
-        btnDesc.setBackground(new java.awt.Color(255, 195, 0));
-        btnDesc.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        btnDesc.setText("Descending");
-        btnDesc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDescActionPerformed(evt);
-            }
-        });
-
         txtMenuName.setBackground(new java.awt.Color(255, 195, 0));
         txtMenuName.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        txtMenuName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMenuNameActionPerformed(evt);
+            }
+        });
+        txtMenuName.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                txtMenuNamePropertyChange(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -184,13 +175,9 @@ public class FormOrderMenu extends javax.swing.JFrame {
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cboMenuType, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(41, 41, 41)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnAsc)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnDesc))
-                            .addComponent(txtMenuName)))
+                            .addComponent(txtMenuName, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -203,7 +190,7 @@ public class FormOrderMenu extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(lblReservation, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -227,10 +214,7 @@ public class FormOrderMenu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTotalOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAsc)
-                    .addComponent(btnDesc))
+                .addComponent(jTotalOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -239,31 +223,70 @@ public class FormOrderMenu extends javax.swing.JFrame {
                 .addComponent(btnAddToCart, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnConfirm, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
-        
+        // TODO add your handling code here:
+        FormCart frm = new FormCart();
+        this.setVisible(false);
+        frm.setVisible(true);
     }//GEN-LAST:event_btnConfirmActionPerformed
 
     private void btnAddToCartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddToCartActionPerformed
         // TODO add your handling code here:
+        try {
+            int row = tableMenuList.getSelectedRow();
+            int id = (int) tableMenuList.getValueAt(row, 0);
+            Menu menu = ambilMenu(id);
+            listMenu.add(menu);
+        } catch (Exception e) {
+            System.out.println("Error pada btn add to cart, pesan: " + e.getMessage());
+        }
+        
     }//GEN-LAST:event_btnAddToCartActionPerformed
 
-    private void btnAscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAscActionPerformed
-        
-    }//GEN-LAST:event_btnAscActionPerformed
-
-    private void btnDescActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDescActionPerformed
-        
-    }//GEN-LAST:event_btnDescActionPerformed
-
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-       
+        // TODO add your handling code here:
+
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void txtMenuNamePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_txtMenuNamePropertyChange
+        // TODO add your handling code here:
+        try {
+            System.out.println("Masuk ke property change");
+            String filter = cboMenuType.getSelectedItem().toString();
+            String value = txtMenuName.getText();
+            DefaultTableModel model = (DefaultTableModel) tableMenuList.getModel();
+            listMenu = (ArrayList<Menu>) lihatMenu(FormReservation.id_resto, filter, value);
+            model.setRowCount(0);
+            for (Menu menu : listMenu) {
+                model.addRow(new Object[]{menu.getJenisMenu(), menu.getNamaMenu(), menu.getHarga()});
+            }
+        } catch (Exception e) {
+            System.out.println("Error pada txt field property change, pesan: " + e.getMessage());
+        }
+    }//GEN-LAST:event_txtMenuNamePropertyChange
+
+    private void txtMenuNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMenuNameActionPerformed
+        // TODO add your handling code here:
+        try {
+            System.out.println("Masuk ke action peformed");
+            String filter = cboMenuType.getSelectedItem().toString();
+            String value = txtMenuName.getText();
+            DefaultTableModel model = (DefaultTableModel) tableMenuList.getModel();
+            listMenu = (ArrayList<Menu>) lihatMenu(FormReservation.id_resto, filter, value);
+            model.setRowCount(0);
+            for (Menu menu : listMenu) {
+                model.addRow(new Object[]{menu.getId(), menu.getJenisMenu(), menu.getNamaMenu(), menu.getHarga()});
+            }
+        } catch (Exception e) {
+            System.out.println("Error pada txt field property change, pesan: " + e.getMessage());
+        }
+    }//GEN-LAST:event_txtMenuNameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -302,10 +325,8 @@ public class FormOrderMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddToCart;
-    private javax.swing.JButton btnAsc;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnConfirm;
-    private javax.swing.JButton btnDesc;
     private javax.swing.JComboBox<String> cboMenuType;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -323,5 +344,11 @@ public class FormOrderMenu extends javax.swing.JFrame {
         com.ubaya.disprog.MenuWebService_Service service = new com.ubaya.disprog.MenuWebService_Service();
         com.ubaya.disprog.MenuWebService port = service.getMenuWebServicePort();
         return port.lihatMenu(idResto, filter, value);
+    }
+
+    private static Menu ambilMenu(int id) {
+        com.ubaya.disprog.MenuWebService_Service service = new com.ubaya.disprog.MenuWebService_Service();
+        com.ubaya.disprog.MenuWebService port = service.getMenuWebServicePort();
+        return port.ambilMenu(id);
     }
 }

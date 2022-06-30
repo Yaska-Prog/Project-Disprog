@@ -293,7 +293,8 @@ public class FormReview extends javax.swing.JFrame {
 
         try {
             boolean status = false;
-            status = giveRating(FormHistoryReservation.id_reservasi, rating);
+            String rev = jTextFieldReview.getText();
+            status = giveRating(FormHistoryReservation.id_reservasi, rating, rev);
             if (status == true) {
                 JOptionPane.showMessageDialog(this, "Berhasil memberi rating, silahkan kembali ke form home user");
                 FormHomeCustomer frm = new FormHomeCustomer();
@@ -364,9 +365,9 @@ public class FormReview extends javax.swing.JFrame {
     private javax.swing.JLabel lblStar5;
     // End of variables declaration//GEN-END:variables
 
-    private static boolean giveRating(int idReservasi, int bintang) {
-        com.ubaya.disprog.EzBookingWebService_Service service = new com.ubaya.disprog.EzBookingWebService_Service();
-        com.ubaya.disprog.EzBookingWebService port = service.getEzBookingWebServicePort();
-        return port.giveRating(idReservasi, bintang);
+    private static boolean giveRating(int idReservasi, int bintang, String review) {
+        com.ubaya.disprog.ReservationWebService_Service service = new com.ubaya.disprog.ReservationWebService_Service();
+        com.ubaya.disprog.ReservationWebService port = service.getReservationWebServicePort();
+        return port.giveRating(idReservasi, bintang, review);
     }
 }

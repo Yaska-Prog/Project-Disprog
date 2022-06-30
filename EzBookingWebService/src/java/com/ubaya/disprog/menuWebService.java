@@ -107,6 +107,19 @@ public class menuWebService {
         Restaurant res = new Restaurant();
         return res.idResto(username);
     }
+
+    /**
+     * Web service operation
+     * @param id
+     * @return 
+     */
+    @WebMethod(operationName = "ambil_menu")
+    public Menu ambil_menu(@WebParam(name = "id") int id) {
+        //TODO write your implementation code here:
+        Menu menu = new Menu();
+        Menu menu_fix = menu.ambil_menu(id);
+        return menu_fix;
+    }
     
     
 }

@@ -4,6 +4,10 @@
  */
 package FormCustomer;
 
+import com.ubaya.disprog.Menu;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ardel
@@ -15,6 +19,17 @@ public class FormCart extends javax.swing.JFrame {
      */
     public FormCart() {
         initComponents();
+        try {
+            String namaResto = FormReservation.namaResto;
+            DefaultTableModel model = (DefaultTableModel) tableMenuList.getModel();
+            
+            model.setRowCount(0);
+            for (Menu menu : FormOrderMenu.listMenu) {
+                model.addRow(new Object[]{menu.getJenisMenu(), menu.getNamaMenu(), menu.getHarga()});
+            }
+        } catch (Exception e) {
+            System.out.println("Error pada form load, pesan error: " + e.getMessage());
+        }
     }
 
     /**

@@ -4,11 +4,11 @@
 <xsd:import namespace="http://disprog.ubaya.com/" schemaLocation="http://localhost:8080/EzBookingWebService/menuWebService?xsd=1"/>
 </xsd:schema>
 </types>
-<message name="hello">
-<part name="parameters" element="tns:hello"/>
+<message name="ambil_menu">
+<part name="parameters" element="tns:ambil_menu"/>
 </message>
-<message name="helloResponse">
-<part name="parameters" element="tns:helloResponse"/>
+<message name="ambil_menuResponse">
+<part name="parameters" element="tns:ambil_menuResponse"/>
 </message>
 <message name="GetIdRestaurant">
 <part name="parameters" element="tns:GetIdRestaurant"/>
@@ -16,11 +16,11 @@
 <message name="GetIdRestaurantResponse">
 <part name="parameters" element="tns:GetIdRestaurantResponse"/>
 </message>
-<message name="tambahMenu">
-<part name="parameters" element="tns:tambahMenu"/>
+<message name="tambahOrder">
+<part name="parameters" element="tns:tambahOrder"/>
 </message>
-<message name="tambahMenuResponse">
-<part name="parameters" element="tns:tambahMenuResponse"/>
+<message name="tambahOrderResponse">
+<part name="parameters" element="tns:tambahOrderResponse"/>
 </message>
 <message name="editMenu">
 <part name="parameters" element="tns:editMenu"/>
@@ -28,11 +28,11 @@
 <message name="editMenuResponse">
 <part name="parameters" element="tns:editMenuResponse"/>
 </message>
-<message name="tambahOrder">
-<part name="parameters" element="tns:tambahOrder"/>
+<message name="tambahMenu">
+<part name="parameters" element="tns:tambahMenu"/>
 </message>
-<message name="tambahOrderResponse">
-<part name="parameters" element="tns:tambahOrderResponse"/>
+<message name="tambahMenuResponse">
+<part name="parameters" element="tns:tambahMenuResponse"/>
 </message>
 <message name="lihatMenu">
 <part name="parameters" element="tns:lihatMenu"/>
@@ -40,35 +40,45 @@
 <message name="lihatMenuResponse">
 <part name="parameters" element="tns:lihatMenuResponse"/>
 </message>
+<message name="hello">
+<part name="parameters" element="tns:hello"/>
+</message>
+<message name="helloResponse">
+<part name="parameters" element="tns:helloResponse"/>
+</message>
 <portType name="menuWebService">
-<operation name="hello">
-<input wsam:Action="http://disprog.ubaya.com/menuWebService/helloRequest" message="tns:hello"/>
-<output wsam:Action="http://disprog.ubaya.com/menuWebService/helloResponse" message="tns:helloResponse"/>
+<operation name="ambil_menu">
+<input wsam:Action="http://disprog.ubaya.com/menuWebService/ambil_menuRequest" message="tns:ambil_menu"/>
+<output wsam:Action="http://disprog.ubaya.com/menuWebService/ambil_menuResponse" message="tns:ambil_menuResponse"/>
 </operation>
 <operation name="GetIdRestaurant">
 <input wsam:Action="http://disprog.ubaya.com/menuWebService/GetIdRestaurantRequest" message="tns:GetIdRestaurant"/>
 <output wsam:Action="http://disprog.ubaya.com/menuWebService/GetIdRestaurantResponse" message="tns:GetIdRestaurantResponse"/>
 </operation>
-<operation name="tambahMenu">
-<input wsam:Action="http://disprog.ubaya.com/menuWebService/tambahMenuRequest" message="tns:tambahMenu"/>
-<output wsam:Action="http://disprog.ubaya.com/menuWebService/tambahMenuResponse" message="tns:tambahMenuResponse"/>
+<operation name="tambahOrder">
+<input wsam:Action="http://disprog.ubaya.com/menuWebService/tambahOrderRequest" message="tns:tambahOrder"/>
+<output wsam:Action="http://disprog.ubaya.com/menuWebService/tambahOrderResponse" message="tns:tambahOrderResponse"/>
 </operation>
 <operation name="editMenu">
 <input wsam:Action="http://disprog.ubaya.com/menuWebService/editMenuRequest" message="tns:editMenu"/>
 <output wsam:Action="http://disprog.ubaya.com/menuWebService/editMenuResponse" message="tns:editMenuResponse"/>
 </operation>
-<operation name="tambahOrder">
-<input wsam:Action="http://disprog.ubaya.com/menuWebService/tambahOrderRequest" message="tns:tambahOrder"/>
-<output wsam:Action="http://disprog.ubaya.com/menuWebService/tambahOrderResponse" message="tns:tambahOrderResponse"/>
+<operation name="tambahMenu">
+<input wsam:Action="http://disprog.ubaya.com/menuWebService/tambahMenuRequest" message="tns:tambahMenu"/>
+<output wsam:Action="http://disprog.ubaya.com/menuWebService/tambahMenuResponse" message="tns:tambahMenuResponse"/>
 </operation>
 <operation name="lihatMenu">
 <input wsam:Action="http://disprog.ubaya.com/menuWebService/lihatMenuRequest" message="tns:lihatMenu"/>
 <output wsam:Action="http://disprog.ubaya.com/menuWebService/lihatMenuResponse" message="tns:lihatMenuResponse"/>
 </operation>
+<operation name="hello">
+<input wsam:Action="http://disprog.ubaya.com/menuWebService/helloRequest" message="tns:hello"/>
+<output wsam:Action="http://disprog.ubaya.com/menuWebService/helloResponse" message="tns:helloResponse"/>
+</operation>
 </portType>
 <binding name="menuWebServicePortBinding" type="tns:menuWebService">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-<operation name="hello">
+<operation name="ambil_menu">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -86,7 +96,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="tambahMenu">
+<operation name="tambahOrder">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -104,7 +114,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="tambahOrder">
+<operation name="tambahMenu">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -114,6 +124,15 @@
 </output>
 </operation>
 <operation name="lihatMenu">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="hello">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

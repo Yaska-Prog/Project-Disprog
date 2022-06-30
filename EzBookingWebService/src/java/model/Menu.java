@@ -138,7 +138,6 @@ public class Menu extends MyModel {
                     System.out.println(this.resultset.getString("jenis"));
 
                     listMenu.add(menu);
-                    System.out.println("Jenis: " + menu.getJenis_menu());
 
                 }
             } else {
@@ -160,4 +159,23 @@ public class Menu extends MyModel {
         }
         return listMenu;
     }
-}
+
+    public Menu ambil_menu(int id1) {
+        Menu men = new Menu();
+        try {
+            this.statment = (Statement) MyModel.conn.createStatement();
+            this.resultset = this.statment.executeQuery("select * from menus where id = " + id1 + ";");
+            while (this.resultset.next()) {
+                men = new Menu(this.resultset.getInt("id"),
+                        this.resultset.getString("nama"),
+                        this.resultset.getString("jenis"),
+                        this.resultset.getInt("restaurant_id"),
+                        this.resultset.getInt("harga")
+                );
+            }
+            }catch (Exception e) {
+            System.out.println("Error pada ambil menu, pesan: " + e.getMessage());
+        }
+            return men;
+        }
+    }
