@@ -147,6 +147,18 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="GetIdRestaurant">
+<xs:sequence>
+<xs:element name="username" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="GetIdRestaurantResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="check_login">
 <xs:sequence>
 <xs:element name="username" type="xs:string" minOccurs="0"/>
@@ -172,18 +184,6 @@
 </xs:sequence>
 </xs:extension>
 </xs:complexContent>
-</xs:complexType>
-
-<xs:complexType name="GetIdRestaurant">
-<xs:sequence>
-<xs:element name="username" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="GetIdRestaurantResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:int"/>
-</xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="check_username">
@@ -216,20 +216,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="showRestaurantWithFilterForAdmin">
-<xs:sequence>
-<xs:element name="namaFilter" type="xs:string" minOccurs="0"/>
-<xs:element name="valueFilter" type="xs:string" minOccurs="0"/>
-<xs:element name="SortBy" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="showRestaurantWithFilterForAdminResponse">
-<xs:sequence>
-<xs:element name="return" type="tns:restaurant" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="showReport">
 <xs:sequence>
 <xs:element name="idRestaurant" type="xs:int"/>
@@ -255,6 +241,20 @@
 </xs:sequence>
 </xs:extension>
 </xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="showRestaurantWithFilterForAdmin">
+<xs:sequence>
+<xs:element name="namaFilter" type="xs:string" minOccurs="0"/>
+<xs:element name="valueFilter" type="xs:string" minOccurs="0"/>
+<xs:element name="SortBy" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="showRestaurantWithFilterForAdminResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:restaurant" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="SaveReport">
@@ -370,19 +370,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="showListReservasi">
-<xs:sequence>
-<xs:element name="idRestaurant" type="xs:int"/>
-<xs:element name="usernameAccount" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="showListReservasiResponse">
-<xs:sequence>
-<xs:element name="return" type="tns:report" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="showReservasi">
 <xs:sequence>
 <xs:element name="idRestaurant" type="xs:int"/>
@@ -395,13 +382,16 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="showListIdRestaurant">
-<xs:sequence/>
+<xs:complexType name="showListReservasi">
+<xs:sequence>
+<xs:element name="idRestaurant" type="xs:int"/>
+<xs:element name="usernameAccount" type="xs:string" minOccurs="0"/>
+</xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="showListIdRestaurantResponse">
+<xs:complexType name="showListReservasiResponse">
 <xs:sequence>
-<xs:element name="return" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="return" type="tns:report" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -418,6 +408,16 @@
 <xs:complexType name="UpdateReportResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="showListIdRestaurant">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="showListIdRestaurantResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -443,6 +443,18 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="listYangSudahDireport">
+<xs:sequence>
+<xs:element name="accountUsername" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listYangSudahDireportResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:report" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="updateStatusReservasi">
 <xs:sequence>
 <xs:element name="status" type="xs:string" minOccurs="0"/>
@@ -453,18 +465,6 @@
 <xs:complexType name="updateStatusReservasiResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:boolean"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="listYangSudahDireport">
-<xs:sequence>
-<xs:element name="accountUsername" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="listYangSudahDireportResponse">
-<xs:sequence>
-<xs:element name="return" type="tns:report" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 

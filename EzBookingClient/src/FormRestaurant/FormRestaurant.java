@@ -16,15 +16,15 @@ import javax.swing.JOptionPane;
  */
 public class FormRestaurant {
 
-    com.ubaya.disprog.EzBookingWebService_Service service;
-    com.ubaya.disprog.EzBookingWebService port;
+    com.ubaya.disprog.RestaurantWebService_Service service;
+    com.ubaya.disprog.RestaurantWebService port;
 
     /**
      * @param args the command line arguments
      */
     public void main() {
-        service = new com.ubaya.disprog.EzBookingWebService_Service();
-        port = service.getEzBookingWebServicePort();
+        service = new com.ubaya.disprog.RestaurantWebService_Service();
+        port = service.getRestaurantWebServicePort();
         int id = port.getIdRestaurant(FormLogIn.txtUsername.getText());
 
         FormHomeRestaurant formHomeRestaurant = new FormHomeRestaurant();

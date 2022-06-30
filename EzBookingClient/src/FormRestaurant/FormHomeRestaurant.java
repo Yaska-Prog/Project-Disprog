@@ -16,8 +16,8 @@ import javax.swing.JOptionPane;
  */
 public class FormHomeRestaurant extends javax.swing.JFrame {
 
-    com.ubaya.disprog.EzBookingWebService_Service service;
-    com.ubaya.disprog.EzBookingWebService port;
+    com.ubaya.disprog.RestaurantWebService_Service service;
+    com.ubaya.disprog.RestaurantWebService port;
 
     /**
      * Creates new form HomeAdminForm
@@ -25,8 +25,8 @@ public class FormHomeRestaurant extends javax.swing.JFrame {
     public FormHomeRestaurant() {
         initComponents();
 
-        service = new com.ubaya.disprog.EzBookingWebService_Service();
-        port = service.getEzBookingWebServicePort();
+        service = new com.ubaya.disprog.RestaurantWebService_Service();
+        port = service.getRestaurantWebServicePort();
         String usernameRestaurant = FormLogIn.txtUsername.getText();
         int idResto = idRestaurant(usernameRestaurant);
 
@@ -38,8 +38,8 @@ public class FormHomeRestaurant extends javax.swing.JFrame {
     }
 
     public int idRestaurant(String username) {
-        service = new com.ubaya.disprog.EzBookingWebService_Service();
-        port = service.getEzBookingWebServicePort();
+        service = new com.ubaya.disprog.RestaurantWebService_Service();
+        port = service.getRestaurantWebServicePort();
         return port.getIdRestaurant(username);
     }
 

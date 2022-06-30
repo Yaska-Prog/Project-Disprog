@@ -2,4 +2,6 @@
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
     <system systemId="http://localhost:8080/EzBookingWebService/ezBookingWebService?wsdl" uri="wsdl/localhost_8080/EzBookingWebService/ezBookingWebService.wsdl"/>
     <system systemId="http://localhost:8080/EzBookingWebService/ezBookingWebService?xsd=1" uri="wsdl/localhost_8080/EzBookingWebService/ezBookingWebService.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/EzBookingWebService/restaurantWebService?wsdl" uri="wsdl/localhost_8080/EzBookingWebService/restaurantWebService.wsdl"/>
+    <system systemId="http://localhost:8080/EzBookingWebService/restaurantWebService?xsd=1" uri="wsdl/localhost_8080/EzBookingWebService/restaurantWebService.xsd_1.xsd"/>
 </catalog>

@@ -13,6 +13,9 @@
     <service name="menuWebService">
       <implementation-class>com.ubaya.disprog.menuWebService</implementation-class>
     </service>
+    <service name="restaurantWebService">
+      <implementation-class>com.ubaya.disprog.restaurantWebService</implementation-class>
+    </service>
   </services>
   <clients/>
 </jax-ws>

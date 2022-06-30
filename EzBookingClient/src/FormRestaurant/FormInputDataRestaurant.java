@@ -14,8 +14,8 @@ import FormRegistrasiAccount.FormSignUpUser;
  */
 public class FormInputDataRestaurant extends javax.swing.JFrame {
 
-    com.ubaya.disprog.EzBookingWebService_Service service;
-    com.ubaya.disprog.EzBookingWebService port;
+    com.ubaya.disprog.RestaurantWebService_Service service;
+    com.ubaya.disprog.RestaurantWebService port;
 
     /**
      * Creates new form DataRestaurant
@@ -31,8 +31,8 @@ public class FormInputDataRestaurant extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     public boolean insertDataRestaurant(String username, String ownerName, String namaResto, String alamatResto, int maxTable) {
-        service = new com.ubaya.disprog.EzBookingWebService_Service();
-        port = service.getEzBookingWebServicePort();
+        service = new com.ubaya.disprog.RestaurantWebService_Service();
+        port = service.getRestaurantWebServicePort();
         return port.insertDataRestaurant(username, ownerName, namaResto, alamatResto, maxTable);
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

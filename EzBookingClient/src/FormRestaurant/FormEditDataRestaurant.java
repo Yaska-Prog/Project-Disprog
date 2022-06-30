@@ -11,8 +11,8 @@ import com.ubaya.disprog.Restaurant;
  * @author RUTH
  */
 public class FormEditDataRestaurant extends javax.swing.JFrame {
-    com.ubaya.disprog.EzBookingWebService_Service service;
-    com.ubaya.disprog.EzBookingWebService port;
+    com.ubaya.disprog.RestaurantWebService_Service service;
+    com.ubaya.disprog.RestaurantWebService port;
     /**
      * Creates new form EditRestaurant
      */
@@ -32,19 +32,19 @@ public class FormEditDataRestaurant extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     public boolean updateDataRestaurant(String ownerName, String namaResto, String alamatResto, int maxTable, int idResto) {
-        service = new com.ubaya.disprog.EzBookingWebService_Service();
-        port = service.getEzBookingWebServicePort();
+        service = new com.ubaya.disprog.RestaurantWebService_Service();
+        port = service.getRestaurantWebServicePort();
         return port.updateDataRestaurant(ownerName, namaResto, alamatResto, maxTable, idResto);
     }
     public int idRestaurant(String username){
-        service = new com.ubaya.disprog.EzBookingWebService_Service();
-        port = service.getEzBookingWebServicePort();
+        service = new com.ubaya.disprog.RestaurantWebService_Service();
+        port = service.getRestaurantWebServicePort();
         return port.getIdRestaurant(username);
     }
     
     public Restaurant restaurant(String username){
-        service = new com.ubaya.disprog.EzBookingWebService_Service();
-        port = service.getEzBookingWebServicePort();
+        service = new com.ubaya.disprog.RestaurantWebService_Service();
+        port = service.getRestaurantWebServicePort();
         return port.showListDataRestaurant(username);
     }
     

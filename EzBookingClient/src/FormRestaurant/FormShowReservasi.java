@@ -26,8 +26,8 @@ import javax.swing.table.TableCellRenderer;
  */
 public class FormShowReservasi extends javax.swing.JFrame {
 
-    com.ubaya.disprog.EzBookingWebService_Service service;
-    com.ubaya.disprog.EzBookingWebService port;
+    com.ubaya.disprog.RestaurantWebService_Service service;
+    com.ubaya.disprog.RestaurantWebService port;
 
 //    private static JButton btnAccept = new JButton();
 //    private static JButton btnDecline = new JButton();
@@ -40,8 +40,8 @@ public class FormShowReservasi extends javax.swing.JFrame {
      */
     public FormShowReservasi() {
         initComponents();
-        service = new com.ubaya.disprog.EzBookingWebService_Service();
-        port = service.getEzBookingWebServicePort();
+        service = new com.ubaya.disprog.RestaurantWebService_Service();
+        port = service.getRestaurantWebServicePort();
         String usernameRestaurant = FormLogIn.txtUsername.getText();
         int idResto = idRestaurant(usernameRestaurant);
         res = port.showReservasi(idResto);
@@ -54,8 +54,8 @@ public class FormShowReservasi extends javax.swing.JFrame {
     }
 
     public int idRestaurant(String username) {
-        service = new com.ubaya.disprog.EzBookingWebService_Service();
-        port = service.getEzBookingWebServicePort();
+        service = new com.ubaya.disprog.RestaurantWebService_Service();
+        port = service.getRestaurantWebServicePort();
         return port.getIdRestaurant(username);
     }
 
@@ -213,8 +213,8 @@ public class FormShowReservasi extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnAcptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcptActionPerformed
-        service = new com.ubaya.disprog.EzBookingWebService_Service();
-        port = service.getEzBookingWebServicePort();
+        service = new com.ubaya.disprog.RestaurantWebService_Service();
+        port = service.getRestaurantWebServicePort();
 
         int row = tableReservation.getSelectedRow();
         int idReservation = (int) tableReservation.getValueAt(row, 0);
@@ -227,8 +227,8 @@ public class FormShowReservasi extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAcptActionPerformed
 
     private void tableReservationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableReservationMouseClicked
-        service = new com.ubaya.disprog.EzBookingWebService_Service();
-        port = service.getEzBookingWebServicePort();
+        service = new com.ubaya.disprog.RestaurantWebService_Service();
+        port = service.getRestaurantWebServicePort();
         String usernameRestaurant = FormLogIn.txtUsername.getText();
         int row = tableReservation.getSelectedRow();
         int idReservasi = (int) tableReservation.getValueAt(row, 0);
@@ -250,8 +250,8 @@ public class FormShowReservasi extends javax.swing.JFrame {
     }//GEN-LAST:event_tableReservationMouseClicked
 
     private void btnArrivedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnArrivedActionPerformed
-        service = new com.ubaya.disprog.EzBookingWebService_Service();
-        port = service.getEzBookingWebServicePort();
+        service = new com.ubaya.disprog.RestaurantWebService_Service();
+        port = service.getRestaurantWebServicePort();
 
         int row = tableReservation.getSelectedRow();
         int idReservation = (int) tableReservation.getValueAt(row, 0);
@@ -275,8 +275,8 @@ public class FormShowReservasi extends javax.swing.JFrame {
     }//GEN-LAST:event_btnArrivedActionPerformed
 
     private void btnDecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDecActionPerformed
-        service = new com.ubaya.disprog.EzBookingWebService_Service();
-        port = service.getEzBookingWebServicePort();
+        service = new com.ubaya.disprog.RestaurantWebService_Service();
+        port = service.getRestaurantWebServicePort();
 
         int row = tableReservation.getSelectedRow();
         int idReservation = (int) tableReservation.getValueAt(row, 0);

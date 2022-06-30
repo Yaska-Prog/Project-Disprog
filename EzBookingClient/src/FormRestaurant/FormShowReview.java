@@ -18,16 +18,16 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FormShowReview extends javax.swing.JFrame {
 
-    com.ubaya.disprog.EzBookingWebService_Service service;
-    com.ubaya.disprog.EzBookingWebService port;
+    com.ubaya.disprog.RestaurantWebService_Service service;
+    com.ubaya.disprog.RestaurantWebService port;
 
     /**
      * Creates new form Review
      */
     public FormShowReview() {
         initComponents();
-        service = new com.ubaya.disprog.EzBookingWebService_Service();
-        port = service.getEzBookingWebServicePort();
+        service = new com.ubaya.disprog.RestaurantWebService_Service();
+        port = service.getRestaurantWebServicePort();
         String usernameRestaurant = FormLogIn.txtUsername.getText();
         int idResto = idRestaurant(usernameRestaurant);
         List<Report> res = new ArrayList<>();
@@ -42,8 +42,8 @@ public class FormShowReview extends javax.swing.JFrame {
 
 
     public int idRestaurant(String username) {
-        service = new com.ubaya.disprog.EzBookingWebService_Service();
-        port = service.getEzBookingWebServicePort();
+        service = new com.ubaya.disprog.RestaurantWebService_Service();
+        port = service.getRestaurantWebServicePort();
         return port.getIdRestaurant(username);
     }
 

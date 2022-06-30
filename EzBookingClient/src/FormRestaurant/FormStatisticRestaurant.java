@@ -12,16 +12,16 @@ import com.ubaya.disprog.Restaurant;
  * @author asus
  */
 public class FormStatisticRestaurant extends javax.swing.JFrame {
-    com.ubaya.disprog.EzBookingWebService_Service service;
-    com.ubaya.disprog.EzBookingWebService port;
+    com.ubaya.disprog.RestaurantWebService_Service service;
+    com.ubaya.disprog.RestaurantWebService port;
     /**
      * Creates new form statisticRestaurantForm
      */
     public FormStatisticRestaurant() {
         initComponents();
         
-        service = new com.ubaya.disprog.EzBookingWebService_Service();
-        port = service.getEzBookingWebServicePort();
+        service = new com.ubaya.disprog.RestaurantWebService_Service();
+        port = service.getRestaurantWebServicePort();
         
         String usernameRestaurant = FormLogIn.txtUsername.getText();
         
@@ -65,48 +65,48 @@ public class FormStatisticRestaurant extends javax.swing.JFrame {
         jLabel2.setText("STATISTIC RESTAURANT");
 
         lblNamaResto.setFont(new java.awt.Font("Dubai", 0, 24)); // NOI18N
-        lblNamaResto.setForeground(new java.awt.Color(255, 195, 0));
+        lblNamaResto.setForeground(new java.awt.Color(51, 0, 255));
         lblNamaResto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblNamaResto.setText("Westin Food Court");
 
         lblPemilik.setFont(new java.awt.Font("Dubai", 0, 24)); // NOI18N
-        lblPemilik.setForeground(new java.awt.Color(255, 195, 0));
+        lblPemilik.setForeground(new java.awt.Color(51, 0, 255));
         lblPemilik.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblPemilik.setText("John Doe");
         lblPemilik.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         lblAlamat.setFont(new java.awt.Font("Dubai", 0, 24)); // NOI18N
-        lblAlamat.setForeground(new java.awt.Color(255, 195, 0));
+        lblAlamat.setForeground(new java.awt.Color(51, 0, 255));
         lblAlamat.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAlamat.setText("East No 11");
 
         jLabel5.setFont(new java.awt.Font("Dubai", 0, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 195, 0));
+        jLabel5.setForeground(new java.awt.Color(51, 0, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Total table :");
 
         lblMax_Table.setFont(new java.awt.Font("Dubai", 0, 24)); // NOI18N
-        lblMax_Table.setForeground(new java.awt.Color(255, 195, 0));
+        lblMax_Table.setForeground(new java.awt.Color(51, 0, 255));
         lblMax_Table.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMax_Table.setText("200");
 
         jLabel7.setFont(new java.awt.Font("Dubai", 0, 24)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 195, 0));
+        jLabel7.setForeground(new java.awt.Color(51, 0, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Total Customer :");
 
         lblJumlahPelanggan.setFont(new java.awt.Font("Dubai", 0, 24)); // NOI18N
-        lblJumlahPelanggan.setForeground(new java.awt.Color(255, 195, 0));
+        lblJumlahPelanggan.setForeground(new java.awt.Color(51, 0, 255));
         lblJumlahPelanggan.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblJumlahPelanggan.setText("200");
 
         jLabel9.setFont(new java.awt.Font("Dubai", 0, 24)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 195, 0));
+        jLabel9.setForeground(new java.awt.Color(51, 0, 255));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("Overall Rating :");
 
         lblRating.setFont(new java.awt.Font("Dubai", 0, 24)); // NOI18N
-        lblRating.setForeground(new java.awt.Color(255, 195, 0));
+        lblRating.setForeground(new java.awt.Color(51, 0, 255));
         lblRating.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblRating.setText("4");
 
