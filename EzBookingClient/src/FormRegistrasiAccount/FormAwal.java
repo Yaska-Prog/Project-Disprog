@@ -104,7 +104,7 @@ public class FormAwal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnSignInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignInActionPerformed
-        FormSignUp formSignUp = new FormSignUp();
+        FormSignUpUser formSignUp = new FormSignUpUser();
         formSignUp.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnSignInActionPerformed

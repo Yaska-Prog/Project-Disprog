@@ -26,21 +26,111 @@ public class FormCart extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnBack = new javax.swing.JButton();
+        lblReservation = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableMenuList = new javax.swing.JTable();
+        btnAddToCart = new javax.swing.JButton();
+        lblSubTotal = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(510, 626));
+        setPreferredSize(new java.awt.Dimension(510, 626));
+
+        btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
+        lblReservation.setFont(new java.awt.Font("Dubai", 1, 36)); // NOI18N
+        lblReservation.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblReservation.setText("CART");
+        lblReservation.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        tableMenuList.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 195, 0)));
+        tableMenuList.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        tableMenuList.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Menu Type", "Menu Name", "Price"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        tableMenuList.setToolTipText("");
+        tableMenuList.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tableMenuList.setInheritsPopupMenu(true);
+        jScrollPane1.setViewportView(tableMenuList);
+
+        btnAddToCart.setBackground(new java.awt.Color(255, 195, 0));
+        btnAddToCart.setFont(new java.awt.Font("Dubai", 1, 24)); // NOI18N
+        btnAddToCart.setText("CHECK OUT");
+        btnAddToCart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddToCartActionPerformed(evt);
+            }
+        });
+
+        lblSubTotal.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
+        lblSubTotal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSubTotal.setText("SUB TOTAL");
+        lblSubTotal.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnBack)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(lblReservation, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(btnAddToCart, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblSubTotal, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnBack)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblReservation, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
+                .addComponent(lblSubTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnAddToCart, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        this.dispose();
+        FormHomeRestaurant frm = new FormHomeRestaurant();
+        frm.setEnabled(true);
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnAddToCartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddToCartActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddToCartActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +168,11 @@ public class FormCart extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddToCart;
+    private javax.swing.JButton btnBack;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblReservation;
+    private javax.swing.JLabel lblSubTotal;
+    private javax.swing.JTable tableMenuList;
     // End of variables declaration//GEN-END:variables
 }

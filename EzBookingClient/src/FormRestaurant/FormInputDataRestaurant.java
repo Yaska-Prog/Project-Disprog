@@ -6,7 +6,7 @@ package FormRestaurant;
 
 import javax.swing.JOptionPane;
 import FormRegistrasiAccount.FormLogIn;
-import FormRegistrasiAccount.FormSignUp;
+import FormRegistrasiAccount.FormSignUpUser;
 
 /**
  *
@@ -140,7 +140,7 @@ public class FormInputDataRestaurant extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
-        String usernameRestaurant = FormSignUp.restoUsername;
+        String usernameRestaurant = FormSignUpUser.restoUsername;
         String namaPemilik = txtName.getText();
         String namaRestaurant = txtRestaurantName.getText();
         String alamatRestaurant = txtAddress.getText();
