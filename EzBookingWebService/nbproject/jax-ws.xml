@@ -10,6 +10,9 @@
     <service name="reservationWebService">
       <implementation-class>com.ubaya.disprog.reservationWebService</implementation-class>
     </service>
+    <service name="menuWebService">
+      <implementation-class>com.ubaya.disprog.menuWebService</implementation-class>
+    </service>
   </services>
   <clients/>
 </jax-ws>

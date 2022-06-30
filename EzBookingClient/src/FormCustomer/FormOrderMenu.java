@@ -4,6 +4,10 @@
  */
 package FormCustomer;
 
+import java.util.Calendar;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ardel
@@ -224,52 +228,7 @@ public class FormOrderMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
-        try {
-            if (tableMenuList.getSelectionModel().isSelectionEmpty()) {
-                JOptionPane.showMessageDialog(this, "Please select the restaurant you want to reserve!");
-            } else {
-                Date currentTime = Calendar.getInstance().getTime();
-                String reservant = txtReservant.getText();
-                java.sql.Date waktu = new java.sql.Date(jdateTanggal.getDate().getTime());
-                if (waktu.before(currentTime)) {
-                    JOptionPane.showMessageDialog(this, "You cannot reserve the past date!");
-                } else {
-                    String time = String.valueOf(waktu);
-                    int totalTable = (int) jTotalOrder.getValue();
-                    int people = (int) tNumberPeople.getValue();
-                    int row = tableMenuList.getSelectedRow();
-                    String namaResto = (String) tableMenuList.getValueAt(row, 0);
-                    int resto_id = ambilId(namaResto);
-                    int availTable = (int) tableMenuList.getValueAt(row, 2);
-                    if (totalTable <= 0 || people <= 0) {
-                        JOptionPane.showMessageDialog(this, "Please input the right number for the reservation, don't input a negative or 0 number");
-                    } else {
-                        if (totalTable > people) {
-                            JOptionPane.showMessageDialog(this, "Please input the number of people not less than total table");
-                        } else {
-                            if (availTable < totalTable) {
-                                JOptionPane.showMessageDialog(this, "Error, restaurant don't have that much of available table");
-                            } else {
-                                boolean helper = insertDataReservasi(time, totalTable, people, "On Process", 5, resto_id, reservant);
-                                if (helper) {
-                                    JOptionPane.showMessageDialog(this, "Reservation succesful, now please wait for the restaurant to accept your reservation order.");
-                                    FormHomeCustomer frm = new FormHomeCustomer();
-                                    this.setVisible(false);
-                                    frm.setVisible(true);
-                                } else {
-                                    JOptionPane.showMessageDialog(this, "Reservation failed, please re check your order");
-                                }
-                            }
-                        }
-
-                    }
-                }
-
-            }
-
-        } catch (Exception e) {
-            System.out.println("Error pada button, pesan error: " + e.getMessage());
-        }
+        
     }//GEN-LAST:event_btnConfirmActionPerformed
 
     private void btnAddToCartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddToCartActionPerformed
@@ -277,69 +236,15 @@ public class FormOrderMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAddToCartActionPerformed
 
     private void btnAscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAscActionPerformed
-        List<Restaurant> restoArray = new ArrayList<>();
-
-        service = new com.ubaya.disprog.EzBookingWebService_Service();
-        port = service.getEzBookingWebServicePort();
-        String filter = "";
-        String cboSel = cboMenuType.getSelectedItem().toString();
-        if (cboSel.equals("Nama Restaurant")) {
-            filter = "nama";
-        } else if (cboSel.equals("Alamat")) {
-            filter = "alamat";
-        } else if (cboSel.equals("Number of Table")) {
-            filter = "max_table";
-        } else if (cboSel.equals("Total Customers")) {
-            filter = "total_pelanggaan";
-        } else if (cboSel.equals("All")) {
-            filter = "All";
-        } else {
-            filter = "overall_rating";
-        }
-        restoArray = port.showRestaurantWithFilterForAdmin(filter, txtMenuName.getText(), "asc");
-
-        DefaultTableModel model = (DefaultTableModel) tableRestaurant.getModel();
-        model.setRowCount(0);
-        for (int i = 0; i < restoArray.size(); i++) {
-            Restaurant restaurant = restoArray.get(i);
-            model.addRow(new Object[]{restaurant.getNamaRestaurant(), restaurant.getAlamatRestaurant(), restaurant.getMaxTable(), restaurant.getTotalPelanggan(), restaurant.getTotalBintang()});
-        }
+        
     }//GEN-LAST:event_btnAscActionPerformed
 
     private void btnDescActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDescActionPerformed
-        List<Restaurant> restoArray = new ArrayList<>();
-        service = new com.ubaya.disprog.EzBookingWebService_Service();
-        port = service.getEzBookingWebServicePort();
-
-        String filter = "";
-        String cboSel = cboMenuType.getSelectedItem().toString();
-        if (cboSel.equals("Nama Restaurant")) {
-            filter = "nama";
-        } else if (cboSel.equals("Alamat")) {
-            filter = "alamat";
-        } else if (cboSel.equals("Number of Table")) {
-            filter = "max_table";
-        } else if (cboSel.equals("Total Customers")) {
-            filter = "total_pelanggaan";
-        } else if (cboSel.equals("All")) {
-            filter = "All";
-        } else {
-            filter = "overall_rating";
-        }
-        restoArray = port.showRestaurantWithFilterForAdmin(filter, txtMenuName.getText(), "desc");
-
-        DefaultTableModel model = (DefaultTableModel) tableRestaurant.getModel();
-        model.setRowCount(0);
-        for (int i = 0; i < restoArray.size(); i++) {
-            Restaurant restaurant = restoArray.get(i);
-            model.addRow(new Object[]{restaurant.getNamaRestaurant(), restaurant.getAlamatRestaurant(), restaurant.getMaxTable(), restaurant.getTotalPelanggan(), restaurant.getTotalBintang()});
-        }
+        
     }//GEN-LAST:event_btnDescActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        this.dispose();
-        FormHomeRestaurant frm = new FormHomeRestaurant();
-        frm.setEnabled(true);
+       
     }//GEN-LAST:event_btnBackActionPerformed
 
     /**

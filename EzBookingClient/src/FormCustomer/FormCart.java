@@ -124,7 +124,7 @@ public class FormCart extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         this.dispose();
-        FormHomeRestaurant frm = new FormHomeRestaurant();
+        FormHomeCustomer frm = new FormHomeCustomer();
         frm.setEnabled(true);
     }//GEN-LAST:event_btnBackActionPerformed
 
