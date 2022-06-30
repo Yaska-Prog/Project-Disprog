@@ -5,11 +5,13 @@
  */
 package com.ubaya.disprog;
 
+import java.util.ArrayList;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import model.Menu;
 import model.Order;
+import model.Reservasi;
 
 /**
  *
@@ -85,6 +87,17 @@ public class menuWebService {
         Order o = new Order(resto_id, reserve_id, jumlah_pesanan);
         status = o.insertOrder();
         return status;
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "lihatMenu")
+    public ArrayList<Menu> lihatMenu(@WebParam(name = "id_resto") int id_resto, @WebParam(name = "Filter") String Filter, @WebParam(name = "Value") String Value) {
+        //TODO write your implementation code here:
+        Menu menu = new Menu();
+        ArrayList<Menu> listMenu = menu.lihatMenu(id_resto, Filter, Value);
+        return listMenu;
     }
     
     

@@ -114,4 +114,22 @@ public class reservationWebService {
         return coll;
     }
     
+    /**
+     * Web service operation
+     * @param id_reservasi
+     * @param bintang
+     * @param review
+     * @return 
+     */
+    @WebMethod(operationName = "give_rating")
+    public boolean give_rating(@WebParam(name = "id_reservasi") int id_reservasi, @WebParam(name = "bintang") int bintang, @WebParam(name = "review") String review) {
+        //TODO write your implementation code here:
+        boolean status = false;
+        Reservasi res = new Reservasi();
+        status = res.tambah_rating(id_reservasi, bintang, review);
+        return status;
+    }
+    
+    
+    
 }

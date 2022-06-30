@@ -4,9 +4,12 @@
  */
 package FormCustomer;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import com.ubaya.disprog.Menu;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,8 +20,20 @@ public class FormOrderMenu extends javax.swing.JFrame {
     /**
      * Creates new form FormOrderMenu
      */
+    
+    ArrayList<Menu> listMenu = new ArrayList<Menu>();
+    
     public FormOrderMenu() {
         initComponents();
+        try {
+            DefaultTableModel model = (DefaultTableModel) tableMenuList.getModel();
+            listMenu = (ArrayList<Menu>) lihatMenu(FormReservation.id_resto, "none", "");
+            for (Menu menu : listMenu) {
+                model.addRow(new Object[]{menu.getJenisMenu(), menu.getNamaMenu(), menu.getHarga()});
+            }
+        } catch (Exception e) {
+            System.out.println("Error pada form load, pesan error: " + e.getMessage());
+        }
     }
 
     /**
@@ -74,7 +89,7 @@ public class FormOrderMenu extends javax.swing.JFrame {
 
         btnConfirm.setBackground(new java.awt.Color(255, 195, 0));
         btnConfirm.setFont(new java.awt.Font("Dubai", 1, 24)); // NOI18N
-        btnConfirm.setText("CONFIRM");
+        btnConfirm.setText("SHOW CART");
         btnConfirm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConfirmActionPerformed(evt);
@@ -101,6 +116,7 @@ public class FormOrderMenu extends javax.swing.JFrame {
 
         cboMenuType.setBackground(new java.awt.Color(255, 195, 0));
         cboMenuType.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        cboMenuType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "none", "jenis", "nama" }));
         cboMenuType.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 24, 24)));
         cboMenuType.setMinimumSize(new java.awt.Dimension(130, 32));
         cboMenuType.setPreferredSize(new java.awt.Dimension(130, 32));
@@ -185,7 +201,7 @@ public class FormOrderMenu extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(lblReservation, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -300,4 +316,10 @@ public class FormOrderMenu extends javax.swing.JFrame {
     private javax.swing.JTable tableMenuList;
     private javax.swing.JTextField txtMenuName;
     // End of variables declaration//GEN-END:variables
+
+    private static java.util.List<com.ubaya.disprog.Menu> lihatMenu(int idResto, java.lang.String filter, java.lang.String value) {
+        com.ubaya.disprog.MenuWebService_Service service = new com.ubaya.disprog.MenuWebService_Service();
+        com.ubaya.disprog.MenuWebService port = service.getMenuWebServicePort();
+        return port.lihatMenu(idResto, filter, value);
+    }
 }

@@ -54,6 +54,8 @@ public class FormReview extends javax.swing.JFrame {
         jButtonSubmit = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jTextFieldReview = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setSize(new java.awt.Dimension(1000, 1000));
@@ -201,7 +203,7 @@ public class FormReview extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButtonSubmit);
-        jButtonSubmit.setBounds(310, 440, 130, 41);
+        jButtonSubmit.setBounds(320, 510, 130, 41);
 
         jLabel9.setBackground(new java.awt.Color(255, 195, 0));
         jLabel9.setFont(new java.awt.Font("Dubai", 1, 24)); // NOI18N
@@ -218,6 +220,13 @@ public class FormReview extends javax.swing.JFrame {
         jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         getContentPane().add(jLabel7);
         jLabel7.setBounds(0, 20, 799, 50);
+        getContentPane().add(jTextFieldReview);
+        jTextFieldReview.setBounds(280, 440, 230, 50);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel1.setText("Review:");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(120, 440, 130, 44);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -336,6 +345,7 @@ public class FormReview extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonSubmit;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -345,6 +355,7 @@ public class FormReview extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jTextFieldReview;
     private java.awt.Label lblLogOut;
     private javax.swing.JLabel lblStar1;
     private javax.swing.JLabel lblStar2;

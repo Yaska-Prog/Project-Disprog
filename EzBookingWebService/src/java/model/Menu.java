@@ -8,6 +8,7 @@ package model;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
@@ -30,9 +31,10 @@ public class Menu extends MyModel {
         this.harga = harga;
     }
 
-    public Menu(int id, String nama_menu, int resto_id, int harga) {
+    public Menu(int id, String nama_menu, String jenis_menu1, int resto_id, int harga) {
         this.id = id;
         this.nama_menu = nama_menu;
+        this.jenis_menu = jenis_menu1;
         this.resto_id = resto_id;
         this.harga = harga;
     }
@@ -81,17 +83,12 @@ public class Menu extends MyModel {
         boolean status = false;
         try {
             if (!MyModel.conn.isClosed()) {
-                System.out.println("Masuk1");
                 PreparedStatement sql = (PreparedStatement) MyModel.conn.prepareStatement("insert into menus(jenis, nama, harga, restaurant_id)"
                         + " values(?,?,?,?)");
                 sql.setString(1, jenis_menu);
-                System.out.println("Berhasil jenis menu");
                 sql.setString(2, nama_menu);
-                System.out.println("Berhasil nama menu");
                 sql.setInt(3, harga);
-                System.out.println("Berhasil harga menu");
                 sql.setInt(4, resto_id);
-                System.out.println("Berhasil id resto");
 
                 sql.executeUpdate();
                 sql.close();
@@ -123,5 +120,44 @@ public class Menu extends MyModel {
             System.out.println("error pada update jenis: " + e.getMessage());
         }
         return hasil;
+    }
+
+    public ArrayList<Menu> lihatMenu(int id_resto, String filter, String value) {
+        ArrayList<Menu> listMenu = new ArrayList<Menu>();
+        try {
+            if (filter.equals("none")) {
+                this.statment = (Statement) MyModel.conn.createStatement();
+                this.resultset = this.statment.executeQuery("select * from menus where restaurant_id = " + id_resto + ";");
+                while (this.resultset.next()) {
+                    Menu menu = new Menu(this.resultset.getInt("id"),
+                            this.resultset.getString("nama"),
+                            this.resultset.getString("jenis"),
+                            this.resultset.getInt("restaurant_id"),
+                            this.resultset.getInt("harga")
+                    );
+                    System.out.println(this.resultset.getString("jenis"));
+
+                    listMenu.add(menu);
+                    System.out.println("Jenis: " + menu.getJenis_menu());
+
+                }
+            } else {
+                this.statment = (Statement) MyModel.conn.createStatement();
+                this.resultset = this.statment.executeQuery("select * from menus where restaurant_id = " + id_resto + " AND " + filter + " LIKE '%" + value + "%'");
+                while (this.resultset.next()) {
+                    Menu menu = new Menu(this.resultset.getInt("id"),
+                            this.resultset.getString("nama"),
+                            this.resultset.getString("jenis"),
+                            this.resultset.getInt("restaurant_id"),
+                            this.resultset.getInt("harga")
+                    );
+                    System.out.println("Jenis menu: " + menu.getJenis_menu());
+                    listMenu.add(menu);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Error pada lihat menu, pesan: " + e.getMessage());
+        }
+        return listMenu;
     }
 }

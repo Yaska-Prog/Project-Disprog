@@ -22,6 +22,9 @@ public class FormReservation extends javax.swing.JFrame {
     /**
      * Creates new form Reservation
      */
+    public static String namaResto;
+    public static int id_resto;
+
     public FormReservation() {
         initComponents();
         txtReservant.setText(FormLogIn.GlobalUsername);
@@ -33,10 +36,10 @@ public class FormReservation extends javax.swing.JFrame {
             DefaultTableModel model = (DefaultTableModel) tableRestaurantList.getModel();
             for (int i = 0; i < collections.size(); i++) {
                 Restaurant resto = collections.get(i);
-                model.addRow(new Object[]{resto.getNamaRestaurant(), resto.getMaxTable(), jumlahKetersediaanMeja(resto.getId(),waktu), resto.getTotalBintang()});
+                model.addRow(new Object[]{resto.getNamaRestaurant(), resto.getMaxTable(), jumlahKetersediaanMeja(resto.getId(), waktu), resto.getTotalBintang()});
             }
         } catch (Exception e) {
-            System.out.println("Error, pesan: " + e.getMessage());
+            System.out.println("Error pada form load, pesan: " + e.getMessage());
         }
     }
 
@@ -300,12 +303,26 @@ public class FormReservation extends javax.swing.JFrame {
                 model.addRow(new Object[]{resto.getNamaRestaurant(), resto.getMaxTable(), jumlahKetersediaanMeja(resto.getId(), time), resto.getTotalBintang()});
             }
         } catch (Exception e) {
-            System.out.println("Error, pesan: " + e.getMessage());
+            System.out.println("Error pada jdatetanggal, pesan: " + e.getMessage());
         }
     }//GEN-LAST:event_jdateTanggalPropertyChange
 
     private void btnBook1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBook1ActionPerformed
         // TODO add your handling code here:
+        try {
+            if (tableRestaurantList.getSelectionModel().isSelectionEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please select the restaurant you want to reserve!");
+            } else {
+                int row = tableRestaurantList.getSelectedRow();
+                namaResto = (String) tableRestaurantList.getValueAt(row, 0);
+                id_resto= ambilId(namaResto);
+                FormOrderMenu frm = new FormOrderMenu();
+                this.setVisible(false);
+                frm.setVisible(true);
+            }
+        } catch (Exception e) {
+            System.out.println("Error pada penambahan menu, pesan: " + e.getMessage());
+        }
     }//GEN-LAST:event_btnBook1ActionPerformed
 
     /**
@@ -363,32 +380,32 @@ public class FormReservation extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private static java.util.List<java.lang.String> showListIdRestaurant() {
-        com.ubaya.disprog.EzBookingWebService_Service service = new com.ubaya.disprog.EzBookingWebService_Service();
-        com.ubaya.disprog.EzBookingWebService port = service.getEzBookingWebServicePort();
+        com.ubaya.disprog.ReservationWebService_Service service = new com.ubaya.disprog.ReservationWebService_Service();
+        com.ubaya.disprog.ReservationWebService port = service.getReservationWebServicePort();
         return port.showListIdRestaurant();
     }
 
     private static int jumlahKetersediaanMeja(int idRestaurant, String tglPesanan) {
-        com.ubaya.disprog.EzBookingWebService_Service service = new com.ubaya.disprog.EzBookingWebService_Service();
-        com.ubaya.disprog.EzBookingWebService port = service.getEzBookingWebServicePort();
+        com.ubaya.disprog.ReservationWebService_Service service = new com.ubaya.disprog.ReservationWebService_Service();
+        com.ubaya.disprog.ReservationWebService port = service.getReservationWebServicePort();
         return port.jumlahKetersediaanMeja(idRestaurant, tglPesanan);
     }
 
     private static java.util.List<com.ubaya.disprog.Restaurant> showListRestaurant(java.lang.String filter, java.lang.String value) {
-        com.ubaya.disprog.EzBookingWebService_Service service = new com.ubaya.disprog.EzBookingWebService_Service();
-        com.ubaya.disprog.EzBookingWebService port = service.getEzBookingWebServicePort();
+        com.ubaya.disprog.ReservationWebService_Service service = new com.ubaya.disprog.ReservationWebService_Service();
+        com.ubaya.disprog.ReservationWebService port = service.getReservationWebServicePort();
         return port.showListRestaurant(filter, value);
     }
 
     private static boolean insertDataReservasi(java.lang.String tanggalPemesanan, int jumlahMeja, int jumlahOrang, java.lang.String status, int penilaianBintang, int restaurantId, java.lang.String accountUsername) {
-        com.ubaya.disprog.EzBookingWebService_Service service = new com.ubaya.disprog.EzBookingWebService_Service();
-        com.ubaya.disprog.EzBookingWebService port = service.getEzBookingWebServicePort();
+        com.ubaya.disprog.ReservationWebService_Service service = new com.ubaya.disprog.ReservationWebService_Service();
+        com.ubaya.disprog.ReservationWebService port = service.getReservationWebServicePort();
         return port.insertDataReservasi(tanggalPemesanan, jumlahMeja, jumlahOrang, status, penilaianBintang, restaurantId, accountUsername);
     }
 
     private static int ambilId(java.lang.String username) {
-        com.ubaya.disprog.EzBookingWebService_Service service = new com.ubaya.disprog.EzBookingWebService_Service();
-        com.ubaya.disprog.EzBookingWebService port = service.getEzBookingWebServicePort();
+        com.ubaya.disprog.ReservationWebService_Service service = new com.ubaya.disprog.ReservationWebService_Service();
+        com.ubaya.disprog.ReservationWebService port = service.getReservationWebServicePort();
         return port.ambilId(username);
     }
 }

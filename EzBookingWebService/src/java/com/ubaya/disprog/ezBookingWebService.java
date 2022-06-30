@@ -279,7 +279,7 @@ public class ezBookingWebService {
         //TODO write your implementation code here:
         boolean status = false;
         Reservasi res = new Reservasi();
-        status = res.tambah_rating(id_reservasi, bintang);
+        //status = res.tambah_rating(id_reservasi, bintang);
         return status;
     }
 }

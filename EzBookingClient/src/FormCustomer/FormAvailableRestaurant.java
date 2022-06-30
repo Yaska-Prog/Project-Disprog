@@ -170,14 +170,14 @@ public class FormAvailableRestaurant extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private static java.util.List<com.ubaya.disprog.Restaurant> showListRestaurant(java.lang.String filter, java.lang.String value) {
-        com.ubaya.disprog.EzBookingWebService_Service service = new com.ubaya.disprog.EzBookingWebService_Service();
-        com.ubaya.disprog.EzBookingWebService port = service.getEzBookingWebServicePort();
+        com.ubaya.disprog.ReservationWebService_Service service = new com.ubaya.disprog.ReservationWebService_Service();
+        com.ubaya.disprog.ReservationWebService port = service.getReservationWebServicePort();
         return port.showListRestaurant(filter, value);
     }
 
     private static int jumlahKetersediaanMeja(int idRestaurant, String tglPesanan) {
-        com.ubaya.disprog.EzBookingWebService_Service service = new com.ubaya.disprog.EzBookingWebService_Service();
-        com.ubaya.disprog.EzBookingWebService port = service.getEzBookingWebServicePort();
+        com.ubaya.disprog.ReservationWebService_Service service = new com.ubaya.disprog.ReservationWebService_Service();
+        com.ubaya.disprog.ReservationWebService port = service.getReservationWebServicePort();
         return port.jumlahKetersediaanMeja(idRestaurant,tglPesanan);
     }
 }

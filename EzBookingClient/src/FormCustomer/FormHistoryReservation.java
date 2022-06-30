@@ -223,8 +223,8 @@ public class FormHistoryReservation extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private static java.util.List<com.ubaya.disprog.Reservasi> showReservasiUser(java.lang.String accountName) {
-        com.ubaya.disprog.EzBookingWebService_Service service = new com.ubaya.disprog.EzBookingWebService_Service();
-        com.ubaya.disprog.EzBookingWebService port = service.getEzBookingWebServicePort();
+        com.ubaya.disprog.ReservationWebService_Service service = new com.ubaya.disprog.ReservationWebService_Service();
+        com.ubaya.disprog.ReservationWebService port = service.getReservationWebServicePort();
         return port.showReservasiUser(accountName);
     }
 }

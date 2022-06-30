@@ -189,13 +189,11 @@ public class Restaurant extends MyModel {
                 this.statment = (Statement) MyModel.conn.createStatement();
                 this.resultset = this.statment.executeQuery("SELECT (ra.max_table - sum(ri.jumlahMeja)) as jumlah from restaurant ra inner join reservasi ri on ri.restaurant_id = ra.id where ri.restaurant_id = " + restaurantId + " and (ri.tanggalPesanan = '" + tanggal + "') and (ri.status='Confirmed' OR ri.status='On Process')");
                 if (resultset.next()) {
-                    System.out.println(this.resultset.getInt("jumlah"));
                     jumlah += this.resultset.getInt("jumlah");
                     if (jumlah == 0) {
                         this.statment = (Statement) MyModel.conn.createStatement();
                         this.resultset = this.statment.executeQuery("select max_table as tabel from restaurant where id = " + restaurantId);
                         if (resultset.next()) {
-                            System.out.println(this.resultset.getInt("tabel"));
                             jumlah += this.resultset.getInt("tabel");
                         }
                     }
@@ -274,11 +272,8 @@ public class Restaurant extends MyModel {
 
     public ArrayList<Restaurant> showAllResto(String filter, String value) {
         ArrayList<Restaurant> collections = new ArrayList<Restaurant>();
-        System.out.println(filter);
         try {
-            System.out.println("Berhasil masuk kedalam try");
             if (filter.equals("none")) {
-                System.out.println("Berhasil masuk kedalam none");
                 this.statment = (Statement) MyModel.conn.createStatement();
                 this.resultset = this.statment.executeQuery("select * from restaurant");
                 while (this.resultset.next()) {
@@ -293,10 +288,8 @@ public class Restaurant extends MyModel {
                             this.resultset.getInt("overall_rating")
                     );
                     collections.add(resto);
-                    System.out.println("Berhasil");
                 }
             } else if (filter.equals("total_pelanggaan") || filter.equals("max_table")) {
-                System.out.println("Berhasil masuk kedalam int");
                 this.statment = (Statement) MyModel.conn.createStatement();
                 this.resultset = this.statment.executeQuery("select * from restaurant where " + filter + " = " + Integer.parseInt(value));
                 while (this.resultset.next()) {
@@ -311,10 +304,8 @@ public class Restaurant extends MyModel {
                             this.resultset.getInt("overall_rating")
                     );
                     collections.add(resto);
-                    System.out.println("Berhasil");
                 }
             } else if (filter.equals("overall_rating")) {
-                System.out.println("Berhasil masuk kedalam float");
                 this.statment = (Statement) MyModel.conn.createStatement();
                 this.resultset = this.statment.executeQuery("select * from restaurant where " + filter + " = " + Float.parseFloat(value));
                 while (this.resultset.next()) {
@@ -329,10 +320,8 @@ public class Restaurant extends MyModel {
                             this.resultset.getInt("overall_rating")
                     );
                     collections.add(resto);
-                    System.out.println("Berhasil");
                 }
             } else {
-                System.out.println("Berhasil masuk kedalam string");
                 this.statment = (Statement) MyModel.conn.createStatement();
                 this.resultset = this.statment.executeQuery("select * from restaurant where " + filter + " = '" + value + "';");
                 while (this.resultset.next()) {
@@ -347,7 +336,6 @@ public class Restaurant extends MyModel {
                             this.resultset.getInt("overall_rating")
                     );
                     collections.add(resto);
-                    System.out.println("Berhasil");
                 }
             }
         } catch (Exception e) {

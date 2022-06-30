@@ -161,9 +161,7 @@ public class Reservasi extends MyModel {
                         this.resultset.getInt("penilaian"),
                         this.resultset.getInt("restaurant_id"),
                         this.resultset.getString("account_username"));
-                System.out.println(reservasi.getTanggalPesanan());
                 collections.add(reservasi);
-                System.out.println("Berhasil ");
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -187,9 +185,7 @@ public class Reservasi extends MyModel {
                         this.resultset.getInt("penilaian"),
                         this.resultset.getInt("restaurant_id"),
                         this.resultset.getString("account_username"));
-                System.out.println(reservasi.getTanggalPesanan());
                 collections.add(reservasi);
-                System.out.println("Berhasil ");
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -223,7 +219,6 @@ public class Reservasi extends MyModel {
             this.statment = (Statement) MyModel.conn.createStatement();
             this.resultset = this.statment.executeQuery("select * from reservasi where account_username = '" + username + "';");
             while (this.resultset.next()) {
-                System.out.println("Resultset: " + this.resultset.getString("tanggalPesanan"));
                 String date = this.resultset.getString("tanggalPesanan");
                 Reservasi reservasi = new Reservasi(
                         this.resultset.getInt("id"),
@@ -235,8 +230,6 @@ public class Reservasi extends MyModel {
                         this.resultset.getInt("restaurant_id"),
                         this.resultset.getString("account_username"));
                 collections.add(reservasi);
-                System.out.println("Reservasi: " + reservasi.getTanggalPesanan());
-                System.out.println("Berhasil1");
             }
         } catch (SQLException e) {
             System.out.println("Error pada user reservasi, pesan: " + e.getMessage());
@@ -276,8 +269,6 @@ public class Reservasi extends MyModel {
                         this.resultset.getInt("penilaian"),
                         this.resultset.getInt("restaurant_id"),
                         this.resultset.getString("account_username"));
-                System.out.println(reservasi.getTanggalPesanan());
-                System.out.println("Berhasil ");
             }
         } catch (Exception e) {
             System.out.println("Error pada ambil class reservasi, pesan: " + e.getMessage());
@@ -285,16 +276,17 @@ public class Reservasi extends MyModel {
         return reservasi;
     }
 
-    public boolean tambah_rating(int idReservasi, int bintang){
+    public boolean tambah_rating(int idReservasi, int bintang, String review){
         boolean status = false;
         try {
             this.statment = (Statement) MyModel.conn.createStatement();
             if (!MyModel.conn.isClosed()) {
                 PreparedStatement sql = (PreparedStatement) MyModel.conn.prepareStatement(
-                        "update reservasi set penilaian = ?, status = ? where id = ?");
+                        "update reservasi set penilaian = ?, status = ?, review_user = ? where id = ?");
                 sql.setInt(1, bintang);
                 sql.setString(2, "Finish");
-                sql.setInt(3, idReservasi);
+                sql.setString(3, review);
+                sql.setInt(4, idReservasi);
                 sql.executeUpdate();
                 sql.close();
                 status = true;
