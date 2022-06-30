@@ -4,4 +4,10 @@
     <system systemId="http://localhost:8080/EzBookingWebService/ezBookingWebService?xsd=1" uri="xml-resources/web-service-references/ezBookingWebService/wsdl/localhost_8080/EzBookingWebService/ezBookingWebService.xsd_1.xsd"/>
     <system systemId="http://localhost:8080/EzBookingWebService/restaurantWebService?wsdl" uri="xml-resources/web-service-references/restaurantWebService/wsdl/localhost_8080/EzBookingWebService/restaurantWebService.wsdl"/>
     <system systemId="http://localhost:8080/EzBookingWebService/restaurantWebService?xsd=1" uri="xml-resources/web-service-references/restaurantWebService/wsdl/localhost_8080/EzBookingWebService/restaurantWebService.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/EzBookingWebService/loginWebService?wsdl" uri="xml-resources/web-service-references/loginWebService/wsdl/localhost_8080/EzBookingWebService/loginWebService.wsdl"/>
+    <system systemId="http://localhost:8080/EzBookingWebService/loginWebService?xsd=1" uri="xml-resources/web-service-references/loginWebService/wsdl/localhost_8080/EzBookingWebService/loginWebService.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/EzBookingWebService/menuWebService?wsdl" uri="xml-resources/web-service-references/menuWebService/wsdl/localhost_8080/EzBookingWebService/menuWebService.wsdl"/>
+    <system systemId="http://localhost:8080/EzBookingWebService/menuWebService?xsd=1" uri="xml-resources/web-service-references/menuWebService/wsdl/localhost_8080/EzBookingWebService/menuWebService.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/EzBookingWebService/reservationWebService?wsdl" uri="xml-resources/web-service-references/reservationWebService/wsdl/localhost_8080/EzBookingWebService/reservationWebService.wsdl"/>
+    <system systemId="http://localhost:8080/EzBookingWebService/reservationWebService?xsd=1" uri="xml-resources/web-service-references/reservationWebService/wsdl/localhost_8080/EzBookingWebService/reservationWebService.xsd_1.xsd"/>
 </catalog>
