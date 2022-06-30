@@ -123,41 +123,7 @@ public class FormInputMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
-        String newUsername = txtUsername.getText();
-        String newMail = txtEmail.getText();
-        String newPassword = String.valueOf(txtPassword.getPassword());
-        String newRetypepassword = String.valueOf(txtRePassword.getPassword());
-        String role = (String) cboRole.getSelectedItem();
-        restoUsername = newUsername;
-        try {
-            if (!newPassword.equals(newRetypepassword)) {
-                JOptionPane.showMessageDialog(this, "Registration failed, password and your re type password doesn't match.");
-            } else {
-                if (newUsername.isEmpty() || newMail.isEmpty() || newPassword.isEmpty() || newRetypepassword.isEmpty() || role.isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Registration failed, please input the require data in the text box");
-                } else {
-                    if(checkUsername(newUsername)){
-                        registrasiAccount(newUsername, newMail, newPassword, role);
-                        if (role.equals("Partner Restaurant")) {
-                            JOptionPane.showMessageDialog(this, "Registration account success, now please fill in the details of the restaurant.");
-                            this.setVisible(false);
-                            new FormInputDataRestaurant().setVisible(true);
-                        } else {
-                            JOptionPane.showMessageDialog(this, "Registration success, now please log in with the new account you just created.");
-                            this.setVisible(false);
-                            FormLogIn formLogin = new FormLogIn();
-                            formLogin.setVisible(true);
-                        }
-                    }
-                    else
-                    {
-                        JOptionPane.showMessageDialog(this, "Username already, please change username");
-                    }
-                }
-            }
-        } catch (Exception e) {
-            System.out.println("Error pada register, pesan error: " + e.getMessage());
-        }
+        
     }//GEN-LAST:event_btnConfirmActionPerformed
 
     /**

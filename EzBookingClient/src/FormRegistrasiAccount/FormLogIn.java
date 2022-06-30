@@ -247,8 +247,8 @@ public class FormLogIn extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private static java.util.List<com.ubaya.disprog.Account> checkLogin(java.lang.String username, java.lang.String password) {
-        com.ubaya.disprog.EzBookingWebService_Service service = new com.ubaya.disprog.EzBookingWebService_Service();
-        com.ubaya.disprog.EzBookingWebService port = service.getEzBookingWebServicePort();
+        com.ubaya.disprog.LoginWebService_Service service = new com.ubaya.disprog.LoginWebService_Service();
+        com.ubaya.disprog.LoginWebService port = service.getLoginWebServicePort();
         return port.checkLogin(username, password);
     }
 }
