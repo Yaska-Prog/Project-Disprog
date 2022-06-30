@@ -60,6 +60,8 @@ public class FormHomeRestaurant extends javax.swing.JFrame {
         btnShowReservation = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         lblLogOut = new java.awt.Label();
+        btnEditRestaurant1 = new javax.swing.JButton();
+        btnStatisticRestaurant1 = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -137,6 +139,28 @@ public class FormHomeRestaurant extends javax.swing.JFrame {
             }
         });
 
+        btnEditRestaurant1.setBackground(new java.awt.Color(255, 195, 0));
+        btnEditRestaurant1.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        btnEditRestaurant1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FormRestaurant/writing.png"))); // NOI18N
+        btnEditRestaurant1.setText("Edit Menu");
+        btnEditRestaurant1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 24, 24), 2));
+        btnEditRestaurant1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditRestaurant1ActionPerformed(evt);
+            }
+        });
+
+        btnStatisticRestaurant1.setBackground(new java.awt.Color(255, 195, 0));
+        btnStatisticRestaurant1.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
+        btnStatisticRestaurant1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FormRestaurant/menu.png"))); // NOI18N
+        btnStatisticRestaurant1.setText("Input Menu");
+        btnStatisticRestaurant1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 24, 24), 2));
+        btnStatisticRestaurant1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStatisticRestaurant1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -148,11 +172,13 @@ public class FormHomeRestaurant extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnShowReservation, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
-                            .addComponent(btnEditRestaurant, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnEditRestaurant, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnEditRestaurant1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(68, 68, 68)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnShowReview, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnStatisticRestaurant, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE))
+                            .addComponent(btnStatisticRestaurant, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
+                            .addComponent(btnStatisticRestaurant1, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE))
                         .addGap(98, 98, 98))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(lblLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -173,7 +199,11 @@ public class FormHomeRestaurant extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEditRestaurant, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnStatisticRestaurant, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnEditRestaurant1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnStatisticRestaurant1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         pack();
@@ -204,6 +234,14 @@ public class FormHomeRestaurant extends javax.swing.JFrame {
         FormLogIn formLogin = new FormLogIn();
         formLogin.setVisible(true);
     }//GEN-LAST:event_lblLogOutMouseClicked
+
+    private void btnEditRestaurant1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditRestaurant1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEditRestaurant1ActionPerformed
+
+    private void btnStatisticRestaurant1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStatisticRestaurant1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnStatisticRestaurant1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -249,9 +287,11 @@ public class FormHomeRestaurant extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEditRestaurant;
+    private javax.swing.JButton btnEditRestaurant1;
     private javax.swing.JButton btnShowReservation;
     private javax.swing.JButton btnShowReview;
     private javax.swing.JButton btnStatisticRestaurant;
+    private javax.swing.JButton btnStatisticRestaurant1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
