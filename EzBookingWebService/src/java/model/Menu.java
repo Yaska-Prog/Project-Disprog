@@ -6,12 +6,14 @@
 package model;
 
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
  * @author LENOVO
  */
-public class Menu extends MyModel{
+public class Menu extends MyModel {
 
     private int id;
     private String nama_menu;
@@ -101,4 +103,25 @@ public class Menu extends MyModel{
         return status;
     }
 
+    public boolean editMenu(int id, String nama_menu, int harga, String jenis_menu) {
+        boolean hasil = false;
+        try {
+            this.statment = (Statement) MyModel.conn.createStatement();
+            if (!MyModel.conn.isClosed()) {
+                PreparedStatement sql = (PreparedStatement) MyModel.conn.prepareStatement(
+                        "update menus set jenis = ?, nama = ?, harga = ? where id= ?");
+                sql.setString(1, jenis_menu);
+                sql.setString(2, nama_menu);
+                sql.setInt(3, harga);
+                sql.setInt(4, id);
+
+                sql.executeUpdate();
+                sql.close();
+                hasil = true;
+            }
+        } catch (SQLException e) {
+            System.out.println("error pada update jenis: " + e.getMessage());
+        }
+        return hasil;
+    }
 }
