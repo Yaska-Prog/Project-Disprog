@@ -26,6 +26,8 @@ public class FormOrderMenu extends javax.swing.JFrame {
     public FormOrderMenu() {
         initComponents();
         try {
+            String namaResto = FormReservation.namaResto;
+            lblRestaurantName.setText(namaResto);
             DefaultTableModel model = (DefaultTableModel) tableMenuList.getModel();
             listMenu = (ArrayList<Menu>) lihatMenu(FormReservation.id_resto, "none", "");
             for (Menu menu : listMenu) {

@@ -4,11 +4,23 @@
 <xsd:import namespace="http://disprog.ubaya.com/" schemaLocation="http://localhost:8080/EzBookingWebService/restaurantWebService?xsd=1"/>
 </xsd:schema>
 </types>
+<message name="hello">
+<part name="parameters" element="tns:hello"/>
+</message>
+<message name="helloResponse">
+<part name="parameters" element="tns:helloResponse"/>
+</message>
 <message name="GetIdRestaurant">
 <part name="parameters" element="tns:GetIdRestaurant"/>
 </message>
 <message name="GetIdRestaurantResponse">
 <part name="parameters" element="tns:GetIdRestaurantResponse"/>
+</message>
+<message name="getStatusReservasi">
+<part name="parameters" element="tns:getStatusReservasi"/>
+</message>
+<message name="getStatusReservasiResponse">
+<part name="parameters" element="tns:getStatusReservasiResponse"/>
 </message>
 <message name="showReservasi">
 <part name="parameters" element="tns:showReservasi"/>
@@ -21,12 +33,6 @@
 </message>
 <message name="showReportResponse">
 <part name="parameters" element="tns:showReportResponse"/>
-</message>
-<message name="getStatusReservasi">
-<part name="parameters" element="tns:getStatusReservasi"/>
-</message>
-<message name="getStatusReservasiResponse">
-<part name="parameters" element="tns:getStatusReservasiResponse"/>
 </message>
 <message name="updateStatusReservasi">
 <part name="parameters" element="tns:updateStatusReservasi"/>
@@ -46,28 +52,30 @@
 <message name="updateDataRestaurantResponse">
 <part name="parameters" element="tns:updateDataRestaurantResponse"/>
 </message>
-<message name="showReservasiOnProcess">
-<part name="parameters" element="tns:showReservasiOnProcess"/>
-</message>
-<message name="showReservasiOnProcessResponse">
-<part name="parameters" element="tns:showReservasiOnProcessResponse"/>
-</message>
 <message name="showListDataRestaurant">
 <part name="parameters" element="tns:showListDataRestaurant"/>
 </message>
 <message name="showListDataRestaurantResponse">
 <part name="parameters" element="tns:showListDataRestaurantResponse"/>
 </message>
-<message name="hello">
-<part name="parameters" element="tns:hello"/>
+<message name="showReservasiOnProcess">
+<part name="parameters" element="tns:showReservasiOnProcess"/>
 </message>
-<message name="helloResponse">
-<part name="parameters" element="tns:helloResponse"/>
+<message name="showReservasiOnProcessResponse">
+<part name="parameters" element="tns:showReservasiOnProcessResponse"/>
 </message>
 <portType name="restaurantWebService">
+<operation name="hello">
+<input wsam:Action="http://disprog.ubaya.com/restaurantWebService/helloRequest" message="tns:hello"/>
+<output wsam:Action="http://disprog.ubaya.com/restaurantWebService/helloResponse" message="tns:helloResponse"/>
+</operation>
 <operation name="GetIdRestaurant">
 <input wsam:Action="http://disprog.ubaya.com/restaurantWebService/GetIdRestaurantRequest" message="tns:GetIdRestaurant"/>
 <output wsam:Action="http://disprog.ubaya.com/restaurantWebService/GetIdRestaurantResponse" message="tns:GetIdRestaurantResponse"/>
+</operation>
+<operation name="getStatusReservasi">
+<input wsam:Action="http://disprog.ubaya.com/restaurantWebService/getStatusReservasiRequest" message="tns:getStatusReservasi"/>
+<output wsam:Action="http://disprog.ubaya.com/restaurantWebService/getStatusReservasiResponse" message="tns:getStatusReservasiResponse"/>
 </operation>
 <operation name="showReservasi">
 <input wsam:Action="http://disprog.ubaya.com/restaurantWebService/showReservasiRequest" message="tns:showReservasi"/>
@@ -76,10 +84,6 @@
 <operation name="showReport">
 <input wsam:Action="http://disprog.ubaya.com/restaurantWebService/showReportRequest" message="tns:showReport"/>
 <output wsam:Action="http://disprog.ubaya.com/restaurantWebService/showReportResponse" message="tns:showReportResponse"/>
-</operation>
-<operation name="getStatusReservasi">
-<input wsam:Action="http://disprog.ubaya.com/restaurantWebService/getStatusReservasiRequest" message="tns:getStatusReservasi"/>
-<output wsam:Action="http://disprog.ubaya.com/restaurantWebService/getStatusReservasiResponse" message="tns:getStatusReservasiResponse"/>
 </operation>
 <operation name="updateStatusReservasi">
 <input wsam:Action="http://disprog.ubaya.com/restaurantWebService/updateStatusReservasiRequest" message="tns:updateStatusReservasi"/>
@@ -93,22 +97,36 @@
 <input wsam:Action="http://disprog.ubaya.com/restaurantWebService/updateDataRestaurantRequest" message="tns:updateDataRestaurant"/>
 <output wsam:Action="http://disprog.ubaya.com/restaurantWebService/updateDataRestaurantResponse" message="tns:updateDataRestaurantResponse"/>
 </operation>
-<operation name="showReservasiOnProcess">
-<input wsam:Action="http://disprog.ubaya.com/restaurantWebService/showReservasiOnProcessRequest" message="tns:showReservasiOnProcess"/>
-<output wsam:Action="http://disprog.ubaya.com/restaurantWebService/showReservasiOnProcessResponse" message="tns:showReservasiOnProcessResponse"/>
-</operation>
 <operation name="showListDataRestaurant">
 <input wsam:Action="http://disprog.ubaya.com/restaurantWebService/showListDataRestaurantRequest" message="tns:showListDataRestaurant"/>
 <output wsam:Action="http://disprog.ubaya.com/restaurantWebService/showListDataRestaurantResponse" message="tns:showListDataRestaurantResponse"/>
 </operation>
-<operation name="hello">
-<input wsam:Action="http://disprog.ubaya.com/restaurantWebService/helloRequest" message="tns:hello"/>
-<output wsam:Action="http://disprog.ubaya.com/restaurantWebService/helloResponse" message="tns:helloResponse"/>
+<operation name="showReservasiOnProcess">
+<input wsam:Action="http://disprog.ubaya.com/restaurantWebService/showReservasiOnProcessRequest" message="tns:showReservasiOnProcess"/>
+<output wsam:Action="http://disprog.ubaya.com/restaurantWebService/showReservasiOnProcessResponse" message="tns:showReservasiOnProcessResponse"/>
 </operation>
 </portType>
 <binding name="restaurantWebServicePortBinding" type="tns:restaurantWebService">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+<operation name="hello">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
 <operation name="GetIdRestaurant">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="getStatusReservasi">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -127,15 +145,6 @@
 </output>
 </operation>
 <operation name="showReport">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="getStatusReservasi">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -171,15 +180,6 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="showReservasiOnProcess">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
 <operation name="showListDataRestaurant">
 <soap:operation soapAction=""/>
 <input>
@@ -189,7 +189,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="hello">
+<operation name="showReservasiOnProcess">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

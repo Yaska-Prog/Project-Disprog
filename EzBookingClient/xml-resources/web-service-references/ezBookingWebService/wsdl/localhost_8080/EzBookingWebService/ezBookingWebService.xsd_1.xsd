@@ -273,19 +273,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="give_rating">
-<xs:sequence>
-<xs:element name="id_reservasi" type="xs:int"/>
-<xs:element name="bintang" type="xs:int"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="give_ratingResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:boolean"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="getStatusReservasi">
 <xs:sequence>
 <xs:element name="idReservasi" type="xs:int"/>
@@ -295,6 +282,20 @@
 <xs:complexType name="getStatusReservasiResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="give_rating">
+<xs:sequence>
+<xs:element name="id_reservasi" type="xs:int"/>
+<xs:element name="bintang" type="xs:int"/>
+<xs:element name="review" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="give_ratingResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -443,18 +444,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="listYangSudahDireport">
-<xs:sequence>
-<xs:element name="accountUsername" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="listYangSudahDireportResponse">
-<xs:sequence>
-<xs:element name="return" type="tns:report" minOccurs="0" maxOccurs="unbounded"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="updateStatusReservasi">
 <xs:sequence>
 <xs:element name="status" type="xs:string" minOccurs="0"/>
@@ -465,6 +454,18 @@
 <xs:complexType name="updateStatusReservasiResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listYangSudahDireport">
+<xs:sequence>
+<xs:element name="accountUsername" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listYangSudahDireportResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:report" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 

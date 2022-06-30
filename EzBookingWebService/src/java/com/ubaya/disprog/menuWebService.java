@@ -12,6 +12,7 @@ import javax.jws.WebParam;
 import model.Menu;
 import model.Order;
 import model.Reservasi;
+import model.Restaurant;
 
 /**
  *
@@ -98,6 +99,13 @@ public class menuWebService {
         Menu menu = new Menu();
         ArrayList<Menu> listMenu = menu.lihatMenu(id_resto, Filter, Value);
         return listMenu;
+    }
+    
+    @WebMethod(operationName = "GetIdRestaurant")
+    public int GetIdRestaurant(@WebParam(name = "username") String username) {
+        //TODO write your implementation code here:
+        Restaurant res = new Restaurant();
+        return res.idResto(username);
     }
     
     
