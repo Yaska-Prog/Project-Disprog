@@ -6,28 +6,45 @@
 package model;
 
 import java.sql.PreparedStatement;
+import java.sql.Statement;
 
 /**
  *
  * @author LENOVO
  */
-public class Order extends MyModel {
+public class Orders extends MyModel {
 
     private int menu_id;
+    private int resto_id;
     private int reservasi_id;
     private int jumlah_pesanan;
 
-    public Order(int menu_id, int reservasi_id, int jumlah_pesanan) {
+    public Orders(int menu_id, int resto_id,  int reservasi_id, int jumlah_pesanan) {
+        this.menu_id = menu_id;
+        this.reservasi_id = reservasi_id;
+        this.jumlah_pesanan = jumlah_pesanan;
+        this.resto_id = resto_id;
+    }
+
+    public Orders(int menu_id, int reservasi_id, int jumlah_pesanan) {
         this.menu_id = menu_id;
         this.reservasi_id = reservasi_id;
         this.jumlah_pesanan = jumlah_pesanan;
     }
 
-    public Order() {
+    public Orders() {
     }
 
     public int getMenu_id() {
         return menu_id;
+    }
+
+    public int getResto_id() {
+        return resto_id;
+    }
+
+    public void setResto_id(int resto_id) {
+        this.resto_id = resto_id;
     }
 
     public void setMenu_id(int menu_id) {
@@ -68,6 +85,16 @@ public class Order extends MyModel {
             System.out.println("Error pada pemasukkan order, pesan: " + e.getMessage());
         }
         return status;
+    }
+    
+    public int subTotal(){
+        int harga = 0;
+        try {
+            this.statment = (Statement) MyModel.conn.createStatement();
+            this.resultset = this.statment.executeQuery("SELECT SUM(o.jumlah_pesanan * m.harga) FROM menus m INNER join orders o on o.menus_id = m.id WHERE o.reservasi_id = " + this.getReservasi_id());
+        } catch (Exception e) {
+        }
+        return harga;
     }
     
 }

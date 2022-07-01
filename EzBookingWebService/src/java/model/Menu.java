@@ -173,9 +173,36 @@ public class Menu extends MyModel {
                         this.resultset.getInt("harga")
                 );
             }
-            }catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("Error pada ambil menu, pesan: " + e.getMessage());
         }
-            return men;
-        }
+        return men;
     }
+
+    public ArrayList<Menu> show_menu(int resto_id, String filter, String value) {
+        ArrayList<Menu> listMenu = new ArrayList<Menu>();
+        try {
+            this.statment = (Statement) MyModel.conn.createStatement();
+            if (filter.equals("none")) {
+                this.resultset = this.statment.executeQuery("SELECT o.reservasi_id, m.jenis, m.nama, m.harga, r.status FROM orders o INNER JOIN menus m on o.menus_id = m.id INNER JOIN reservasi r on r.id = o.reservasi_id WHERE r.restaurant_id = " + resto_id + ";");
+
+            } else {
+                this.resultset = this.statment.executeQuery("SELECT o.reservasi_id, m.jenis, m.nama, m.harga, r.status FROM orders o INNER JOIN menus m on o.menus_id = m.id INNER JOIN reservasi r on r.id = o.reservasi_id WHERE r.restaurant_id = " + resto_id + " AND " + filter + " = '" + value + "';");
+
+            }
+            while (this.resultset.next()) {
+                Menu men = new Menu(this.resultset.getInt("id"),
+                        this.resultset.getString("nama"),
+                        this.resultset.getString("jenis"),
+                        this.resultset.getInt("restaurant_id"),
+                        this.resultset.getInt("harga")
+                );
+                listMenu.add(men);
+            }
+        } catch (Exception e) {
+            System.out.println("Error pada ambil menu, pesan: " + e.getMessage());
+        }
+        return listMenu;
+    }
+
+}

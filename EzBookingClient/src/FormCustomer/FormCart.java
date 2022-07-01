@@ -22,11 +22,13 @@ public class FormCart extends javax.swing.JFrame {
         try {
             String namaResto = FormReservation.namaResto;
             DefaultTableModel model = (DefaultTableModel) tableMenuList.getModel();
-            
+
             model.setRowCount(0);
             for (Menu menu : FormOrderMenu.listMenu) {
                 model.addRow(new Object[]{menu.getJenisMenu(), menu.getNamaMenu(), menu.getHarga()});
             }
+            lblSubTotal.setText(String.valueOf(FormOrderMenu.subTotal));
+
         } catch (Exception e) {
             System.out.println("Error pada form load, pesan error: " + e.getMessage());
         }
@@ -145,6 +147,8 @@ public class FormCart extends javax.swing.JFrame {
 
     private void btnAddToCartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddToCartActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
+        new FormReservation().setVisible(true);
     }//GEN-LAST:event_btnAddToCartActionPerformed
 
     /**

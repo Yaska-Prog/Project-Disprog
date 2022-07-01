@@ -10,7 +10,7 @@ import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import model.Menu;
-import model.Order;
+import model.Orders;
 import model.Reservasi;
 import model.Restaurant;
 
@@ -76,16 +76,17 @@ public class menuWebService {
 
     /**
      * Web service operation
+     * @param menus_id
      * @param resto_id
      * @param reserve_id
      * @param jumlah_pesanan
      * @return 
      */
     @WebMethod(operationName = "tambahOrder")
-    public boolean tambahOrder(@WebParam(name = "resto_id") int resto_id, @WebParam(name = "reserve_id") int reserve_id, @WebParam(name = "jumlah_pesanan") int jumlah_pesanan) {
+    public boolean tambahOrder(@WebParam(name = "menus_id") int menus_id, @WebParam(name = "resto_id") int resto_id, @WebParam(name = "reserve_id") int reserve_id, @WebParam(name = "jumlah_pesanan") int jumlah_pesanan) {
         //TODO write your implementation code here:
         boolean status = false;
-        Order o = new Order(resto_id, reserve_id, jumlah_pesanan);
+        Orders o = new Orders(menus_id, resto_id, reserve_id, jumlah_pesanan);
         status = o.insertOrder();
         return status;
     }
@@ -121,5 +122,23 @@ public class menuWebService {
         return menu_fix;
     }
     
+    @WebMethod(operationName = "ambil_order")
+    public Orders buat_order(@WebParam(name = "id_menu") int id_menu, @WebParam(name = "id_reservasi") int id_reservasi, @WebParam(name = "jumlah") int jumlah) {
+        //TODO write your implementation code here:
+        Orders od = new Orders(id_menu, id_reservasi, jumlah);
+        return od;
+    }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "ambil_max_id")
+    public int ambil_max_id() {
+        //TODO write your implementation code here:
+        Reservasi res = new Reservasi();
+        int hasil = res.ambil_max_id();
+        return hasil;
+    }
+
     
 }

@@ -297,6 +297,20 @@ public class Reservasi extends MyModel {
         return status;
     }
 
+    public int ambil_max_id(){
+        int hasil = 0;
+        try {
+            this.statment = (Statement) MyModel.conn.createStatement();
+            this.resultset = this.statment.executeQuery("select max(id) from reservasi");
+            while (this.resultset.next()){
+                hasil = this.resultset.getInt("max(id)");
+            }
+        } catch (Exception e) {
+            System.out.println("Error pada ambil max id reservasi, pesan: " + e.getMessage());
+        }
+        return hasil;
+    }
+    
     @Override
     public String toString() {
         return "JavaApplication4{" + "date=" + getTanggalPesanan() + '}';

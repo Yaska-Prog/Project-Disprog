@@ -4,8 +4,10 @@
  */
 package FormCustomer;
 
+import static FormCustomer.FormOrderMenu.listMenu;
 import FormRegistrasiAccount.FormLogIn;
-import static FormRegistrasiAccount.FormLogIn.username;
+import com.mysql.cj.x.protobuf.MysqlxCrud;
+import com.ubaya.disprog.Menu;
 import com.ubaya.disprog.Restaurant;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -262,8 +264,23 @@ public class FormReservation extends javax.swing.JFrame {
                             if (availTable < totalTable) {
                                 JOptionPane.showMessageDialog(this, "Error, restaurant don't have that much of available table");
                             } else {
+
                                 boolean helper = insertDataReservasi(time, totalTable, people, "On Process", 5, resto_id, reservant);
                                 if (helper) {
+                                    if (FormOrderMenu.list_jumlah.size() >= 0) {
+                                        for (int i = 0; i < FormOrderMenu.list_jumlah.size(); i++) {
+
+                                            Menu men = FormOrderMenu.listMenu.get(i);
+                                            int res_id = ambilMaxId();
+                                            int jumlah_pesanan = FormOrderMenu.list_jumlah.get(i);
+                                            System.out.println(resto_id);
+                                            System.out.println(res_id);
+                                            System.out.println("Jumlah pesanan: " + FormOrderMenu.list_jumlah.get(i));
+                                            System.out.println(men.getId());
+                                            
+                                            tambahOrder(men.getId(), resto_id, res_id, jumlah_pesanan);
+                                        }
+                                    }
                                     JOptionPane.showMessageDialog(this, "Reservation succesful, now please wait for the restaurant to accept your reservation order.");
                                     FormHomeCustomer frm = new FormHomeCustomer();
                                     this.setVisible(false);
@@ -315,7 +332,7 @@ public class FormReservation extends javax.swing.JFrame {
             } else {
                 int row = tableRestaurantList.getSelectedRow();
                 namaResto = (String) tableRestaurantList.getValueAt(row, 0);
-                id_resto= ambilId(namaResto);
+                id_resto = ambilId(namaResto);
                 FormOrderMenu frm = new FormOrderMenu();
                 this.setVisible(false);
                 frm.setVisible(true);
@@ -408,4 +425,20 @@ public class FormReservation extends javax.swing.JFrame {
         com.ubaya.disprog.ReservationWebService port = service.getReservationWebServicePort();
         return port.ambilId(username);
     }
+
+    private static int ambilMaxId() {
+        com.ubaya.disprog.MenuWebService_Service service = new com.ubaya.disprog.MenuWebService_Service();
+        com.ubaya.disprog.MenuWebService port = service.getMenuWebServicePort();
+        return port.ambilMaxId();
+    }
+
+    private static boolean tambahOrder(int menusId, int restoId, int reserveId, int jumlahPesanan) {
+        com.ubaya.disprog.MenuWebService_Service service = new com.ubaya.disprog.MenuWebService_Service();
+        com.ubaya.disprog.MenuWebService port = service.getMenuWebServicePort();
+        return port.tambahOrder(menusId, restoId, reserveId, jumlahPesanan);
+    }
+
+    
+
+   
 }

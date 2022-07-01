@@ -55,27 +55,33 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="jLabel2" alignment="1" max="32767" attributes="0"/>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="100" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="btnShowReservation" pref="267" max="32767" attributes="0"/>
-                          <Component id="btnEditRestaurant" max="32767" attributes="0"/>
-                          <Component id="btnEditRestaurant1" alignment="0" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="btnShowReview" max="32767" attributes="0"/>
-                          <Component id="btnStatisticRestaurant" pref="267" max="32767" attributes="0"/>
-                          <Component id="btnStatisticRestaurant1" alignment="0" pref="267" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="lblLogOut" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="btnEditRestaurant" min="-2" pref="267" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                      <Component id="btnEditMenu" min="-2" pref="267" max="-2" attributes="0"/>
+                      <EmptySpace pref="54" max="32767" attributes="0"/>
+                      <Component id="btnShowMenu" min="-2" pref="267" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                      <Component id="btnStatisticRestaurant1" min="-2" pref="267" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="lblLogOut" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="btnShowReservation" min="-2" pref="267" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
+                      <Component id="btnShowReview" min="-2" pref="267" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
+                      <Component id="btnStatisticRestaurant" min="-2" pref="267" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="119" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -90,18 +96,16 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnShowReview" alignment="3" min="-2" pref="145" max="-2" attributes="0"/>
                   <Component id="btnShowReservation" alignment="3" min="-2" pref="145" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnEditRestaurant" alignment="3" min="-2" pref="145" max="-2" attributes="0"/>
                   <Component id="btnStatisticRestaurant" alignment="3" min="-2" pref="145" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="83" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnEditRestaurant1" alignment="3" min="-2" pref="145" max="-2" attributes="0"/>
+                  <Component id="btnEditMenu" alignment="3" min="-2" pref="145" max="-2" attributes="0"/>
+                  <Component id="btnEditRestaurant" alignment="3" min="-2" pref="145" max="-2" attributes="0"/>
                   <Component id="btnStatisticRestaurant1" alignment="3" min="-2" pref="145" max="-2" attributes="0"/>
+                  <Component id="btnShowMenu" alignment="3" min="-2" pref="145" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace pref="106" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -229,7 +233,7 @@
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblLogOutMouseClicked"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnEditRestaurant1">
+    <Component class="javax.swing.JButton" name="btnEditMenu">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="c3" red="ff" type="rgb"/>
@@ -250,7 +254,7 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditRestaurant1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditMenuActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnStatisticRestaurant1">
@@ -275,6 +279,30 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnStatisticRestaurant1ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnShowMenu">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="0" green="c3" red="ff" type="rgb"/>
+        </Property>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Dubai" size="14" style="0"/>
+        </Property>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/FormRestaurant/pieces-of-cutlery.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Show Menu"/>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+            <LineBorder thickness="2">
+              <Color PropertyName="color" blue="18" green="18" red="ff" type="rgb"/>
+            </LineBorder>
+          </Border>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnShowMenuActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

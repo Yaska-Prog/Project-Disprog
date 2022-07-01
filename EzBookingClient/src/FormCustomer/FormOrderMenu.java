@@ -22,6 +22,9 @@ public class FormOrderMenu extends javax.swing.JFrame {
      * Creates new form FormOrderMenu
      */
     public static ArrayList<Menu> listMenu = new ArrayList<Menu>();
+    public static ArrayList<Integer> list_jumlah = new ArrayList<Integer>();
+
+    public static int subTotal = 0;
 
     public FormOrderMenu() {
         initComponents();
@@ -29,9 +32,9 @@ public class FormOrderMenu extends javax.swing.JFrame {
             String namaResto = FormReservation.namaResto;
             lblRestaurantName.setText(namaResto);
             DefaultTableModel model = (DefaultTableModel) tableMenuList.getModel();
-            listMenu = (ArrayList<Menu>) lihatMenu(FormReservation.id_resto, "none", "");
+            ArrayList<Menu> listMenu1 = (ArrayList<Menu>) lihatMenu(FormReservation.id_resto, "none", "");
             model.setRowCount(0);
-            for (Menu menu : listMenu) {
+            for (Menu menu : listMenu1) {
                 model.addRow(new Object[]{menu.getId(), menu.getJenisMenu(), menu.getNamaMenu(), menu.getHarga()});
             }
         } catch (Exception e) {
@@ -241,16 +244,27 @@ public class FormOrderMenu extends javax.swing.JFrame {
         try {
             int row = tableMenuList.getSelectedRow();
             int id = (int) tableMenuList.getValueAt(row, 0);
-            Menu menu = ambilMenu(id);
-            listMenu.add(menu);
+            int jumlah = (int) jTotalOrder.getValue();
+            if (jumlah <= 0) {
+                JOptionPane.showMessageDialog(this, "Tolong inputkan jumlah yang benar");
+            } else {
+                Menu menu = ambilMenu(id);
+                list_jumlah.add(jumlah);
+                listMenu.add(menu);
+                subTotal += (menu.getHarga() * jumlah);
+                JOptionPane.showMessageDialog(this, "Data berhasil ditambahkan di keranjang!");
+
+            }
         } catch (Exception e) {
             System.out.println("Error pada btn add to cart, pesan: " + e.getMessage());
         }
-        
+
     }//GEN-LAST:event_btnAddToCartActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
+        this.setVisible(false);
+        new FormReservation().setVisible(true);
 
     }//GEN-LAST:event_btnBackActionPerformed
 
@@ -261,9 +275,9 @@ public class FormOrderMenu extends javax.swing.JFrame {
             String filter = cboMenuType.getSelectedItem().toString();
             String value = txtMenuName.getText();
             DefaultTableModel model = (DefaultTableModel) tableMenuList.getModel();
-            listMenu = (ArrayList<Menu>) lihatMenu(FormReservation.id_resto, filter, value);
+            ArrayList<Menu> listMenu1 = (ArrayList<Menu>) lihatMenu(FormReservation.id_resto, filter, value);
             model.setRowCount(0);
-            for (Menu menu : listMenu) {
+            for (Menu menu : listMenu1) {
                 model.addRow(new Object[]{menu.getJenisMenu(), menu.getNamaMenu(), menu.getHarga()});
             }
         } catch (Exception e) {
@@ -278,9 +292,9 @@ public class FormOrderMenu extends javax.swing.JFrame {
             String filter = cboMenuType.getSelectedItem().toString();
             String value = txtMenuName.getText();
             DefaultTableModel model = (DefaultTableModel) tableMenuList.getModel();
-            listMenu = (ArrayList<Menu>) lihatMenu(FormReservation.id_resto, filter, value);
+            ArrayList<Menu> listMenu1 = (ArrayList<Menu>) lihatMenu(FormReservation.id_resto, filter, value);
             model.setRowCount(0);
-            for (Menu menu : listMenu) {
+            for (Menu menu : listMenu1) {
                 model.addRow(new Object[]{menu.getId(), menu.getJenisMenu(), menu.getNamaMenu(), menu.getHarga()});
             }
         } catch (Exception e) {
