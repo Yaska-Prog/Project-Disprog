@@ -40,6 +40,18 @@
 
 <xs:element name="updateStatusReservasiResponse" type="tns:updateStatusReservasiResponse"/>
 
+<xs:complexType name="hello">
+<xs:sequence>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="helloResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="showReservasi">
 <xs:sequence>
 <xs:element name="idRestaurant" type="xs:int"/>
@@ -73,15 +85,15 @@
 <xs:sequence/>
 </xs:complexType>
 
-<xs:complexType name="hello">
+<xs:complexType name="showReservasiOnProcess">
 <xs:sequence>
-<xs:element name="name" type="xs:string" minOccurs="0"/>
+<xs:element name="idRestaurant" type="xs:int"/>
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="helloResponse">
+<xs:complexType name="showReservasiOnProcessResponse">
 <xs:sequence>
-<xs:element name="return" type="xs:string" minOccurs="0"/>
+<xs:element name="return" type="tns:reservasi" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -94,18 +106,6 @@
 <xs:complexType name="GetIdRestaurantResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:int"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="showReservasiOnProcess">
-<xs:sequence>
-<xs:element name="idRestaurant" type="xs:int"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="showReservasiOnProcessResponse">
-<xs:sequence>
-<xs:element name="return" type="tns:reservasi" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -163,22 +163,6 @@
 </xs:complexContent>
 </xs:complexType>
 
-<xs:complexType name="insertDataRestaurant">
-<xs:sequence>
-<xs:element name="username" type="xs:string" minOccurs="0"/>
-<xs:element name="ownerName" type="xs:string" minOccurs="0"/>
-<xs:element name="nama_resto" type="xs:string" minOccurs="0"/>
-<xs:element name="alamat" type="xs:string" minOccurs="0"/>
-<xs:element name="max_table" type="xs:int"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="insertDataRestaurantResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:boolean"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="updateDataRestaurant">
 <xs:sequence>
 <xs:element name="ownerName" type="xs:string" minOccurs="0"/>
@@ -190,6 +174,22 @@
 </xs:complexType>
 
 <xs:complexType name="updateDataRestaurantResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="insertDataRestaurant">
+<xs:sequence>
+<xs:element name="username" type="xs:string" minOccurs="0"/>
+<xs:element name="ownerName" type="xs:string" minOccurs="0"/>
+<xs:element name="nama_resto" type="xs:string" minOccurs="0"/>
+<xs:element name="alamat" type="xs:string" minOccurs="0"/>
+<xs:element name="max_table" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="insertDataRestaurantResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:boolean"/>
 </xs:sequence>

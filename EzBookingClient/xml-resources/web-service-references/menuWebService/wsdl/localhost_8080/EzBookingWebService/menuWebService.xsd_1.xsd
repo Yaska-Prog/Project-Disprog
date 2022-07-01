@@ -28,6 +28,18 @@
 
 <xs:element name="tambahOrderResponse" type="tns:tambahOrderResponse"/>
 
+<xs:complexType name="hello">
+<xs:sequence>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="helloResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="tambahOrder">
 <xs:sequence>
 <xs:element name="resto_id" type="xs:int"/>
@@ -42,18 +54,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="hello">
-<xs:sequence>
-<xs:element name="name" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="helloResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="GetIdRestaurant">
 <xs:sequence>
 <xs:element name="username" type="xs:string" minOccurs="0"/>
@@ -63,21 +63,6 @@
 <xs:complexType name="GetIdRestaurantResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:int"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="tambahMenu">
-<xs:sequence>
-<xs:element name="nama_menu" type="xs:string" minOccurs="0"/>
-<xs:element name="jenis_menu" type="xs:string" minOccurs="0"/>
-<xs:element name="harga" type="xs:int"/>
-<xs:element name="resto_id" type="xs:int"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="tambahMenuResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:boolean"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -109,6 +94,21 @@
 
 <xs:complexType name="myModel" abstract="true">
 <xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="tambahMenu">
+<xs:sequence>
+<xs:element name="nama_menu" type="xs:string" minOccurs="0"/>
+<xs:element name="jenis_menu" type="xs:string" minOccurs="0"/>
+<xs:element name="harga" type="xs:int"/>
+<xs:element name="resto_id" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="tambahMenuResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="editMenu">

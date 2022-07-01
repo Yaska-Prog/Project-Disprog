@@ -45,24 +45,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="insertDataReservasi">
-<xs:sequence>
-<xs:element name="tanggalPemesanan" type="xs:string" minOccurs="0"/>
-<xs:element name="jumlahMeja" type="xs:int"/>
-<xs:element name="jumlahOrang" type="xs:int"/>
-<xs:element name="status" type="xs:string" minOccurs="0"/>
-<xs:element name="penilaianBintang" type="xs:int"/>
-<xs:element name="restaurantId" type="xs:int"/>
-<xs:element name="accountUsername" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="insertDataReservasiResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:boolean"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="showReservasiUser">
 <xs:sequence>
 <xs:element name="accountName" type="xs:string" minOccurs="0"/>
@@ -94,6 +76,24 @@
 
 <xs:complexType name="myModel" abstract="true">
 <xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="insertDataReservasi">
+<xs:sequence>
+<xs:element name="tanggalPemesanan" type="xs:string" minOccurs="0"/>
+<xs:element name="jumlahMeja" type="xs:int"/>
+<xs:element name="jumlahOrang" type="xs:int"/>
+<xs:element name="status" type="xs:string" minOccurs="0"/>
+<xs:element name="penilaianBintang" type="xs:int"/>
+<xs:element name="restaurantId" type="xs:int"/>
+<xs:element name="accountUsername" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="insertDataReservasiResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="showListRestaurant">

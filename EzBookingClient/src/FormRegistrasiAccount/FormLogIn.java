@@ -20,8 +20,8 @@ public class FormLogIn extends javax.swing.JFrame {
     /**
      * Creates new form MainForm
      */
-    com.ubaya.disprog.EzBookingWebService_Service service;
-    com.ubaya.disprog.EzBookingWebService port;
+    com.ubaya.disprog.LoginWebService_Service service;
+    com.ubaya.disprog.LoginWebService port;
 
     public static String GlobalUsername;
     public FormLogIn() {

@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jax-ws xmlns="http://www.netbeans.org/ns/jax-ws/1">
   <services>
-    <service name="ezBookingWebService">
-      <implementation-class>com.ubaya.disprog.ezBookingWebService</implementation-class>
-    </service>
     <service name="loginWebService">
       <implementation-class>com.ubaya.disprog.loginWebService</implementation-class>
     </service>

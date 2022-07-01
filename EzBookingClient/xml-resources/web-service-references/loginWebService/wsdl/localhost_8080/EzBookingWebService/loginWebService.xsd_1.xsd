@@ -16,6 +16,18 @@
 
 <xs:element name="registrasi_accountResponse" type="tns:registrasi_accountResponse"/>
 
+<xs:complexType name="check_username">
+<xs:sequence>
+<xs:element name="username" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="check_usernameResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="check_login">
 <xs:sequence>
 <xs:element name="username" type="xs:string" minOccurs="0"/>
@@ -45,18 +57,6 @@
 
 <xs:complexType name="myModel" abstract="true">
 <xs:sequence/>
-</xs:complexType>
-
-<xs:complexType name="check_username">
-<xs:sequence>
-<xs:element name="username" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="check_usernameResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:boolean"/>
-</xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="hello">

@@ -16,23 +16,6 @@
             <classpath path="${libs.jaxws21.classpath}"/>
         </taskdef>
     </target>
-    <target name="wsimport-client-ezBookingWebService" depends="wsimport-init">
-        <mkdir dir="${build.generated.dir}/jax-wsCache/ezBookingWebService"/>
-        <property name="wsdl-ezBookingWebService" location="xml-resources/web-service-references/ezBookingWebService/wsdl/localhost_8080/EzBookingWebService/ezBookingWebService.wsdl"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/ezBookingWebService" destdir="${build.generated.dir}/jax-wsCache/ezBookingWebService" wsdl="${wsdl-ezBookingWebService}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/EzBookingWebService/ezBookingWebService?wsdl" xnocompile="true" xendorsed="true">
-            <depends file="${wsdl-ezBookingWebService}"/>
-            <produces dir="${build.generated.dir}/jax-wsCache/ezBookingWebService"/>
-        </wsimport>
-        <copy todir="${build.generated.sources.dir}/jax-ws">
-            <fileset dir="${build.generated.dir}/jax-wsCache/ezBookingWebService">
-                <include name="**/*.java"/>
-            </fileset>
-        </copy>
-    </target>
-    <target name="wsimport-client-clean-ezBookingWebService" depends="-init-project">
-        <delete dir="${build.generated.dir}/jax-wsCache/ezBookingWebService"/>
-        <delete dir="${build.generated.sources.dir}/jax-ws/com/ubaya/disprog"/>
-    </target>
     <target name="wsimport-client-restaurantWebService" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/restaurantWebService"/>
         <property name="wsdl-restaurantWebService" location="xml-resources/web-service-references/restaurantWebService/wsdl/localhost_8080/EzBookingWebService/restaurantWebService.wsdl"/>
@@ -118,5 +101,5 @@
         <delete dir="${build.generated.dir}/jax-wsCache/adminWebService"/>
         <delete dir="${build.generated.sources.dir}/jax-ws/com/ubaya/disprog"/>
     </target>
-    <target name="wsimport-client-generate" depends="wsimport-client-ezBookingWebService, wsimport-client-restaurantWebService, wsimport-client-loginWebService, wsimport-client-menuWebService, wsimport-client-reservationWebService, wsimport-client-adminWebService"/>
+    <target name="wsimport-client-generate" depends="wsimport-client-restaurantWebService, wsimport-client-loginWebService, wsimport-client-menuWebService, wsimport-client-reservationWebService, wsimport-client-adminWebService"/>
 </project>
