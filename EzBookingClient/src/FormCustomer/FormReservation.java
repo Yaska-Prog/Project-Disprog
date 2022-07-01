@@ -267,7 +267,7 @@ public class FormReservation extends javax.swing.JFrame {
 
                                 boolean helper = insertDataReservasi(time, totalTable, people, "On Process", 5, resto_id, reservant);
                                 if (helper) {
-                                    if (FormOrderMenu.list_jumlah.size() >= 0) {
+                                    if (FormOrderMenu.list_jumlah.size() >= 0 && resto_id == id_resto) {
                                         for (int i = 0; i < FormOrderMenu.list_jumlah.size(); i++) {
 
                                             Menu men = FormOrderMenu.listMenu.get(i);
