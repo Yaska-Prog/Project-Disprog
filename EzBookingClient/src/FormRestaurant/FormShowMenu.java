@@ -5,6 +5,7 @@
 package FormRestaurant;
 
 import FormRegistrasiAccount.FormLogIn;
+import com.ubaya.disprog.Menu;
 import com.ubaya.disprog.Report;
 import com.ubaya.disprog.Reservasi;
 import java.awt.Component;
@@ -26,36 +27,37 @@ import javax.swing.table.TableCellRenderer;
  */
 public class FormShowMenu extends javax.swing.JFrame {
 
-    com.ubaya.disprog.RestaurantWebService_Service service;
-    com.ubaya.disprog.RestaurantWebService port;
+    com.ubaya.disprog.MenuWebService_Service service;
+    com.ubaya.disprog.MenuWebService port;
 
 //    private static JButton btnAccept = new JButton();
 //    private static JButton btnDecline = new JButton();
 //    private static JButton btnArrived = new JButton();
-    Reservasi reservasi = new Reservasi();
-    List<Reservasi> res = new ArrayList<>();
+    Menu menu = new Menu();
+    List<Menu> res = new ArrayList<>();
 
     /**
      * Creates new form form
      */
     public FormShowMenu() {
         initComponents();
-        service = new com.ubaya.disprog.RestaurantWebService_Service();
-        port = service.getRestaurantWebServicePort();
+        service = new com.ubaya.disprog.MenuWebService_Service();
+        port = service.getMenuWebServicePort();
+        
         String usernameRestaurant = FormLogIn.txtUsername.getText();
         int idResto = idRestaurant(usernameRestaurant);
-        res = port.showReservasi(idResto);
+        res = port.lihatMenu(idResto, "none", "");
 
         DefaultTableModel model = (DefaultTableModel) tableReservation.getModel();
         for (int i = 0; i < res.size(); i++) {
-            reservasi = res.get(i);
-            model.addRow(new Object[]{reservasi.getId(), reservasi.getAccountUsername(), reservasi.getTanggalPesanan(), reservasi.getJumlahMeja(), reservasi.getJumlahOrang()});
+            menu = res.get(i);
+            model.addRow(new Object[]{menu.getJenisMenu(), menu.getNamaMenu(), menu.getHarga()});
         }
     }
 
     public int idRestaurant(String username) {
-        service = new com.ubaya.disprog.RestaurantWebService_Service();
-        port = service.getRestaurantWebServicePort();
+        service = new com.ubaya.disprog.MenuWebService_Service();
+        port = service.getMenuWebServicePort();
         return port.getIdRestaurant(username);
     }
 
@@ -73,9 +75,6 @@ public class FormShowMenu extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tableReservation = new javax.swing.JTable();
         btnBack = new javax.swing.JButton();
-        btnFilter = new javax.swing.JButton();
-        cboStatus = new javax.swing.JComboBox<>();
-        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -95,14 +94,14 @@ public class FormShowMenu extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Reservation Id", "Menu Type", "Menu Name", "Menu Price"
+                "Menu Type", "Menu Name", "Menu Price"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -123,7 +122,6 @@ public class FormShowMenu extends javax.swing.JFrame {
             tableReservation.getColumnModel().getColumn(0).setResizable(false);
             tableReservation.getColumnModel().getColumn(1).setResizable(false);
             tableReservation.getColumnModel().getColumn(2).setResizable(false);
-            tableReservation.getColumnModel().getColumn(3).setResizable(false);
         }
 
         btnBack.setText("Back");
@@ -132,25 +130,6 @@ public class FormShowMenu extends javax.swing.JFrame {
                 btnBackActionPerformed(evt);
             }
         });
-
-        btnFilter.setText("Filter");
-        btnFilter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFilterActionPerformed(evt);
-            }
-        });
-
-        cboStatus.setFont(new java.awt.Font("Dubai", 0, 18)); // NOI18N
-        cboStatus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboStatusActionPerformed(evt);
-            }
-        });
-
-        jLabel8.setBackground(new java.awt.Color(255, 195, 0));
-        jLabel8.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Status");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -167,20 +146,12 @@ public class FormShowMenu extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(38, 38, 38))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(289, 289, 289)
-                            .addComponent(jLabel1)
-                            .addContainerGap()))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cboStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8))
-                        .addGap(18, 18, 18)
-                        .addComponent(btnFilter))))
+                        .addGap(289, 289, 289)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGap(35, 35, 35))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,17 +160,11 @@ public class FormShowMenu extends javax.swing.JFrame {
                 .addComponent(btnBack)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblReview, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cboStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnFilter, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
+                .addGap(32, 32, 32)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
@@ -214,15 +179,6 @@ public class FormShowMenu extends javax.swing.JFrame {
     private void tableReservationMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableReservationMouseClicked
         
     }//GEN-LAST:event_tableReservationMouseClicked
-
-    private void cboStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboStatusActionPerformed
-        Object selectedItem = cboStatus.getSelectedItem();
-        
-    }//GEN-LAST:event_cboStatusActionPerformed
-
-    private void btnFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFilterActionPerformed
-        
-    }//GEN-LAST:event_btnFilterActionPerformed
 
     /**
      * @param args the command line arguments
@@ -264,10 +220,7 @@ public class FormShowMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnFilter;
-    private javax.swing.JComboBox<String> cboStatus;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblReview;
     private javax.swing.JTable tableReservation;

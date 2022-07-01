@@ -43,6 +43,7 @@ public class FormInputMenu extends javax.swing.JFrame {
         btnConfirm = new javax.swing.JButton();
         lblImage = new javax.swing.JLabel();
         txtHarga = new javax.swing.JTextField();
+        btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -75,6 +76,13 @@ public class FormInputMenu extends javax.swing.JFrame {
 
         txtHarga.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
 
+        btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -93,7 +101,9 @@ public class FormInputMenu extends javax.swing.JFrame {
                             .addComponent(txtHarga, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
                             .addComponent(btnConfirm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(140, 140, 140)
+                        .addContainerGap()
+                        .addComponent(btnBack)
+                        .addGap(75, 75, 75)
                         .addComponent(jLabel6)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -101,8 +111,10 @@ public class FormInputMenu extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(lblImage)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBack))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -117,7 +129,7 @@ public class FormInputMenu extends javax.swing.JFrame {
                 .addComponent(txtHarga, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(51, 51, 51)
                 .addComponent(btnConfirm)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
         pack();
@@ -133,10 +145,14 @@ public class FormInputMenu extends javax.swing.JFrame {
         if (hasil == true) {
             JOptionPane.showMessageDialog(this, "Successful add new Menu!");
             this.setVisible(false);
-            FormHomeRestaurant frm = new FormHomeRestaurant();
-            frm.setVisible(true);
         }
     }//GEN-LAST:event_btnConfirmActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        this.dispose();
+        FormHomeRestaurant frm = new FormHomeRestaurant();
+        frm.setEnabled(true);
+    }//GEN-LAST:event_btnBackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -189,6 +205,7 @@ public class FormInputMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnConfirm;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;

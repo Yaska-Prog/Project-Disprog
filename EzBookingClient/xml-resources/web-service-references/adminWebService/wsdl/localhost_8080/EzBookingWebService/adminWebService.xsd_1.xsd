@@ -224,6 +224,18 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="GetIdRestaurant">
+<xs:sequence>
+<xs:element name="username" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="GetIdRestaurantResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="UpdateReport">
 <xs:sequence>
 <xs:element name="account_username" type="xs:string" minOccurs="0"/>
@@ -237,18 +249,6 @@
 <xs:complexType name="UpdateReportResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:boolean"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="GetIdRestaurant">
-<xs:sequence>
-<xs:element name="username" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="GetIdRestaurantResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:int"/>
 </xs:sequence>
 </xs:complexType>
 </xs:schema>

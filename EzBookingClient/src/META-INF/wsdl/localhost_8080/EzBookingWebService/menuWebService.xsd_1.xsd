@@ -4,9 +4,17 @@
 
 <xs:element name="GetIdRestaurantResponse" type="tns:GetIdRestaurantResponse"/>
 
+<xs:element name="ambil_max_id" type="tns:ambil_max_id"/>
+
+<xs:element name="ambil_max_idResponse" type="tns:ambil_max_idResponse"/>
+
 <xs:element name="ambil_menu" type="tns:ambil_menu"/>
 
 <xs:element name="ambil_menuResponse" type="tns:ambil_menuResponse"/>
+
+<xs:element name="ambil_order" type="tns:ambil_order"/>
+
+<xs:element name="ambil_orderResponse" type="tns:ambil_orderResponse"/>
 
 <xs:element name="editMenu" type="tns:editMenu"/>
 
@@ -42,6 +50,7 @@
 
 <xs:complexType name="tambahOrder">
 <xs:sequence>
+<xs:element name="menus_id" type="xs:int"/>
 <xs:element name="resto_id" type="xs:int"/>
 <xs:element name="reserve_id" type="xs:int"/>
 <xs:element name="jumlah_pesanan" type="xs:int"/>
@@ -124,6 +133,43 @@
 <xs:sequence>
 <xs:element name="return" type="xs:boolean"/>
 </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ambil_max_id">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="ambil_max_idResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ambil_order">
+<xs:sequence>
+<xs:element name="id_menu" type="xs:int"/>
+<xs:element name="id_reservasi" type="xs:int"/>
+<xs:element name="jumlah" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ambil_orderResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:orders" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="orders">
+<xs:complexContent>
+<xs:extension base="tns:myModel">
+<xs:sequence>
+<xs:element name="jumlah_pesanan" type="xs:int"/>
+<xs:element name="menu_id" type="xs:int"/>
+<xs:element name="reservasi_id" type="xs:int"/>
+<xs:element name="resto_id" type="xs:int"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
 </xs:complexType>
 
 <xs:complexType name="lihatMenu">
