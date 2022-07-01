@@ -246,8 +246,8 @@ public class FormSignUpRestaurant extends javax.swing.JFrame {
     }
 
     private static boolean checkUsername(java.lang.String username) {
-        com.ubaya.disprog.EzBookingWebService_Service service = new com.ubaya.disprog.EzBookingWebService_Service();
-        com.ubaya.disprog.EzBookingWebService port = service.getEzBookingWebServicePort();
+        com.ubaya.disprog.LoginWebService_Service service = new com.ubaya.disprog.LoginWebService_Service();
+        com.ubaya.disprog.LoginWebService port = service.getLoginWebServicePort();
         return port.checkUsername(username);
     }
 }

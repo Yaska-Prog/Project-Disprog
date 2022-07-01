@@ -16,8 +16,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FormShowReportHistory extends javax.swing.JFrame {
 
-    com.ubaya.disprog.EzBookingWebService_Service service;
-    com.ubaya.disprog.EzBookingWebService port;
+    com.ubaya.disprog.AdminWebService_Service service;
+    com.ubaya.disprog.AdminWebService port;
 
     /**
      * Creates new form reportHistoryForm
@@ -25,10 +25,11 @@ public class FormShowReportHistory extends javax.swing.JFrame {
     public FormShowReportHistory() {
         initComponents();
         try {
-            
+
             List<Report> collections = new ArrayList<>();
-            com.ubaya.disprog.EzBookingWebService_Service service = new com.ubaya.disprog.EzBookingWebService_Service();
-            com.ubaya.disprog.EzBookingWebService port = service.getEzBookingWebServicePort();
+            service = new com.ubaya.disprog.AdminWebService_Service();
+            port = service.getAdminWebServicePort();
+
             collections = port.showReport(0, "none");
             DefaultTableModel model = (DefaultTableModel) tableReport.getModel();
             model.setRowCount(0);

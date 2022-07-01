@@ -4,12 +4,6 @@
 <xsd:import namespace="http://disprog.ubaya.com/" schemaLocation="http://localhost:8080/EzBookingWebService/loginWebService?xsd=1"/>
 </xsd:schema>
 </types>
-<message name="hello">
-<part name="parameters" element="tns:hello"/>
-</message>
-<message name="helloResponse">
-<part name="parameters" element="tns:helloResponse"/>
-</message>
 <message name="check_login">
 <part name="parameters" element="tns:check_login"/>
 </message>
@@ -22,6 +16,12 @@
 <message name="check_usernameResponse">
 <part name="parameters" element="tns:check_usernameResponse"/>
 </message>
+<message name="hello">
+<part name="parameters" element="tns:hello"/>
+</message>
+<message name="helloResponse">
+<part name="parameters" element="tns:helloResponse"/>
+</message>
 <message name="registrasi_account">
 <part name="parameters" element="tns:registrasi_account"/>
 </message>
@@ -29,10 +29,6 @@
 <part name="parameters" element="tns:registrasi_accountResponse"/>
 </message>
 <portType name="loginWebService">
-<operation name="hello">
-<input wsam:Action="http://disprog.ubaya.com/loginWebService/helloRequest" message="tns:hello"/>
-<output wsam:Action="http://disprog.ubaya.com/loginWebService/helloResponse" message="tns:helloResponse"/>
-</operation>
 <operation name="check_login">
 <input wsam:Action="http://disprog.ubaya.com/loginWebService/check_loginRequest" message="tns:check_login"/>
 <output wsam:Action="http://disprog.ubaya.com/loginWebService/check_loginResponse" message="tns:check_loginResponse"/>
@@ -41,6 +37,10 @@
 <input wsam:Action="http://disprog.ubaya.com/loginWebService/check_usernameRequest" message="tns:check_username"/>
 <output wsam:Action="http://disprog.ubaya.com/loginWebService/check_usernameResponse" message="tns:check_usernameResponse"/>
 </operation>
+<operation name="hello">
+<input wsam:Action="http://disprog.ubaya.com/loginWebService/helloRequest" message="tns:hello"/>
+<output wsam:Action="http://disprog.ubaya.com/loginWebService/helloResponse" message="tns:helloResponse"/>
+</operation>
 <operation name="registrasi_account">
 <input wsam:Action="http://disprog.ubaya.com/loginWebService/registrasi_accountRequest" message="tns:registrasi_account"/>
 <output wsam:Action="http://disprog.ubaya.com/loginWebService/registrasi_accountResponse" message="tns:registrasi_accountResponse"/>
@@ -48,15 +48,6 @@
 </portType>
 <binding name="loginWebServicePortBinding" type="tns:loginWebService">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-<operation name="hello">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
 <operation name="check_login">
 <soap:operation soapAction=""/>
 <input>
@@ -67,6 +58,15 @@
 </output>
 </operation>
 <operation name="check_username">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="hello">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

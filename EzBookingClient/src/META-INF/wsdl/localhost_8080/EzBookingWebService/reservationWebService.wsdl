@@ -4,12 +4,6 @@
 <xsd:import namespace="http://disprog.ubaya.com/" schemaLocation="http://localhost:8080/EzBookingWebService/reservationWebService?xsd=1"/>
 </xsd:schema>
 </types>
-<message name="hello">
-<part name="parameters" element="tns:hello"/>
-</message>
-<message name="helloResponse">
-<part name="parameters" element="tns:helloResponse"/>
-</message>
 <message name="ambil_id">
 <part name="parameters" element="tns:ambil_id"/>
 </message>
@@ -21,6 +15,12 @@
 </message>
 <message name="give_ratingResponse">
 <part name="parameters" element="tns:give_ratingResponse"/>
+</message>
+<message name="hello">
+<part name="parameters" element="tns:hello"/>
+</message>
+<message name="helloResponse">
+<part name="parameters" element="tns:helloResponse"/>
 </message>
 <message name="insertDataReservasi">
 <part name="parameters" element="tns:insertDataReservasi"/>
@@ -34,17 +34,17 @@
 <message name="jumlahKetersediaanMejaResponse">
 <part name="parameters" element="tns:jumlahKetersediaanMejaResponse"/>
 </message>
-<message name="showListRestaurant">
-<part name="parameters" element="tns:showListRestaurant"/>
-</message>
-<message name="showListRestaurantResponse">
-<part name="parameters" element="tns:showListRestaurantResponse"/>
-</message>
 <message name="showListIdRestaurant">
 <part name="parameters" element="tns:showListIdRestaurant"/>
 </message>
 <message name="showListIdRestaurantResponse">
 <part name="parameters" element="tns:showListIdRestaurantResponse"/>
+</message>
+<message name="showListRestaurant">
+<part name="parameters" element="tns:showListRestaurant"/>
+</message>
+<message name="showListRestaurantResponse">
+<part name="parameters" element="tns:showListRestaurantResponse"/>
 </message>
 <message name="showReservasiUser">
 <part name="parameters" element="tns:showReservasiUser"/>
@@ -53,10 +53,6 @@
 <part name="parameters" element="tns:showReservasiUserResponse"/>
 </message>
 <portType name="reservationWebService">
-<operation name="hello">
-<input wsam:Action="http://disprog.ubaya.com/reservationWebService/helloRequest" message="tns:hello"/>
-<output wsam:Action="http://disprog.ubaya.com/reservationWebService/helloResponse" message="tns:helloResponse"/>
-</operation>
 <operation name="ambil_id">
 <input wsam:Action="http://disprog.ubaya.com/reservationWebService/ambil_idRequest" message="tns:ambil_id"/>
 <output wsam:Action="http://disprog.ubaya.com/reservationWebService/ambil_idResponse" message="tns:ambil_idResponse"/>
@@ -64,6 +60,10 @@
 <operation name="give_rating">
 <input wsam:Action="http://disprog.ubaya.com/reservationWebService/give_ratingRequest" message="tns:give_rating"/>
 <output wsam:Action="http://disprog.ubaya.com/reservationWebService/give_ratingResponse" message="tns:give_ratingResponse"/>
+</operation>
+<operation name="hello">
+<input wsam:Action="http://disprog.ubaya.com/reservationWebService/helloRequest" message="tns:hello"/>
+<output wsam:Action="http://disprog.ubaya.com/reservationWebService/helloResponse" message="tns:helloResponse"/>
 </operation>
 <operation name="insertDataReservasi">
 <input wsam:Action="http://disprog.ubaya.com/reservationWebService/insertDataReservasiRequest" message="tns:insertDataReservasi"/>
@@ -73,13 +73,13 @@
 <input wsam:Action="http://disprog.ubaya.com/reservationWebService/jumlahKetersediaanMejaRequest" message="tns:jumlahKetersediaanMeja"/>
 <output wsam:Action="http://disprog.ubaya.com/reservationWebService/jumlahKetersediaanMejaResponse" message="tns:jumlahKetersediaanMejaResponse"/>
 </operation>
-<operation name="showListRestaurant">
-<input wsam:Action="http://disprog.ubaya.com/reservationWebService/showListRestaurantRequest" message="tns:showListRestaurant"/>
-<output wsam:Action="http://disprog.ubaya.com/reservationWebService/showListRestaurantResponse" message="tns:showListRestaurantResponse"/>
-</operation>
 <operation name="showListIdRestaurant">
 <input wsam:Action="http://disprog.ubaya.com/reservationWebService/showListIdRestaurantRequest" message="tns:showListIdRestaurant"/>
 <output wsam:Action="http://disprog.ubaya.com/reservationWebService/showListIdRestaurantResponse" message="tns:showListIdRestaurantResponse"/>
+</operation>
+<operation name="showListRestaurant">
+<input wsam:Action="http://disprog.ubaya.com/reservationWebService/showListRestaurantRequest" message="tns:showListRestaurant"/>
+<output wsam:Action="http://disprog.ubaya.com/reservationWebService/showListRestaurantResponse" message="tns:showListRestaurantResponse"/>
 </operation>
 <operation name="showReservasiUser">
 <input wsam:Action="http://disprog.ubaya.com/reservationWebService/showReservasiUserRequest" message="tns:showReservasiUser"/>
@@ -88,15 +88,6 @@
 </portType>
 <binding name="reservationWebServicePortBinding" type="tns:reservationWebService">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-<operation name="hello">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
 <operation name="ambil_id">
 <soap:operation soapAction=""/>
 <input>
@@ -107,6 +98,15 @@
 </output>
 </operation>
 <operation name="give_rating">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="hello">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -133,7 +133,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="showListRestaurant">
+<operation name="showListIdRestaurant">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -142,7 +142,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="showListIdRestaurant">
+<operation name="showListRestaurant">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

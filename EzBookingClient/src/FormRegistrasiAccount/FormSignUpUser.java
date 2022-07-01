@@ -238,14 +238,14 @@ public class FormSignUpUser extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private static boolean registrasiAccount(java.lang.String username, java.lang.String email, java.lang.String password, java.lang.String role) {
-        com.ubaya.disprog.EzBookingWebService_Service service = new com.ubaya.disprog.EzBookingWebService_Service();
-        com.ubaya.disprog.EzBookingWebService port = service.getEzBookingWebServicePort();
+        com.ubaya.disprog.LoginWebService_Service service = new com.ubaya.disprog.LoginWebService_Service();
+        com.ubaya.disprog.LoginWebService port = service.getLoginWebServicePort();
         return port.registrasiAccount(username, email, password, role);
     }
 
     private static boolean checkUsername(java.lang.String username) {
-        com.ubaya.disprog.EzBookingWebService_Service service = new com.ubaya.disprog.EzBookingWebService_Service();
-        com.ubaya.disprog.EzBookingWebService port = service.getEzBookingWebServicePort();
+        com.ubaya.disprog.LoginWebService_Service service = new com.ubaya.disprog.LoginWebService_Service();
+        com.ubaya.disprog.LoginWebService port = service.getLoginWebServicePort();
         return port.checkUsername(username);
     }
 }

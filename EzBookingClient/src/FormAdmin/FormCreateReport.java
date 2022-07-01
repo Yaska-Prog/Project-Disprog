@@ -19,14 +19,14 @@ public class FormCreateReport extends javax.swing.JFrame {
     /**
      * Creates new form Report
      */
-    com.ubaya.disprog.EzBookingWebService_Service service;
-    com.ubaya.disprog.EzBookingWebService port;
+    com.ubaya.disprog.AdminWebService_Service service;
+    com.ubaya.disprog.AdminWebService port;
 
     public FormCreateReport() {
         initComponents();
 
-        service = new com.ubaya.disprog.EzBookingWebService_Service();
-        port = service.getEzBookingWebServicePort();
+        service = new com.ubaya.disprog.AdminWebService_Service();
+        port = service.getAdminWebServicePort();
 
         List<String> idAllResto = new ArrayList<String>();
         idAllResto = port.showListAllIdRestaurant();
@@ -173,8 +173,8 @@ public class FormCreateReport extends javax.swing.JFrame {
         if (qualityService > 5.0 || foodQuality > 5.0) {
             JOptionPane.showMessageDialog(this, "Quality of service atau food quality tidak boleh lebih dari 5");
         } else {
-            service = new com.ubaya.disprog.EzBookingWebService_Service();
-            port = service.getEzBookingWebServicePort();
+            service = new com.ubaya.disprog.AdminWebService_Service();
+            port = service.getAdminWebServicePort();
             boolean resultSave = port.saveReport(usernameAccount, idRestaurant, qualityService, foodQuality, review);
             if (resultSave == true) {
                 JOptionPane.showMessageDialog(this, "Successful!");

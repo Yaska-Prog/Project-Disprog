@@ -10,4 +10,6 @@
     <system systemId="http://localhost:8080/EzBookingWebService/menuWebService?xsd=1" uri="wsdl/localhost_8080/EzBookingWebService/menuWebService.xsd_1.xsd"/>
     <system systemId="http://localhost:8080/EzBookingWebService/reservationWebService?wsdl" uri="wsdl/localhost_8080/EzBookingWebService/reservationWebService.wsdl"/>
     <system systemId="http://localhost:8080/EzBookingWebService/reservationWebService?xsd=1" uri="wsdl/localhost_8080/EzBookingWebService/reservationWebService.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/EzBookingWebService/adminWebService?wsdl" uri="wsdl/localhost_8080/EzBookingWebService/adminWebService.wsdl"/>
+    <system systemId="http://localhost:8080/EzBookingWebService/adminWebService?xsd=1" uri="wsdl/localhost_8080/EzBookingWebService/adminWebService.xsd_1.xsd"/>
 </catalog>

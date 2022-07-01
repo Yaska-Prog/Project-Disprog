@@ -19,7 +19,7 @@
     <target name="wsimport-client-ezBookingWebService" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/ezBookingWebService"/>
         <property name="wsdl-ezBookingWebService" location="xml-resources/web-service-references/ezBookingWebService/wsdl/localhost_8080/EzBookingWebService/ezBookingWebService.wsdl"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/ezBookingWebService" destdir="${build.generated.dir}/jax-wsCache/ezBookingWebService" wsdl="${wsdl-ezBookingWebService}" catalog="catalog.xml" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/EzBookingWebService/ezBookingWebService?wsdl" xnocompile="true" xendorsed="true">
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/ezBookingWebService" destdir="${build.generated.dir}/jax-wsCache/ezBookingWebService" wsdl="${wsdl-ezBookingWebService}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/EzBookingWebService/ezBookingWebService?wsdl" xnocompile="true" xendorsed="true">
             <depends file="${wsdl-ezBookingWebService}"/>
             <produces dir="${build.generated.dir}/jax-wsCache/ezBookingWebService"/>
         </wsimport>
@@ -36,7 +36,7 @@
     <target name="wsimport-client-restaurantWebService" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/restaurantWebService"/>
         <property name="wsdl-restaurantWebService" location="xml-resources/web-service-references/restaurantWebService/wsdl/localhost_8080/EzBookingWebService/restaurantWebService.wsdl"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/restaurantWebService" destdir="${build.generated.dir}/jax-wsCache/restaurantWebService" wsdl="${wsdl-restaurantWebService}" catalog="catalog.xml" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/EzBookingWebService/restaurantWebService?wsdl" xnocompile="true" xendorsed="true">
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/restaurantWebService" destdir="${build.generated.dir}/jax-wsCache/restaurantWebService" wsdl="${wsdl-restaurantWebService}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/EzBookingWebService/restaurantWebService?wsdl" xnocompile="true" xendorsed="true">
             <depends file="${wsdl-restaurantWebService}"/>
             <produces dir="${build.generated.dir}/jax-wsCache/restaurantWebService"/>
         </wsimport>
@@ -53,7 +53,7 @@
     <target name="wsimport-client-loginWebService" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/loginWebService"/>
         <property name="wsdl-loginWebService" location="xml-resources/web-service-references/loginWebService/wsdl/localhost_8080/EzBookingWebService/loginWebService.wsdl"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/loginWebService" destdir="${build.generated.dir}/jax-wsCache/loginWebService" wsdl="${wsdl-loginWebService}" catalog="catalog.xml" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/EzBookingWebService/loginWebService?wsdl" xnocompile="true" xendorsed="true">
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/loginWebService" destdir="${build.generated.dir}/jax-wsCache/loginWebService" wsdl="${wsdl-loginWebService}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/EzBookingWebService/loginWebService?wsdl" xnocompile="true" xendorsed="true">
             <depends file="${wsdl-loginWebService}"/>
             <produces dir="${build.generated.dir}/jax-wsCache/loginWebService"/>
         </wsimport>
@@ -70,7 +70,7 @@
     <target name="wsimport-client-menuWebService" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/menuWebService"/>
         <property name="wsdl-menuWebService" location="xml-resources/web-service-references/menuWebService/wsdl/localhost_8080/EzBookingWebService/menuWebService.wsdl"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/menuWebService" destdir="${build.generated.dir}/jax-wsCache/menuWebService" wsdl="${wsdl-menuWebService}" catalog="catalog.xml" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/EzBookingWebService/menuWebService?wsdl" xnocompile="true" xendorsed="true">
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/menuWebService" destdir="${build.generated.dir}/jax-wsCache/menuWebService" wsdl="${wsdl-menuWebService}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/EzBookingWebService/menuWebService?wsdl" xnocompile="true" xendorsed="true">
             <depends file="${wsdl-menuWebService}"/>
             <produces dir="${build.generated.dir}/jax-wsCache/menuWebService"/>
         </wsimport>
@@ -87,7 +87,7 @@
     <target name="wsimport-client-reservationWebService" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/reservationWebService"/>
         <property name="wsdl-reservationWebService" location="xml-resources/web-service-references/reservationWebService/wsdl/localhost_8080/EzBookingWebService/reservationWebService.wsdl"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/reservationWebService" destdir="${build.generated.dir}/jax-wsCache/reservationWebService" wsdl="${wsdl-reservationWebService}" catalog="catalog.xml" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/EzBookingWebService/reservationWebService?wsdl" xnocompile="true" xendorsed="true">
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/reservationWebService" destdir="${build.generated.dir}/jax-wsCache/reservationWebService" wsdl="${wsdl-reservationWebService}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/EzBookingWebService/reservationWebService?wsdl" xnocompile="true" xendorsed="true">
             <depends file="${wsdl-reservationWebService}"/>
             <produces dir="${build.generated.dir}/jax-wsCache/reservationWebService"/>
         </wsimport>
@@ -101,5 +101,22 @@
         <delete dir="${build.generated.dir}/jax-wsCache/reservationWebService"/>
         <delete dir="${build.generated.sources.dir}/jax-ws/com/ubaya/disprog"/>
     </target>
-    <target name="wsimport-client-generate" depends="wsimport-client-ezBookingWebService, wsimport-client-restaurantWebService, wsimport-client-loginWebService, wsimport-client-menuWebService, wsimport-client-reservationWebService"/>
+    <target name="wsimport-client-adminWebService" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/adminWebService"/>
+        <property name="wsdl-adminWebService" location="xml-resources/web-service-references/adminWebService/wsdl/localhost_8080/EzBookingWebService/adminWebService.wsdl"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/adminWebService" destdir="${build.generated.dir}/jax-wsCache/adminWebService" wsdl="${wsdl-adminWebService}" catalog="catalog.xml" encoding="${source.encoding}" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:8080/EzBookingWebService/adminWebService?wsdl" xnocompile="true" xendorsed="true">
+            <depends file="${wsdl-adminWebService}"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/adminWebService"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/adminWebService">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-adminWebService" depends="-init-project">
+        <delete dir="${build.generated.dir}/jax-wsCache/adminWebService"/>
+        <delete dir="${build.generated.sources.dir}/jax-ws/com/ubaya/disprog"/>
+    </target>
+    <target name="wsimport-client-generate" depends="wsimport-client-ezBookingWebService, wsimport-client-restaurantWebService, wsimport-client-loginWebService, wsimport-client-menuWebService, wsimport-client-reservationWebService, wsimport-client-adminWebService"/>
 </project>

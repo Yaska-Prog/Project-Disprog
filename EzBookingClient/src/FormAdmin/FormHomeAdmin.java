@@ -17,17 +17,16 @@ import javax.swing.table.DefaultTableModel;
 public class FormHomeAdmin extends javax.swing.JFrame {
 
     public String usernameAccount;
-    com.ubaya.disprog.EzBookingWebService_Service service;
-    com.ubaya.disprog.EzBookingWebService port;
-
+    com.ubaya.disprog.AdminWebService_Service service;
+    com.ubaya.disprog.AdminWebService port;
     /**
      * Creates new form homeAdminForm
      */
     public FormHomeAdmin() {
         initComponents();
         List<Restaurant> restoArray = new ArrayList<>();
-        service = new com.ubaya.disprog.EzBookingWebService_Service();
-        port = service.getEzBookingWebServicePort();
+        service = new com.ubaya.disprog.AdminWebService_Service();
+        port = service.getAdminWebServicePort();
         restoArray = port.showRestaurantWithFilterForAdmin("All", "", "");
 
         DefaultTableModel model = (DefaultTableModel) tableRestaurant.getModel();
@@ -272,8 +271,8 @@ public class FormHomeAdmin extends javax.swing.JFrame {
     private void btnAscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAscActionPerformed
         List<Restaurant> restoArray = new ArrayList<>();
 
-        service = new com.ubaya.disprog.EzBookingWebService_Service();
-        port = service.getEzBookingWebServicePort();
+        service = new com.ubaya.disprog.AdminWebService_Service();
+        port = service.getAdminWebServicePort();
         String filter = "";
         String cboSel = cboFilter.getSelectedItem().toString();
         if (cboSel.equals("Nama Restaurant")) {
@@ -301,9 +300,8 @@ public class FormHomeAdmin extends javax.swing.JFrame {
 
     private void btnDescActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDescActionPerformed
         List<Restaurant> restoArray = new ArrayList<>();
-        service = new com.ubaya.disprog.EzBookingWebService_Service();
-        port = service.getEzBookingWebServicePort();
-
+        service = new com.ubaya.disprog.AdminWebService_Service();
+        port = service.getAdminWebServicePort();
         String filter = "";
         String cboSel = cboFilter.getSelectedItem().toString();
         if (cboSel.equals("Nama Restaurant")) {

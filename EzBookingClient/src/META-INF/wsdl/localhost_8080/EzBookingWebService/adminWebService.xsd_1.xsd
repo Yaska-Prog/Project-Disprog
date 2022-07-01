@@ -1,0 +1,254 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.2-b608 (trunk-7979; 2015-01-21T12:50:19+0000) JAXWS-RI/2.2.11-b150120.1832 JAXWS-API/2.2.12 JAXB-RI/2.2.12-b141219.1637 JAXB-API/2.2.13-b141020.1521 svn-revision#unknown. --><xs:schema xmlns:tns="http://disprog.ubaya.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://disprog.ubaya.com/">
+
+<xs:element name="GetIdRestaurant" type="tns:GetIdRestaurant"/>
+
+<xs:element name="GetIdRestaurantResponse" type="tns:GetIdRestaurantResponse"/>
+
+<xs:element name="SaveReport" type="tns:SaveReport"/>
+
+<xs:element name="SaveReportResponse" type="tns:SaveReportResponse"/>
+
+<xs:element name="UpdateReport" type="tns:UpdateReport"/>
+
+<xs:element name="UpdateReportResponse" type="tns:UpdateReportResponse"/>
+
+<xs:element name="ambil_id" type="tns:ambil_id"/>
+
+<xs:element name="ambil_idResponse" type="tns:ambil_idResponse"/>
+
+<xs:element name="listYangSudahDireport" type="tns:listYangSudahDireport"/>
+
+<xs:element name="listYangSudahDireportResponse" type="tns:listYangSudahDireportResponse"/>
+
+<xs:element name="showListAllIdRestaurant" type="tns:showListAllIdRestaurant"/>
+
+<xs:element name="showListAllIdRestaurantResponse" type="tns:showListAllIdRestaurantResponse"/>
+
+<xs:element name="showListDataRestaurant" type="tns:showListDataRestaurant"/>
+
+<xs:element name="showListDataRestaurantResponse" type="tns:showListDataRestaurantResponse"/>
+
+<xs:element name="showListIdRestaurant" type="tns:showListIdRestaurant"/>
+
+<xs:element name="showListIdRestaurantResponse" type="tns:showListIdRestaurantResponse"/>
+
+<xs:element name="showListRestaurant" type="tns:showListRestaurant"/>
+
+<xs:element name="showListRestaurantResponse" type="tns:showListRestaurantResponse"/>
+
+<xs:element name="showReport" type="tns:showReport"/>
+
+<xs:element name="showReportResponse" type="tns:showReportResponse"/>
+
+<xs:element name="showReservasiUser" type="tns:showReservasiUser"/>
+
+<xs:element name="showReservasiUserResponse" type="tns:showReservasiUserResponse"/>
+
+<xs:element name="showRestaurantWithFilterForAdmin" type="tns:showRestaurantWithFilterForAdmin"/>
+
+<xs:element name="showRestaurantWithFilterForAdminResponse" type="tns:showRestaurantWithFilterForAdminResponse"/>
+
+<xs:complexType name="showListDataRestaurant">
+<xs:sequence>
+<xs:element name="username" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="showListDataRestaurantResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:restaurant" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="restaurant">
+<xs:complexContent>
+<xs:extension base="tns:myModel">
+<xs:sequence>
+<xs:element name="alamatRestaurant" type="xs:string" minOccurs="0"/>
+<xs:element name="id" type="xs:int"/>
+<xs:element name="max_table" type="xs:int"/>
+<xs:element name="namaPemilik" type="xs:string" minOccurs="0"/>
+<xs:element name="namaRestaurant" type="xs:string" minOccurs="0"/>
+<xs:element name="totalBintang" type="xs:int"/>
+<xs:element name="total_Pelanggan" type="xs:int"/>
+<xs:element name="usernameRestaurant" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="myModel" abstract="true">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="showReport">
+<xs:sequence>
+<xs:element name="idRestaurant" type="xs:int"/>
+<xs:element name="accountUsername" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="showReportResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:report" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="report">
+<xs:complexContent>
+<xs:extension base="tns:myModel">
+<xs:sequence>
+<xs:element name="account_username" type="xs:string" minOccurs="0"/>
+<xs:element name="foodQuality" type="xs:double"/>
+<xs:element name="idRestaurant" type="xs:int"/>
+<xs:element name="qualityOfService" type="xs:double"/>
+<xs:element name="review" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="showRestaurantWithFilterForAdmin">
+<xs:sequence>
+<xs:element name="namaFilter" type="xs:string" minOccurs="0"/>
+<xs:element name="valueFilter" type="xs:string" minOccurs="0"/>
+<xs:element name="SortBy" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="showRestaurantWithFilterForAdminResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:restaurant" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listYangSudahDireport">
+<xs:sequence>
+<xs:element name="accountUsername" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="listYangSudahDireportResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:report" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="showReservasiUser">
+<xs:sequence>
+<xs:element name="accountName" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="showReservasiUserResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:reservasi" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="reservasi">
+<xs:complexContent>
+<xs:extension base="tns:myModel">
+<xs:sequence>
+<xs:element name="accountUsername" type="xs:string" minOccurs="0"/>
+<xs:element name="id" type="xs:int"/>
+<xs:element name="jumlahMeja" type="xs:int"/>
+<xs:element name="jumlahOrang" type="xs:int"/>
+<xs:element name="penilaianBintang" type="xs:int"/>
+<xs:element name="restaurant" type="xs:int"/>
+<xs:element name="status" type="xs:string" minOccurs="0"/>
+<xs:element name="tanggalPesanan" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="showListRestaurant">
+<xs:sequence>
+<xs:element name="filter" type="xs:string" minOccurs="0"/>
+<xs:element name="value" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="showListRestaurantResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:restaurant" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ambil_id">
+<xs:sequence>
+<xs:element name="username" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ambil_idResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="SaveReport">
+<xs:sequence>
+<xs:element name="account_username" type="xs:string" minOccurs="0"/>
+<xs:element name="id_resto" type="xs:int"/>
+<xs:element name="qualityOfService" type="xs:double"/>
+<xs:element name="food_quality" type="xs:double"/>
+<xs:element name="review" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="SaveReportResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="showListAllIdRestaurant">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="showListAllIdRestaurantResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="GetIdRestaurant">
+<xs:sequence>
+<xs:element name="username" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="GetIdRestaurantResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="UpdateReport">
+<xs:sequence>
+<xs:element name="account_username" type="xs:string" minOccurs="0"/>
+<xs:element name="id_resto" type="xs:int"/>
+<xs:element name="qualityOfService" type="xs:double"/>
+<xs:element name="food_quality" type="xs:double"/>
+<xs:element name="review" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="UpdateReportResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="showListIdRestaurant">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="showListIdRestaurantResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

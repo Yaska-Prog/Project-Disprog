@@ -19,14 +19,14 @@ public class FormEditReport extends javax.swing.JFrame {
     /**
      * Creates new form FormEditReport
      */
-    com.ubaya.disprog.EzBookingWebService_Service service;
-    com.ubaya.disprog.EzBookingWebService port;
+    com.ubaya.disprog.AdminWebService_Service service;
+    com.ubaya.disprog.AdminWebService port;
 
     public FormEditReport() {
         initComponents();
 
-        service = new com.ubaya.disprog.EzBookingWebService_Service();
-        port = service.getEzBookingWebServicePort();
+        service = new com.ubaya.disprog.AdminWebService_Service();
+        port = service.getAdminWebServicePort();
 
         List<Report> report = new ArrayList<Report>();
         report = port.listYangSudahDireport(FormLogIn.txtUsername.getText());
@@ -177,14 +177,14 @@ public class FormEditReport extends javax.swing.JFrame {
         Double qualityService = Double.parseDouble(spinEditQualityOfService.getValue().toString());
         Double foodQuality = Double.parseDouble(spinEditFoodQuality.getValue().toString());
         String review = txtEditReview.getText();
-        int idRestaurant = Integer.valueOf((String)cboEditRestoId.getSelectedItem());
+        int idRestaurant = Integer.valueOf((String) cboEditRestoId.getSelectedItem());
         String usernameAccount = FormLogIn.txtUsername.getText();
 
         if (qualityService > 5.0 || foodQuality > 5.0) {
             JOptionPane.showMessageDialog(this, "Quality of service atau food quality tidak boleh lebih dari 5");
         } else {
-            service = new com.ubaya.disprog.EzBookingWebService_Service();
-            port = service.getEzBookingWebServicePort();
+            service = new com.ubaya.disprog.AdminWebService_Service();
+            port = service.getAdminWebServicePort();
             boolean resultSave = true;//port.updateReport(usernameAccount, idRestaurant, qualityService, foodQuality, review);
             if (resultSave == true) {
                 JOptionPane.showMessageDialog(this, "Successful!");
@@ -196,8 +196,8 @@ public class FormEditReport extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditConfirmActionPerformed
 
     private void cboEditRestoIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboEditRestoIdActionPerformed
-        service = new com.ubaya.disprog.EzBookingWebService_Service();
-        port = service.getEzBookingWebServicePort();
+        service = new com.ubaya.disprog.AdminWebService_Service();
+        port = service.getAdminWebServicePort();
 
         List<Report> report = new ArrayList<Report>();
         report = port.listYangSudahDireport(FormLogIn.txtUsername.getText());
